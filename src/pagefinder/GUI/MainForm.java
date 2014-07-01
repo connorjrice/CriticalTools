@@ -2,22 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package pagefinder;
+package pagefinder.GUI;
 
 /**
  *
  * @author Development
  */
-public class GUI extends javax.swing.JFrame {
+public class MainForm extends javax.swing.JFrame {
     
     private String currentAction = "";
     private int measureNumber = -1;
     private boolean firstType = false;
 
     /**
-     * Creates new form GUI
+     * Creates new form MainForm
      */
-    public GUI() {
+    public MainForm() {
         initComponents();
         setLocationRelativeTo(null); // Centers form
     }
