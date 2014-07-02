@@ -6,7 +6,7 @@ package pagefinder.GUI;
 
 import javax.swing.DefaultComboBoxModel;
 import pagefinder.IO.ARRParse;
-import pathfinder.Objects.Arrangement;
+import pagefinder.Objects.Arrangement;
 
 /**
  *
@@ -54,6 +54,9 @@ public class MainForm extends javax.swing.JFrame {
         arrangeCombo = new javax.swing.JComboBox();
         measureField = new javax.swing.JTextField();
         openButton = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PageFinder");
@@ -88,6 +91,20 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
+        jMenu1.setText("Settings");
+
+        jMenuItem1.setText("Open file in new window");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,7 +121,7 @@ public class MainForm extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(140, Short.MAX_VALUE)
+                .addContainerGap(119, Short.MAX_VALUE)
                 .addComponent(measureField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(arrangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,16 +139,7 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_measureFieldActionPerformed
 
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
-        measureNumber = -1;
-        String measureString = measureField.getText();
-        try {
-            measureNumber = Integer.parseInt(measureString);
-        } catch (NumberFormatException e) {
-            new ErrorForm("Please enter a valid measure number.").setVisible(true);
-        }
-        System.out.println(measureNumber);
-        clearMeasureField();
-        
+        openImages();
     }//GEN-LAST:event_openButtonActionPerformed
 
     private void arrangeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrangeComboActionPerformed
@@ -151,11 +159,40 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_measureFieldKeyTyped
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void clearMeasureField() {
         measureField.setText("");        
     }
+    
+    private void resetMeasureFieldText() {
+        measureField.setText("Enter measure number...");
+    }
+    
+    private void openImages() {
+        measureNumber = -1;
+        String measureString = measureField.getText();
+        try {
+            measureNumber = Integer.parseInt(measureString);
+            System.out.println(measureNumber);
+            new ImageForm(getImgLoc()).setVisible(true);
+        } catch (NumberFormatException e) {
+            new ErrorForm("Please enter a valid measure number.").setVisible(true);
+        }
+
+        resetMeasureFieldText();
+    }
+    
+    private String getImgLoc() {
+        return "/pagefinder/"+arrangements[0].getDir()+"/"+measureNumber+".jpg";
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox arrangeCombo;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JTextField measureField;
     private javax.swing.JButton openButton;
     // End of variables declaration//GEN-END:variables

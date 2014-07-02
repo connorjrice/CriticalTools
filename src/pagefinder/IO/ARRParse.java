@@ -10,7 +10,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pathfinder.Objects.Arrangement;
+import pagefinder.Objects.Arrangement;
 
 /**
  *
@@ -26,7 +26,6 @@ public class ARRParse {
     }
     
     private void parseARR() {
-        
         try(BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("Arrangements.arr")))) {
             String line = br.readLine();
 
