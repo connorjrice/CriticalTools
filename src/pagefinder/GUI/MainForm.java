@@ -4,6 +4,10 @@
  */
 package pagefinder.GUI;
 
+import javax.swing.DefaultComboBoxModel;
+import pagefinder.IO.ARRParse;
+import pathfinder.Objects.Arrangement;
+
 /**
  *
  * @author Development
@@ -13,14 +17,30 @@ public class MainForm extends javax.swing.JFrame {
     private String currentAction = "";
     private int measureNumber = -1;
     private boolean firstType = false;
+    private Arrangement[] arrangements;
 
     /**
      * Creates new form MainForm
      */
-    public MainForm() {
+    public MainForm(Arrangement[] arrangements) {
+        this.arrangements = arrangements;
         initComponents();
         setLocationRelativeTo(null); // Centers form
+        parseArr();
     }
+    
+    private void parseArr() {
+        arrangeCombo.setModel(getComboBoxModel());
+    }
+    
+    private DefaultComboBoxModel getComboBoxModel() {
+        String[] model = new String[arrangements.length];
+        for (int i = 0; i < arrangements.length; i++) {
+            model[i] = arrangements[i].getName();
+        }
+        return new DefaultComboBoxModel(model);
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +58,6 @@ public class MainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PageFinder");
 
-        arrangeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Whiteman Arrangement" }));
         arrangeCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 arrangeComboActionPerformed(evt);

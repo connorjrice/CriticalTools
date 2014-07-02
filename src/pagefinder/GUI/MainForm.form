@@ -53,13 +53,6 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JComboBox" name="arrangeCombo">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="1">
-            <StringItem index="0" value="Whiteman Arrangement"/>
-          </StringArray>
-        </Property>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="arrangeComboActionPerformed"/>
       </Events>
