@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagefinder.IO;
 
 import java.awt.Graphics2D;
@@ -11,14 +7,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import pagefinder.GUI.ImageForm;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class ScaleUtils {
     private String imgloc;

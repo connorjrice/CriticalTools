@@ -6,7 +6,7 @@ package pagefinder.GUI;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class ErrorForm extends javax.swing.JFrame {
 

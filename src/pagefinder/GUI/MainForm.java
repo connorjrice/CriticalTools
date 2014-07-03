@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagefinder.GUI;
 
 import javax.swing.DefaultComboBoxModel;
@@ -10,27 +6,29 @@ import pagefinder.Objects.Arrangement;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class MainForm extends javax.swing.JFrame {
     
-    private String currentAction = "";
     private int measureNumber = -1;
     private boolean firstType = false;
     private Arrangement[] arrangements;
+    private int[] measureDB;
 
-    /**
-     * Creates new form MainForm
-     */
     public MainForm(Arrangement[] arrangements) {
         this.arrangements = arrangements;
         initComponents();
         setLocationRelativeTo(null); // Centers form
         parseArr();
+        parseInd();
     }
     
     private void parseArr() {
         arrangeCombo.setModel(getComboBoxModel());
+    }
+    
+    private void parseInd() {
+        
     }
     
     private DefaultComboBoxModel getComboBoxModel() {
@@ -177,17 +175,28 @@ public class MainForm extends javax.swing.JFrame {
         try {
             measureNumber = Integer.parseInt(measureString);
             System.out.println(measureNumber);
-            new ImageForm(getImgLoc()).setVisible(true);
+//            new ImageForm(oldGetImg()).setVisible(true);
+            new ImageForm(oldGetImg()).setVisible(true);
         } catch (NumberFormatException e) {
             new ErrorForm("Please enter a valid measure number.").setVisible(true);
         }
-
         resetMeasureFieldText();
     }
     
-    private String getImgLoc() {
+    private String oldGetImg() {
         return "/pagefinder/"+arrangements[0].getDir()+"/"+measureNumber+".jpg";
     }
+    
+    private String getImgLoc() {
+        return "/pagefinder/"+arrangements[0].getDir()+"/"+parseMeasureNumber()+".jpg";
+    }
+    
+    private String parseMeasureNumber() {
+        String converted = "";
+        
+        return converted;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox arrangeCombo;
     private javax.swing.JMenu jMenu1;

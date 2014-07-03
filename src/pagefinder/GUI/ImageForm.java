@@ -1,59 +1,71 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagefinder.GUI;
 
-import java.awt.Graphics2D;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class ImageForm extends javax.swing.JFrame {
 
+    public ImageForm() {
+        initComponents();
+    }
+    
     private String imgloc;
-    /**
-     * Creates new form ImageForm
-     */
+    private BufferedImage originalImage;
+    private BufferedImage currentImage;
+
     public ImageForm(String imgloc) {
         this.imgloc = imgloc;
         initComponents();
         try {
-            scaleImage();
+            initialScale();
         } catch (IOException ex) {
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void scaleImage() throws IOException {
-        jLabel1.setIcon(getImageIcon(ImageIO.read(getClass().getResource(imgloc))));
+    private void initialScale() throws IOException {
+        originalImage = ImageIO.read(getClass().getResource(imgloc));
+        jLabel1.setIcon(scaleImage(originalImage));
+        this.setBounds(0,0,currentImage.getWidth(), currentImage.getHeight());
+        setLocationRelativeTo(null);
     }    
     
-    private ImageIcon getImageIcon(BufferedImage in) {
+    private ImageIcon scaleImage(BufferedImage in) {
         float[] imgVars = getScaledDimensions(in);
-        AffineTransform at = new AffineTransform();
-        at.scale(imgVars[0], imgVars[0]);
-        AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-        BufferedImage out = new BufferedImage(Math.round(imgVars[1]), 
-                Math.round(imgVars[2]), BufferedImage.TYPE_INT_ARGB);        
-        return new ImageIcon(scaleOp.filter(in, out));
+        BufferedImage out = new BufferedImage(round(imgVars[1]), round(imgVars[2]), BufferedImage.TYPE_INT_ARGB);
+        Graphics g = out.createGraphics();
+        g.drawImage(in, 0, 0, round(imgVars[1]), round(imgVars[2]),null);
+        g.dispose();
+        currentImage = out;
+        return new ImageIcon(out);
+    }
+    
+    private int round(float n) {
+        return Math.round(n);
     }
     
     private boolean getDimensionThreshold(int width, int height) {
-        if (width < 800 && height < 600) {
-            return true;
+        if (width > height) {
+            if (width <= 1440 && height <= 900) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
-            return false;
+            if (width <= 900 && height <= 1440) {
+                return true;
+            } else {
+                return false;
+            }
         }
     }
     
@@ -62,20 +74,13 @@ public class ImageForm extends javax.swing.JFrame {
         int height = in.getHeight();
         int width = in.getWidth();
         while (!getDimensionThreshold(height, width)) {
-            scalingFactor -= .1;
+            scalingFactor *= .95;
             height *= scalingFactor;
             width *= scalingFactor;
         }
         return new float[] {scalingFactor, width, height};
     }
 
-    private ImageIcon getNewIcon(Icon icon, int scalingFactor) {
-        BufferedImage bi = new BufferedImage(scalingFactor*icon.getIconWidth(), 
-                scalingFactor*icon.getIconHeight(), BufferedImage.TYPE_INT_ARGB);
-        Graphics2D g = bi.createGraphics();
-        g.scale(scalingFactor, scalingFactor);
-        return new ImageIcon(bi);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,16 +101,14 @@ public class ImageForm extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(95, 95, 95)
                 .addComponent(jLabel1)
-                .addContainerGap(768, Short.MAX_VALUE))
+                .addGap(0, 349, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
                 .addComponent(jLabel1)
-                .addContainerGap(768, Short.MAX_VALUE))
+                .addGap(0, 280, Short.MAX_VALUE))
         );
 
         pack();

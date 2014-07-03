@@ -21,4 +21,13 @@ public class INDParse {
         
     }
     
+    private int[] getDB() {
+        int[] db = new int[getDBSize()];
+        return db;
+    }
+    
+    private int getDBSize() {
+        return 0;
+    }
+    
 }
