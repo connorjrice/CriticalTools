@@ -28,7 +28,6 @@ public class ARRParse {
     private void parseARR() {
         try(BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("Arrangements.arr")))) {
             String line = br.readLine();
-
             while (line != null) {
                 arrangements.add(line);
                 line = br.readLine();

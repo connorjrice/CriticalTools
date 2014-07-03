@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagefinder.GUI;
 
 /**
@@ -10,9 +6,6 @@ package pagefinder.GUI;
  */
 public class ErrorForm extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ErrorForm
-     */
     public ErrorForm(String errorText) {
         initComponents();
         setLocationRelativeTo(null); // Centers form
