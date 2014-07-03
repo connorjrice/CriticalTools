@@ -4,7 +4,7 @@ import pagefinder.GUI.MainForm;
 import pagefinder.IO.ARRParse;
 
 /**
- *
+ * 
  * @author Connor Rice
  */
 public class PageMain {

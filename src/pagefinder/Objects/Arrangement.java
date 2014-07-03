@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagefinder.Objects;
 
 /**
- *
- * @author Development
+ * Object that contains the name of the arrangements available, the directory
+ * in which they exist, and the relevant .ind file.
+ * @author Connor Rice
  */
 public class Arrangement {
     

@@ -9,7 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Parse .ind file containing either 0 for non-measure images, or a string
+ * formatted as *,*. This format indicates the beginning and ending measure
+ * of a given image.
  * @author Connor Rice
  */
 public class INDParse {
@@ -20,6 +22,9 @@ public class INDParse {
         buildDB();
     }    
     
+    /**
+     * Parses the Arrangement .arr file into an ArrayList<String>.
+     */
     private void buildDB() {
         try(BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("Arrangements.arr")))) {
             String line = br.readLine();
@@ -34,13 +39,20 @@ public class INDParse {
         }
     }
     
-    public int[] getDB() {
-        int[] db = new int[getDBSize()];
+    /**
+     * Parses .arr file into an ArrayList<String>
+     * @return parsed .arr file
+     */
+    public ArrayList<String> getDB() {
         return db;
     }
     
+    /**
+     * Returns the size of the index database.
+     * @return size of index database.
+     */
     public int getDBSize() {
-        return 0;
+        return db.size();
     }
     
 }
