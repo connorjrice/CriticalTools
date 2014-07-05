@@ -52,9 +52,9 @@ public class MainForm extends javax.swing.JFrame {
         measureField = new javax.swing.JTextField();
         openButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        indMenu = new javax.swing.JMenu();
+        indmenu = new javax.swing.JMenuItem();
+        arrMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PageFinder");
@@ -89,25 +89,25 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
 
-        jMenu1.setText("File");
+        indMenu.setText("File");
 
-        jMenuItem1.setText("Open .ind...");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        indmenu.setText("Open .ind...");
+        indmenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                indmenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        indMenu.add(indmenu);
 
-        jMenuItem2.setText("Open .arr...");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        arrMenu.setText("Open .arr...");
+        arrMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                arrMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        indMenu.add(arrMenu);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(indMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -165,13 +165,15 @@ public class MainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_measureFieldKeyTyped
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void indmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indmenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        new INDForm().setVisible(true);
+    }//GEN-LAST:event_indmenuActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void arrMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+        new ARRForm().setVisible(true);
+    }//GEN-LAST:event_arrMenuActionPerformed
 
     private void clearMeasureField() {
         measureField.setText("");        
@@ -211,11 +213,11 @@ public class MainForm extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem arrMenu;
     private javax.swing.JComboBox arrangeCombo;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu indMenu;
+    private javax.swing.JMenuItem indmenu;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JTextField measureField;
     private javax.swing.JButton openButton;
     // End of variables declaration//GEN-END:variables
