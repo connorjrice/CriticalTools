@@ -1,11 +1,18 @@
 package pagefinder.GUI;
 
 /**
+ * Error form with message passed into constructor.
  *
  * @author Connor Rice
  */
 public class ErrorForm extends javax.swing.JFrame {
 
+    /**
+     * Creates a new ErrorForm jFrame, takes error message in as input
+     * parameter.
+     *
+     * @param errorText String that is displayed by the jFrame.
+     */
     public ErrorForm(String errorText) {
         initComponents();
         setLocationRelativeTo(null); // Centers form
@@ -57,10 +64,8 @@ public class ErrorForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea errorArea;
     private javax.swing.JButton jButton1;

@@ -4,10 +4,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import pagefinder.PageOps;
 
 /**
  *
@@ -15,45 +14,51 @@ import javax.swing.ImageIcon;
  */
 public class ImageForm extends javax.swing.JFrame {
 
+    private ImageUtilsForm utilFrame;
+
     public ImageForm() {
         initComponents();
     }
-    
     private String imgloc;
     private BufferedImage originalImage;
     private BufferedImage currentImage;
 
-    public ImageForm(String imgloc) {
-        this.imgloc = imgloc;
+    public ImageForm(PageOps pOps) throws IOException {
+        this.imgloc = pOps.getImgLoc();
         initComponents();
-        try {
-            initialScale();
-        } catch (IOException ex) {
-            Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        initialScale();
+        setLocationRelativeTo(null);
+        createUtilsForm();
     }
-    
+
+    private void createUtilsForm() {
+        utilFrame = new ImageUtilsForm(this);
+        utilFrame.setVisible(true);
+        int uw = getX() - utilFrame.getWidth();
+        int uy = getY() / 2 + utilFrame.getHeight();
+        utilFrame.setLocation(uw, uy);
+    }
+
     private void initialScale() throws IOException {
         originalImage = ImageIO.read(new File(imgloc));
         jLabel1.setIcon(scaleImage(originalImage));
-        this.setBounds(0,0,currentImage.getWidth(), currentImage.getHeight());
-        setLocationRelativeTo(null);
-    }    
-    
+        this.setBounds(0, 0, currentImage.getWidth(), currentImage.getHeight());
+    }
+
     private ImageIcon scaleImage(BufferedImage in) {
         float[] imgVars = getScaledDimensions(in);
         BufferedImage out = new BufferedImage(round(imgVars[1]), round(imgVars[2]), BufferedImage.TYPE_INT_ARGB);
         Graphics g = out.createGraphics();
-        g.drawImage(in, 0, 0, round(imgVars[1]), round(imgVars[2]),null);
+        g.drawImage(in, 0, 0, round(imgVars[1]), round(imgVars[2]), null);
         g.dispose();
         currentImage = out;
         return new ImageIcon(out);
     }
-    
+
     private int round(float n) {
         return Math.round(n);
     }
-    
+
     private boolean getDimensionThreshold(int width, int height) {
         if (width > height) {
             if (width <= 1440 && height <= 900) {
@@ -69,7 +74,7 @@ public class ImageForm extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private float[] getScaledDimensions(BufferedImage in) {
         float scalingFactor = 1;
         int height = in.getHeight();
@@ -79,7 +84,17 @@ public class ImageForm extends javax.swing.JFrame {
             height *= scalingFactor;
             width *= scalingFactor;
         }
-        return new float[] {scalingFactor, width, height};
+        return new float[]{scalingFactor, width, height};
+    }
+    
+    @Override
+    public void dispose() {
+        super.dispose();
+        utilFrame.dispose();
+    }
+    
+    public void closeExternal() {
+        super.dispose();
     }
 
     /**
@@ -95,27 +110,23 @@ public class ImageForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 349, Short.MAX_VALUE))
+                .addGap(0, 400, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 280, Short.MAX_VALUE))
+                .addGap(0, 300, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

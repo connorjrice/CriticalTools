@@ -1,43 +1,36 @@
 package pagefinder.GUI;
 
 import javax.swing.DefaultComboBoxModel;
-import pagefinder.Objects.Arrangement;
+import pagefinder.PageOps;
 
 /**
  *
  * @author Connor Rice
  */
 public class MainForm extends javax.swing.JFrame {
-    
-    private int measureNumber = -1;
-    private boolean firstType = false;
-    private Arrangement[] arrangements;
-    private int[] measureDB;
 
-    public MainForm(Arrangement[] arrangements) {
-        this.arrangements = arrangements;
+    private PageOps pOps;
+    private boolean firstType;
+
+    public MainForm(PageOps pOps) {
+        this.pOps = pOps;
         initComponents();
         setLocationRelativeTo(null); // Centers form
-        parseArr();
-        parseInd();
+        setComboBoxModel(pOps.parseArr());
     }
-    
-    private void parseArr() {
-        arrangeCombo.setModel(getComboBoxModel());
+
+    private void setComboBoxModel(DefaultComboBoxModel dcbm) {
+        arrangeCombo.setModel(dcbm);
     }
-    
-    private void parseInd() {
-        
+
+    private void clearMeasureField() {
+        measureField.setText("");
     }
-    
-    private DefaultComboBoxModel getComboBoxModel() {
-        String[] model = new String[arrangements.length];
-        for (int i = 0; i < arrangements.length; i++) {
-            model[i] = arrangements[i].getName();
-        }
-        return new DefaultComboBoxModel(model);
+
+    private void resetMeasureFieldText() {
+        measureField.setText("Enter measure number...");
+        firstType = false;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,11 +134,11 @@ public class MainForm extends javax.swing.JFrame {
 
     private void measureFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_measureFieldActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_measureFieldActionPerformed
 
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
-        openImages();
+        pOps.openImages(measureField.getText());
+        resetMeasureFieldText();
     }//GEN-LAST:event_openButtonActionPerformed
 
     private void arrangeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrangeComboActionPerformed
@@ -154,11 +147,9 @@ public class MainForm extends javax.swing.JFrame {
 
     private void measureFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_measureFieldMouseClicked
         clearMeasureField();
-
     }//GEN-LAST:event_measureFieldMouseClicked
 
     private void measureFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_measureFieldKeyTyped
-        // TODO add your handling code here:
         if (!firstType) {
             clearMeasureField();
             firstType = true;
@@ -166,52 +157,12 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_measureFieldKeyTyped
 
     private void indmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indmenuActionPerformed
-        // TODO add your handling code here:
         new INDForm().setVisible(true);
     }//GEN-LAST:event_indmenuActionPerformed
 
     private void arrMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrMenuActionPerformed
-        // TODO add your handling code here:
         new ARRForm().setVisible(true);
     }//GEN-LAST:event_arrMenuActionPerformed
-
-    private void clearMeasureField() {
-        measureField.setText("");        
-    }
-    
-    private void resetMeasureFieldText() {
-        measureField.setText("Enter measure number...");
-    }
-    
-    private void openImages() {
-        measureNumber = -1;
-        String measureString = measureField.getText();
-        try {
-            measureNumber = Integer.parseInt(measureString);
-            System.out.println(measureNumber);
-            System.out.println(oldGetImg());
-//            new ImageForm(oldGetImg()).setVisible(true);
-            new ImageForm(oldGetImg()).setVisible(true);
-        } catch (NumberFormatException e) {
-            new ErrorForm("Please enter a valid measure number.").setVisible(true);
-        }
-        resetMeasureFieldText();
-    }
-    
-    private String oldGetImg() {
-        return System.getProperty("user.dir")+System.getProperty("file.separator")+arrangements[0].getDir()+System.getProperty("file.separator")+measureNumber+".jpg";
-    }
-    
-    private String getImgLoc() {
-        return "/pagefinder/"+arrangements[0].getDir()+"/"+parseMeasureNumber()+".jpg";
-    }
-    
-    private String parseMeasureNumber() {
-        String converted = "";
-        
-        return converted;
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem arrMenu;
     private javax.swing.JComboBox arrangeCombo;

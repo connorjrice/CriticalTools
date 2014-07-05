@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package pagefinder.GUI;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class INDForm extends javax.swing.JFrame {
 
