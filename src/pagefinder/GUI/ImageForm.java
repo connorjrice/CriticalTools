@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import pagefinder.PageOps;
 
 /**
- *
+ * TODO: Move image operations to ImageOps java
  * @author Connor Rice
  */
 public class ImageForm extends javax.swing.JFrame {

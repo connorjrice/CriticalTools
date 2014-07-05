@@ -48,6 +48,8 @@ public class MainForm extends javax.swing.JFrame {
         indMenu = new javax.swing.JMenu();
         indmenu = new javax.swing.JMenuItem();
         arrMenu = new javax.swing.JMenuItem();
+        exportIND = new javax.swing.JMenuItem();
+        exportARR = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PageFinder");
@@ -99,6 +101,17 @@ public class MainForm extends javax.swing.JFrame {
             }
         });
         indMenu.add(arrMenu);
+
+        exportIND.setText("Export .ind file...");
+        indMenu.add(exportIND);
+
+        exportARR.setText("Export .arr file...");
+        exportARR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportARRActionPerformed(evt);
+            }
+        });
+        indMenu.add(exportARR);
 
         jMenuBar1.add(indMenu);
 
@@ -163,9 +176,16 @@ public class MainForm extends javax.swing.JFrame {
     private void arrMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrMenuActionPerformed
         new ARRForm().setVisible(true);
     }//GEN-LAST:event_arrMenuActionPerformed
+
+    private void exportARRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportARRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_exportARRActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem arrMenu;
     private javax.swing.JComboBox arrangeCombo;
+    private javax.swing.JMenuItem exportARR;
+    private javax.swing.JMenuItem exportIND;
     private javax.swing.JMenu indMenu;
     private javax.swing.JMenuItem indmenu;
     private javax.swing.JMenuBar jMenuBar1;
