@@ -2,6 +2,7 @@ package pagefinder.GUI;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public class ImageForm extends javax.swing.JFrame {
     }
     
     private void initialScale() throws IOException {
-        originalImage = ImageIO.read(getClass().getResource(imgloc));
+        originalImage = ImageIO.read(new File(imgloc));
         jLabel1.setIcon(scaleImage(originalImage));
         this.setBounds(0,0,currentImage.getWidth(), currentImage.getHeight());
         setLocationRelativeTo(null);
