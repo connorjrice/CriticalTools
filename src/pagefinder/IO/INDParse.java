@@ -26,7 +26,7 @@ public class INDParse {
      * Parses the Arrangement .arr file into an ArrayList<String>.
      */
     private void buildDB() {
-        try(BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("Arrangements.arr")))) {
+        try(BufferedReader br = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("Whiteman.ind")))) {
             String line = br.readLine();
             while (line != null) {
                 db.add(line);

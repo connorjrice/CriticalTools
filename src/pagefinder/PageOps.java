@@ -5,10 +5,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import pagefinder.Algorithms.INDBinarySearch;
 import pagefinder.GUI.ErrorForm;
 import pagefinder.GUI.ImageForm;
 import pagefinder.GUI.MainForm;
 import pagefinder.IO.ARRParse;
+import pagefinder.IO.INDParse;
 import pagefinder.Objects.Arrangement;
 
 /**
@@ -21,10 +23,13 @@ public class PageOps {
     private int[] measureDB;
     private PageOps pOps;
     private int measureNumber;
+    private INDBinarySearch ibs;
 
     public PageOps() {
         arrangements = new ARRParse().getARR();
         new MainForm(this).setVisible(true);
+        ibs = new INDBinarySearch(new INDParse().getDB());
+
     }
 
     /**
@@ -40,7 +45,8 @@ public class PageOps {
 
     public void openImages(String measureString) {
         try {
-            measureNumber = Integer.parseInt(measureString);
+            measureNumber = ibs.binarySearch(Integer.parseInt(measureString));
+            System.out.println(measureNumber);
             try {
                 new ImageForm(this).setVisible(true);
             } catch (IOException ex) {

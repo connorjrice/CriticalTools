@@ -13,7 +13,10 @@ public class INDBinarySearch {
         this.indDB = indDB;
     }
     
-
+    public int binarySearch(int measure) {
+        return binarySearchHelper(indDB.size()/2, measure);
+    }
+    
     /**
      * Recusive method that takes in a measure and returns the corresponding
      * page that the measure is located on.
@@ -21,15 +24,15 @@ public class INDBinarySearch {
      * @param found
      * @return 
      */
-    public int binarySearch(int index) {
+    private int binarySearchHelper(int index, int measure) {
         int[] parsedIND = parseINDString(index);
-        if (parsedIND[0] <= index && index <= parsedIND[1]) {
+        if (parsedIND[0] <= measure && measure <= parsedIND[1]) {
             return index;
         } else {
-            if (index > parsedIND[1]) {
-                return binarySearch(index+(index/2));
+            if (measure > parsedIND[1]) {
+                return binarySearchHelper(index+(index/2), measure);
             } else {
-                return binarySearch(index-(index/2));
+                return binarySearchHelper(index-(index/2), measure);
             }
         }
     }
