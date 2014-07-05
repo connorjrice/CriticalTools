@@ -12,6 +12,7 @@ import pagefinder.GUI.MainForm;
 import pagefinder.IO.ARRParse;
 import pagefinder.IO.INDParse;
 import pagefinder.Objects.Arrangement;
+import pagefinder.Objects.SearchResult;
 
 /**
  * Methods for operations to be used by jFrames.
@@ -22,8 +23,9 @@ public class PageOps {
     private Arrangement[] arrangements;
     private int[] measureDB;
     private PageOps pOps;
-    private int measureNumber;
+    private int pageNumber;
     private INDBinarySearch ibs;
+    private SearchResult result;
 
     public PageOps() {
         arrangements = new ARRParse().getARR();
@@ -45,10 +47,9 @@ public class PageOps {
 
     public void openImages(String measureString) {
         try {
-            measureNumber = ibs.binarySearch(Integer.parseInt(measureString));
-            System.out.println(measureNumber);
+            result = ibs.binarySearch(Integer.parseInt(measureString));
             try {
-                new ImageForm(this).setVisible(true);
+                new ImageForm(this, result).setVisible(true);
             } catch (IOException ex) {
                 new ErrorForm("Image file not found.").setVisible(true);
                 Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -59,12 +60,9 @@ public class PageOps {
         }
     }
 
-    public String getImgLoc(int measureNumber) {
-        return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + measureNumber + ".jpg";
-    }
     
     public String getImgLoc() {
-        return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + measureNumber + ".jpg";
+        return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + result.getPageNum() + ".jpg";
     }
 
     private String parseMeasureNumber() {

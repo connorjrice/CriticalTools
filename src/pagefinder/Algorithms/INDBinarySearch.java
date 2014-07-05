@@ -1,6 +1,7 @@
 package pagefinder.Algorithms;
 
 import java.util.ArrayList;
+import pagefinder.Objects.SearchResult;
 
 /**
  * Binary search for parsed .ind files.
@@ -13,7 +14,7 @@ public class INDBinarySearch {
         this.indDB = indDB;
     }
     
-    public int binarySearch(int measure) {
+    public SearchResult binarySearch(int measure) {
         return binarySearchHelper(indDB.size()/2, measure);
     }
     
@@ -24,10 +25,10 @@ public class INDBinarySearch {
      * @param found
      * @return 
      */
-    private int binarySearchHelper(int index, int measure) {
+    private SearchResult binarySearchHelper(int index, int measure) {
         int[] parsedIND = parseINDString(index);
         if (parsedIND[0] <= measure && measure <= parsedIND[1]) {
-            return index;
+            return new SearchResult(index, parsedIND);
         } else {
             if (measure > parsedIND[1]) {
                 return binarySearchHelper(index+(index/2), measure);

@@ -1,18 +1,29 @@
 package pagefinder.GUI;
 
+import pagefinder.Objects.SearchResult;
+
 /**
  *
  * @author Connor Rice
  */
 public class ImageUtilsForm extends javax.swing.JFrame {
     private ImageForm imgForm;
+    private SearchResult searchResult;
 
     /**
      * Creates new form ImageUtilsForm
      */
-    public ImageUtilsForm(ImageForm imgForm) {
+    public ImageUtilsForm(ImageForm imgForm, SearchResult searchResult) {
         this.imgForm = imgForm;
+        this.searchResult = searchResult;
         initComponents();
+        renameLabels();
+    }
+    
+    private void renameLabels() {
+        startingLabel.setText("Starting Measure: " + Integer.toString(searchResult.getMeasureRange()[0]));
+        endingLabel.setText("Ending Measure: " + Integer.toString(searchResult.getMeasureRange()[1]));
+        //searchedMeasureLabel.setText("Searched Measure: ");
     }
 
     /**
@@ -26,8 +37,8 @@ public class ImageUtilsForm extends javax.swing.JFrame {
 
         nextButton = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        startingLabel = new javax.swing.JLabel();
+        endingLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Utilities");
@@ -43,11 +54,11 @@ public class ImageUtilsForm extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton1.setText("Previous");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Starting Measure:");
+        startingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        startingLabel.setText("Starting Measure:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Ending  Measure:");
+        endingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        endingLabel.setText("Ending Measure:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -56,25 +67,25 @@ public class ImageUtilsForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(startingLabel)
+                            .addComponent(jButton1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                         .addComponent(nextButton)
                         .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(38, 38, 38))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(endingLabel)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 209, Short.MAX_VALUE)
+                .addComponent(startingLabel)
+                .addGap(15, 15, 15)
+                .addComponent(endingLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nextButton)
                     .addComponent(jButton1))
@@ -95,9 +106,9 @@ public class ImageUtilsForm extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel endingLabel;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton nextButton;
+    private javax.swing.JLabel startingLabel;
     // End of variables declaration//GEN-END:variables
 }

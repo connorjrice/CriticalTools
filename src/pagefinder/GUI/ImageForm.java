@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import pagefinder.Objects.SearchResult;
 import pagefinder.PageOps;
 
 /**
@@ -16,15 +17,14 @@ public class ImageForm extends javax.swing.JFrame {
 
     private ImageUtilsForm utilFrame;
 
-    public ImageForm() {
-        initComponents();
-    }
-    private String imgloc;
     private BufferedImage originalImage;
     private BufferedImage currentImage;
+    private SearchResult searchResult;
+    private PageOps pOps;
 
-    public ImageForm(PageOps pOps) throws IOException {
-        this.imgloc = pOps.getImgLoc();
+    public ImageForm(PageOps pOps, SearchResult searchResult) throws IOException {
+        this.searchResult = searchResult;
+        this.pOps = pOps;
         initComponents();
         initialScale();
         setLocationRelativeTo(null);
@@ -32,7 +32,7 @@ public class ImageForm extends javax.swing.JFrame {
     }
 
     private void createUtilsForm() {
-        utilFrame = new ImageUtilsForm(this);
+        utilFrame = new ImageUtilsForm(this, searchResult);
         utilFrame.setVisible(true);
         int uw = getX() - utilFrame.getWidth();
         int uy = getY() / 2 + utilFrame.getHeight();
@@ -40,7 +40,7 @@ public class ImageForm extends javax.swing.JFrame {
     }
 
     private void initialScale() throws IOException {
-        originalImage = ImageIO.read(new File(imgloc));
+        originalImage = ImageIO.read(new File(pOps.getImgLoc()));
         jLabel1.setIcon(scaleImage(originalImage));
         this.setBounds(0, 0, currentImage.getWidth(), currentImage.getHeight());
     }
@@ -85,6 +85,10 @@ public class ImageForm extends javax.swing.JFrame {
             width *= scalingFactor;
         }
         return new float[]{scalingFactor, width, height};
+    }
+    
+    public PageOps getPageOps() {
+        return pOps;
     }
     
     @Override
