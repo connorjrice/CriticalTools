@@ -1,4 +1,4 @@
-package pagefinder.IO;
+package CriticalTools.IO;
 
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import pagefinder.GUI.ImageForm;
+import CriticalTools.MeasureLocatorGUI.ImageForm;
 
 /**
  *

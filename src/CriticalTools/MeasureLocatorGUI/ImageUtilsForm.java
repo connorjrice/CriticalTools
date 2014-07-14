@@ -1,6 +1,6 @@
-package pagefinder.GUI;
+package CriticalTools.MeasureLocatorGUI;
 
-import pagefinder.Objects.SearchResult;
+import CriticalTools.Objects.SearchResult;
 
 /**
  *

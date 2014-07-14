@@ -1,4 +1,4 @@
-package pagefinder.Objects;
+package CriticalTools.Objects;
 
 /**
  * Object that contains the name of the arrangements available, the directory

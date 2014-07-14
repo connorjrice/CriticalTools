@@ -1,7 +1,7 @@
-package pagefinder.Objects;
+package CriticalTools.Objects;
 
 import java.util.ArrayList;
-import pagefinder.Algorithms.INDBinarySearch;
+import CriticalTools.Algorithms.INDBinarySearch;
 
 /**
  *

@@ -1,4 +1,4 @@
-package pagefinder.GUI;
+package CriticalTools.MeasureLocatorGUI;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import pagefinder.Objects.SearchResult;
-import pagefinder.PageOps;
+import CriticalTools.Objects.SearchResult;
+import CriticalTools.PageOps;
 
 /**
  * TODO: Move image operations to ImageOps java

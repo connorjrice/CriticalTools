@@ -1,4 +1,4 @@
-package pagefinder.Objects;
+package CriticalTools.Objects;
 
 /**
  * Object that contains the relevant page numbers, measure starting and ending

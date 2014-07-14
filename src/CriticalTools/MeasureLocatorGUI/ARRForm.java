@@ -1,4 +1,4 @@
-package pagefinder.GUI;
+package CriticalTools.MeasureLocatorGUI;
 
 /**
  *

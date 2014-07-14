@@ -1,7 +1,7 @@
-package pagefinder.Algorithms;
+package CriticalTools.Algorithms;
 
 import java.util.ArrayList;
-import pagefinder.Objects.SearchResult;
+import CriticalTools.Objects.SearchResult;
 
 /**
  * Binary search for parsed .ind files.

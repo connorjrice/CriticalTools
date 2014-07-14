@@ -1,4 +1,4 @@
-package pagefinder;
+package CriticalTools;
 
 /**
  * 

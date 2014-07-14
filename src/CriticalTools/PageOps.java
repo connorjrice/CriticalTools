@@ -1,18 +1,18 @@
-package pagefinder;
+package CriticalTools;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
-import pagefinder.Algorithms.INDBinarySearch;
-import pagefinder.GUI.ErrorForm;
-import pagefinder.GUI.ImageForm;
-import pagefinder.GUI.MainForm;
-import pagefinder.IO.ARRParse;
-import pagefinder.IO.INDParse;
-import pagefinder.Objects.Arrangement;
-import pagefinder.Objects.SearchResult;
+import CriticalTools.Algorithms.INDBinarySearch;
+import CriticalTools.MeasureLocatorGUI.ErrorForm;
+import CriticalTools.MeasureLocatorGUI.ImageForm;
+import CriticalTools.MeasureLocatorGUI.MainForm;
+import CriticalTools.IO.ARRParse;
+import CriticalTools.IO.INDParse;
+import CriticalTools.Objects.Arrangement;
+import CriticalTools.Objects.SearchResult;
 
 /**
  * Methods for operations to be used by jFrames.

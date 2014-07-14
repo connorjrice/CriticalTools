@@ -1,7 +1,7 @@
-package pagefinder.GUI;
+package CriticalTools.MeasureLocatorGUI;
 
 import javax.swing.DefaultComboBoxModel;
-import pagefinder.PageOps;
+import CriticalTools.PageOps;
 
 /**
  *

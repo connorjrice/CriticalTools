@@ -1,4 +1,4 @@
-package pagefinder.IO;
+package CriticalTools.IO;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import pagefinder.Objects.Arrangement;
+import CriticalTools.Objects.Arrangement;
 
 /**
  *

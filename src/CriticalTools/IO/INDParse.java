@@ -1,4 +1,4 @@
-package pagefinder.IO;
+package CriticalTools.IO;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
