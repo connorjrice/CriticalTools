@@ -1,4 +1,4 @@
-package CriticalTools.MeasureLocatorGUI;
+package CriticalTools.MeasureLocator;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import CriticalTools.Objects.SearchResult;
-import CriticalTools.PageOps;
+import java.awt.Component;
 
 /**
  * TODO: Move image operations to ImageOps java
@@ -22,12 +22,12 @@ public class ImageForm extends javax.swing.JFrame {
     private SearchResult searchResult;
     private PageOps pOps;
 
-    public ImageForm(PageOps pOps, SearchResult searchResult) throws IOException {
+    public ImageForm(PageOps pOps, SearchResult searchResult, Component c) throws IOException {
         this.searchResult = searchResult;
         this.pOps = pOps;
         initComponents();
         initialScale();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(c);
         createUtilsForm();
     }
 

@@ -1,5 +1,7 @@
 package CriticalTools;
 
+import CriticalTools.MainGUI.MainGUI;
+
 /**
  * 
  * @author Connor Rice

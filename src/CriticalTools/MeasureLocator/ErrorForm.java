@@ -1,4 +1,6 @@
-package CriticalTools.MeasureLocatorGUI;
+package CriticalTools.MeasureLocator;
+
+import java.awt.Component;
 
 /**
  * Error form with message passed into constructor.
@@ -13,9 +15,9 @@ public class ErrorForm extends javax.swing.JFrame {
      *
      * @param errorText String that is displayed by the jFrame.
      */
-    public ErrorForm(String errorText) {
+    public ErrorForm(String errorText, Component c) {
         initComponents();
-        setLocationRelativeTo(null); // Centers form
+        setLocationRelativeTo(c); // Centers form
         errorArea.setText(errorText);
     }
 

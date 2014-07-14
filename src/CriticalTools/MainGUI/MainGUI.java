@@ -1,4 +1,6 @@
-package CriticalTools;
+package CriticalTools.MainGUI;
+
+import CriticalTools.MeasureLocator.PageOps;
 
 /**
  * The main GUI for selecting which application within the suite should be
@@ -66,6 +68,11 @@ public class MainGUI extends javax.swing.JFrame {
         helpMenu.add(helpMenuDocItem);
 
         helpMenuAboutItem.setText("About");
+        helpMenuAboutItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                helpMenuAboutItemActionPerformed(evt);
+            }
+        });
         helpMenu.add(helpMenuAboutItem);
 
         jMenuBar1.add(helpMenu);
@@ -111,9 +118,13 @@ public class MainGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (appComboBox.getSelectedIndex() == 0) {
-            pOps = new PageOps();
+            pOps = new PageOps(this);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void helpMenuAboutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuAboutItemActionPerformed
+        new AboutForm(this).setVisible(true);
+    }//GEN-LAST:event_helpMenuAboutItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox appComboBox;

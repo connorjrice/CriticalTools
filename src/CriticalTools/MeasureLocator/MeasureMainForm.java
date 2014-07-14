@@ -1,7 +1,7 @@
-package CriticalTools.MeasureLocatorGUI;
+package CriticalTools.MeasureLocator;
 
+import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
-import CriticalTools.PageOps;
 
 /**
  *
@@ -12,10 +12,10 @@ public class MeasureMainForm extends javax.swing.JFrame {
     private PageOps pOps;
     private boolean firstType;
 
-    public MeasureMainForm(PageOps pOps) {
+    public MeasureMainForm(PageOps pOps, Component c) {
         this.pOps = pOps;
         initComponents();
-        setLocationRelativeTo(null); // Centers form
+        setLocationRelativeTo(c); // Centers form to parent
         setComboBoxModel(pOps.parseArr());
     }
 
@@ -175,11 +175,11 @@ public class MeasureMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_measureFieldKeyTyped
 
     private void indmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indmenuActionPerformed
-        new INDForm().setVisible(true);
+        new INDForm(this).setVisible(true);
     }//GEN-LAST:event_indmenuActionPerformed
 
     private void arrMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrMenuActionPerformed
-        new ARRForm().setVisible(true);
+        new ARRForm(this).setVisible(true);
     }//GEN-LAST:event_arrMenuActionPerformed
 
     private void exportARRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportARRActionPerformed

@@ -1,17 +1,15 @@
-package CriticalTools;
+package CriticalTools.MeasureLocator;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import CriticalTools.Algorithms.INDBinarySearch;
-import CriticalTools.MeasureLocatorGUI.ErrorForm;
-import CriticalTools.MeasureLocatorGUI.ImageForm;
-import CriticalTools.MeasureLocatorGUI.MeasureMainForm;
 import CriticalTools.IO.ARRParse;
 import CriticalTools.IO.INDParse;
 import CriticalTools.Objects.Arrangement;
 import CriticalTools.Objects.SearchResult;
+import java.awt.Component;
 
 /**
  * Methods for operations to be used by jFrames.
@@ -25,10 +23,12 @@ public class PageOps {
     private int pageNumber;
     private INDBinarySearch ibs;
     private SearchResult result;
+    private Component c;
 
-    public PageOps() {
+    public PageOps(Component c) {
+        this.c = c;
         arrangements = new ARRParse().getARR();
-        new MeasureMainForm(this).setVisible(true);
+        new MeasureMainForm(this, c).setVisible(true);
         ibs = new INDBinarySearch(new INDParse().getDB());
 
     }
@@ -48,13 +48,13 @@ public class PageOps {
         try {
             result = ibs.binarySearch(Integer.parseInt(measureString));
             try {
-                new ImageForm(this, result).setVisible(true);
+                new ImageForm(this, result, c).setVisible(true);
             } catch (IOException ex) {
-                new ErrorForm("Image file not found.").setVisible(true);
+                new ErrorForm("Image file not found.", c).setVisible(true);
                 Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
             }
         } catch (NumberFormatException ex) {
-            new ErrorForm("Please enter a valid measure number.").setVisible(true);
+            new ErrorForm("Please enter a valid measure number.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

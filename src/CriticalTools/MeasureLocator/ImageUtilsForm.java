@@ -1,4 +1,4 @@
-package CriticalTools.MeasureLocatorGUI;
+package CriticalTools.MeasureLocator;
 
 import CriticalTools.Objects.SearchResult;
 
