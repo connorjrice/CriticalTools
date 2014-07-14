@@ -1,4 +1,4 @@
-package CriticalTools.ImageProcessing;
+package CriticalTools.MeasureComparison;
 
 import java.awt.Component;
 
@@ -6,12 +6,12 @@ import java.awt.Component;
  *
  * @author Connor Rice
  */
-public class ImageProcessingMainForm extends javax.swing.JFrame {
+public class MeasureComparisonMainForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form ImageProcessingMainForm
+     * Creates new form MeasureComparisonMainForm
      */
-    public ImageProcessingMainForm(Component c) {
+    public MeasureComparisonMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
     }
@@ -26,7 +26,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Critical Tools - Image Processing");
+        setTitle("Critical Tools - Measure Comparison");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

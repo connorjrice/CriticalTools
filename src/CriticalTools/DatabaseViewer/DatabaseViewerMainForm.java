@@ -1,17 +1,18 @@
-package CriticalTools.ImageProcessing;
+package CriticalTools.DatabaseViewer;
 
 import java.awt.Component;
 
 /**
- *
+ * Database Viewer: Allows the user to browse through the various databases 
+ * utilized by Critical Tools.
  * @author Connor Rice
  */
-public class ImageProcessingMainForm extends javax.swing.JFrame {
+public class DatabaseViewerMainForm extends javax.swing.JFrame {
 
     /**
-     * Creates new form ImageProcessingMainForm
+     * Creates new form DatabaseViewerMainForm
      */
-    public ImageProcessingMainForm(Component c) {
+    public DatabaseViewerMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
     }
@@ -26,7 +27,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Critical Tools - Image Processing");
+        setTitle("Critical Tools - Database Viewer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

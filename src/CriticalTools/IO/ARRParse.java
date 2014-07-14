@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import CriticalTools.Objects.Arrangement;
 
 /**
- *
+ * Parses .ARR files for use by PageOps.
  * @author Connor Rice
  */
 public class ARRParse {

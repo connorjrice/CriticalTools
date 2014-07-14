@@ -1,5 +1,8 @@
 package CriticalTools.MainGUI;
 
+import CriticalTools.DatabaseViewer.DatabaseViewerMainForm;
+import CriticalTools.ImageProcessing.ImageProcessingMainForm;
+import CriticalTools.MeasureComparison.MeasureComparisonMainForm;
 import CriticalTools.MeasureLocator.PageOps;
 
 /**
@@ -28,9 +31,9 @@ public class MainGUI extends javax.swing.JFrame {
     private void initComponents() {
 
         appComboBox = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        okayButton = new javax.swing.JButton();
+        appLabel = new javax.swing.JLabel();
+        menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         editMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
@@ -47,20 +50,20 @@ public class MainGUI extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Okay");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        okayButton.setText("Okay");
+        okayButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                okayButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Select Application: ");
+        appLabel.setText("Select Application: ");
 
         fileMenu.setText("File");
-        jMenuBar1.add(fileMenu);
+        menuBar.add(fileMenu);
 
         editMenu.setText("Edit");
-        jMenuBar1.add(editMenu);
+        menuBar.add(editMenu);
 
         helpMenu.setText("Help");
 
@@ -75,9 +78,9 @@ public class MainGUI extends javax.swing.JFrame {
         });
         helpMenu.add(helpMenuAboutItem);
 
-        jMenuBar1.add(helpMenu);
+        menuBar.add(helpMenu);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,9 +91,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                        .addComponent(okayButton))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(appLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addComponent(appComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -101,9 +104,9 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(appComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(appLabel))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(okayButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -111,16 +114,20 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void appComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appComboBoxActionPerformed
-        // TODO add your handling code here:
-
     }//GEN-LAST:event_appComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (appComboBox.getSelectedIndex() == 0) {
+    private void okayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okayButtonActionPerformed
+        int selIndex = appComboBox.getSelectedIndex();
+        if (selIndex == 0) {
             pOps = new PageOps(this);
+        } else if (selIndex == 1) {
+            new ImageProcessingMainForm(this).setVisible(true);
+        } else if (selIndex == 2) {
+            new DatabaseViewerMainForm(this).setVisible(true);
+        } else if (selIndex == 3) {
+            new MeasureComparisonMainForm(this).setVisible(true);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_okayButtonActionPerformed
 
     private void helpMenuAboutItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpMenuAboutItemActionPerformed
         new AboutForm(this).setVisible(true);
@@ -128,13 +135,13 @@ public class MainGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox appComboBox;
+    private javax.swing.JLabel appLabel;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem helpMenuAboutItem;
     private javax.swing.JMenuItem helpMenuDocItem;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar menuBar;
+    private javax.swing.JButton okayButton;
     // End of variables declaration//GEN-END:variables
 }
