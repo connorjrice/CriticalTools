@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JFrame;
 import CriticalTools.Algorithms.INDBinarySearch;
 import CriticalTools.MeasureLocatorGUI.ErrorForm;
 import CriticalTools.MeasureLocatorGUI.ImageForm;
-import CriticalTools.MeasureLocatorGUI.MainForm;
+import CriticalTools.MeasureLocatorGUI.MeasureMainForm;
 import CriticalTools.IO.ARRParse;
 import CriticalTools.IO.INDParse;
 import CriticalTools.Objects.Arrangement;
@@ -29,7 +28,7 @@ public class PageOps {
 
     public PageOps() {
         arrangements = new ARRParse().getARR();
-        new MainForm(this).setVisible(true);
+        new MeasureMainForm(this).setVisible(true);
         ibs = new INDBinarySearch(new INDParse().getDB());
 
     }

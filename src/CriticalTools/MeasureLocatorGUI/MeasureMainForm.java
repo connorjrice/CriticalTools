@@ -7,12 +7,12 @@ import CriticalTools.PageOps;
  *
  * @author Connor Rice
  */
-public class MainForm extends javax.swing.JFrame {
+public class MeasureMainForm extends javax.swing.JFrame {
 
     private PageOps pOps;
     private boolean firstType;
 
-    public MainForm(PageOps pOps) {
+    public MeasureMainForm(PageOps pOps) {
         this.pOps = pOps;
         initComponents();
         setLocationRelativeTo(null); // Centers form
@@ -44,6 +44,7 @@ public class MainForm extends javax.swing.JFrame {
         arrangeCombo = new javax.swing.JComboBox();
         measureField = new javax.swing.JTextField();
         openButton = new javax.swing.JButton();
+        partComboBox = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         indMenu = new javax.swing.JMenu();
         indmenu = new javax.swing.JMenuItem();
@@ -51,8 +52,8 @@ public class MainForm extends javax.swing.JFrame {
         exportIND = new javax.swing.JMenuItem();
         exportARR = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PageFinder");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("CriticalTools - Measure Locator");
 
         arrangeCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +84,8 @@ public class MainForm extends javax.swing.JFrame {
                 openButtonActionPerformed(evt);
             }
         });
+
+        partComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Full Score" }));
 
         indMenu.setText("File");
 
@@ -123,19 +126,21 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(openButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(measureField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
-                        .addComponent(arrangeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(measureField, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                    .addComponent(arrangeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(partComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(75, Short.MAX_VALUE)
                 .addComponent(measureField, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
+                .addComponent(partComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(arrangeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(openButton)
@@ -191,5 +196,6 @@ public class MainForm extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField measureField;
     private javax.swing.JButton openButton;
+    private javax.swing.JComboBox partComboBox;
     // End of variables declaration//GEN-END:variables
 }
