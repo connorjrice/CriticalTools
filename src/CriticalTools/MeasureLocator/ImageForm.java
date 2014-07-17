@@ -15,32 +15,21 @@ import java.awt.Component;
  */
 public class ImageForm extends javax.swing.JFrame {
 
-    private ImageUtilsForm utilFrame;
+
 
     private BufferedImage originalImage;
     private BufferedImage currentImage;
     private SearchResult searchResult;
-    private PageOps pOps;
 
-    public ImageForm(PageOps pOps, SearchResult searchResult, Component c) throws IOException {
+    public ImageForm(SearchResult searchResult, Component c) throws IOException {
         this.searchResult = searchResult;
-        this.pOps = pOps;
         initComponents();
         initialScale();
         setLocationRelativeTo(c);
-        createUtilsForm();
-    }
-
-    private void createUtilsForm() {
-        utilFrame = new ImageUtilsForm(this, searchResult);
-        utilFrame.setVisible(true);
-        int uw = getX() - utilFrame.getWidth();
-        int uy = getY() / 2 + utilFrame.getHeight();
-        utilFrame.setLocation(uw, uy);
     }
 
     private void initialScale() throws IOException {
-        originalImage = ImageIO.read(new File(pOps.getImgLoc()));
+        originalImage = ImageIO.read(new File(searchResult.getImgLoc()));
         jLabel1.setIcon(scaleImage(originalImage));
         this.setBounds(0, 0, currentImage.getWidth(), currentImage.getHeight());
     }
@@ -87,14 +76,9 @@ public class ImageForm extends javax.swing.JFrame {
         return new float[]{scalingFactor, width, height};
     }
     
-    public PageOps getPageOps() {
-        return pOps;
-    }
-    
     @Override
     public void dispose() {
         super.dispose();
-        utilFrame.dispose();
     }
     
     public void closeExternal() {

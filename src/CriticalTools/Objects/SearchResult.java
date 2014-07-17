@@ -8,10 +8,15 @@ package CriticalTools.Objects;
 public class SearchResult {
     private int pagenum;
     private int[] measurerange;
+    private String imgLoc;
     
     public SearchResult(int pagenum, int[] measurerange) {
         this.pagenum = pagenum;
         this.measurerange = measurerange;
+    }
+    
+    public void setImgLoc(String imgLoc) {
+        this.imgLoc = imgLoc;
     }
     
     public int getPageNum() {
@@ -20,6 +25,10 @@ public class SearchResult {
     
     public int[] getMeasureRange() {
         return measurerange;
+    }
+    
+    public String getImgLoc() {
+        return imgLoc;
     }
     
 }

@@ -1,18 +1,25 @@
-package CriticalTools.MeasureLocator;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package CriticalTools.CommonForms;
 
 import java.awt.Component;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Connor Rice
  */
-public class ARRForm extends javax.swing.JFrame {
+public class OpenForm extends javax.swing.JFrame {
+    private JFrame parentFrame;
 
     /**
-     * Creates new form ARRForm
+     * Creates new form OpenForm
      */
-    public ARRForm(Component c) {
+    public OpenForm(Component c) {
         initComponents();
+        this.parentFrame = (JFrame) c;
         setLocationRelativeTo(c);
     }
 
@@ -26,19 +33,24 @@ public class ARRForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
-        jFileChooser2 = new javax.swing.JFileChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jFileChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 425, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -46,6 +58,5 @@ public class ARRForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JFileChooser jFileChooser2;
     // End of variables declaration//GEN-END:variables
 }

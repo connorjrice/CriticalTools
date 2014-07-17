@@ -7,14 +7,15 @@ import CriticalTools.Objects.SearchResult;
  * @author Connor Rice
  */
 public class ImageUtilsForm extends javax.swing.JFrame {
-    private ImageForm imgForm;
-    private SearchResult searchResult;
 
+    private SearchResult searchResult;
+    private PageOps pOps;
+    
     /**
      * Creates new form ImageUtilsForm
      */
-    public ImageUtilsForm(ImageForm imgForm, SearchResult searchResult) {
-        this.imgForm = imgForm;
+    public ImageUtilsForm(PageOps pOps, SearchResult searchResult) {
+        this.pOps = pOps;
         this.searchResult = searchResult;
         initComponents();
         renameLabels();
@@ -99,10 +100,18 @@ public class ImageUtilsForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nextButtonActionPerformed
 
+    private void nextImage() {
+        destroyImageForm();
+    }
+    
+    private void destroyImageForm() {
+        //imgForm.closeExternal();
+    }
+    
     @Override
     public void dispose() {
         super.dispose();
-        imgForm.closeExternal();
+       // imgForm.closeExternal();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

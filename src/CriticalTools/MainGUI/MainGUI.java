@@ -1,5 +1,6 @@
 package CriticalTools.MainGUI;
 
+import CriticalTools.CommonForms.QuitForm;
 import CriticalTools.DatabaseViewer.DatabaseViewerMainForm;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.MeasureComparison.MeasureComparisonMainForm;
@@ -20,6 +21,10 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+    
+    protected void quit() {
+       dispose();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +40,7 @@ public class MainGUI extends javax.swing.JFrame {
         appLabel = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        quitMenuItem = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         helpMenuDocItem = new javax.swing.JMenuItem();
@@ -60,6 +66,15 @@ public class MainGUI extends javax.swing.JFrame {
         appLabel.setText("Select Application: ");
 
         fileMenu.setText("File");
+
+        quitMenuItem.setText("Quit");
+        quitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(quitMenuItem);
+
         menuBar.add(fileMenu);
 
         editMenu.setText("Edit");
@@ -133,6 +148,10 @@ public class MainGUI extends javax.swing.JFrame {
         new AboutForm(this).setVisible(true);
     }//GEN-LAST:event_helpMenuAboutItemActionPerformed
 
+    private void quitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitMenuItemActionPerformed
+        new QuitForm(this).setVisible(true);
+    }//GEN-LAST:event_quitMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox appComboBox;
     private javax.swing.JLabel appLabel;
@@ -143,5 +162,6 @@ public class MainGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem helpMenuDocItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton okayButton;
+    private javax.swing.JMenuItem quitMenuItem;
     // End of variables declaration//GEN-END:variables
 }

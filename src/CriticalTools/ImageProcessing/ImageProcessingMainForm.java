@@ -1,5 +1,6 @@
 package CriticalTools.ImageProcessing;
 
+import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
 
 /**
@@ -14,6 +15,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public ImageProcessingMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
+        new IPOpenForm(this).setVisible(true);
     }
 
     /**
@@ -25,8 +27,30 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        fileMenu = new javax.swing.JMenu();
+        quitButton = new javax.swing.JMenuItem();
+        editMenu = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Critical Tools - Image Processing");
+
+        fileMenu.setText("File");
+
+        quitButton.setText("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+        fileMenu.add(quitButton);
+
+        jMenuBar1.add(fileMenu);
+
+        editMenu.setText("Edit");
+        jMenuBar1.add(editMenu);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -36,12 +60,20 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 269, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        new QuitForm(this).setVisible(true);
+    }//GEN-LAST:event_quitButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenu fileMenu;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem quitButton;
     // End of variables declaration//GEN-END:variables
 }

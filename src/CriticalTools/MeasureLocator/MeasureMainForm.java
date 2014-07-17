@@ -1,5 +1,7 @@
 package CriticalTools.MeasureLocator;
 
+import CriticalTools.CommonForms.OpenForm;
+import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
 
@@ -51,6 +53,7 @@ public class MeasureMainForm extends javax.swing.JFrame {
         arrMenu = new javax.swing.JMenuItem();
         exportIND = new javax.swing.JMenuItem();
         exportARR = new javax.swing.JMenuItem();
+        quitButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CriticalTools - Measure Locator");
@@ -116,6 +119,14 @@ public class MeasureMainForm extends javax.swing.JFrame {
         });
         indMenu.add(exportARR);
 
+        quitButton.setText("Quit");
+        quitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                quitButtonActionPerformed(evt);
+            }
+        });
+        indMenu.add(quitButton);
+
         jMenuBar1.add(indMenu);
 
         setJMenuBar(jMenuBar1);
@@ -175,16 +186,20 @@ public class MeasureMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_measureFieldKeyTyped
 
     private void indmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indmenuActionPerformed
-        new INDForm(this).setVisible(true);
+        new OpenForm(this).setVisible(true);
     }//GEN-LAST:event_indmenuActionPerformed
 
     private void arrMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrMenuActionPerformed
-        new ARRForm(this).setVisible(true);
+        new OpenForm(this).setVisible(true);
     }//GEN-LAST:event_arrMenuActionPerformed
 
     private void exportARRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportARRActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_exportARRActionPerformed
+
+    private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
+        new QuitForm(this).setVisible(true);
+    }//GEN-LAST:event_quitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem arrMenu;
@@ -197,5 +212,6 @@ public class MeasureMainForm extends javax.swing.JFrame {
     private javax.swing.JTextField measureField;
     private javax.swing.JButton openButton;
     private javax.swing.JComboBox partComboBox;
+    private javax.swing.JMenuItem quitButton;
     // End of variables declaration//GEN-END:variables
 }

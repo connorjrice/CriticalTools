@@ -1,5 +1,6 @@
 package CriticalTools.MeasureLocator;
 
+import CriticalTools.CommonForms.ErrorForm;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,14 +24,15 @@ public class PageOps {
     private int pageNumber;
     private INDBinarySearch ibs;
     private SearchResult result;
+    private ImageUtilsForm utilFrame;
+    private ImageForm imgForm;
     private Component c;
 
     public PageOps(Component c) {
         this.c = c;
         arrangements = new ARRParse().getARR();
         new MeasureMainForm(this, c).setVisible(true);
-        ibs = new INDBinarySearch(new INDParse().getDB());
-
+        ibs = new INDBinarySearch(this, new INDParse().getDB());
     }
 
     /**
@@ -40,6 +42,14 @@ public class PageOps {
     public DefaultComboBoxModel parseArr() {
         return getComboBoxModel();
     }
+    
+    private void createUtilsForm(SearchResult searchResult) {
+        utilFrame = new ImageUtilsForm(this, searchResult);
+        utilFrame.setVisible(true);
+        int uw = imgForm.getX() - utilFrame.getWidth();
+        int uy = imgForm.getY() / 2 + utilFrame.getHeight();
+        utilFrame.setLocation(uw, uy);
+    }
 
     private void parseInd() {
     }
@@ -47,8 +57,11 @@ public class PageOps {
     public void openImages(String measureString) {
         try {
             result = ibs.binarySearch(Integer.parseInt(measureString));
+            result.setImgLoc(getImgLoc());
             try {
-                new ImageForm(this, result, c).setVisible(true);
+                imgForm = new ImageForm(result, c);
+                imgForm.setVisible(true);
+                createUtilsForm(result);
             } catch (IOException ex) {
                 new ErrorForm("Image file not found.", c).setVisible(true);
                 Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);

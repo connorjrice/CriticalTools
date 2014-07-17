@@ -1,4 +1,4 @@
-package CriticalTools.MeasureLocator;
+package CriticalTools.CommonForms;
 
 import java.awt.Component;
 
