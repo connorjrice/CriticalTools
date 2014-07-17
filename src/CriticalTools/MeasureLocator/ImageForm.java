@@ -15,8 +15,6 @@ import java.awt.Component;
  */
 public class ImageForm extends javax.swing.JFrame {
 
-
-
     private BufferedImage originalImage;
     private BufferedImage currentImage;
     private SearchResult searchResult;

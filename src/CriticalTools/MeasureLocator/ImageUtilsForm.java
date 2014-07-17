@@ -3,7 +3,10 @@ package CriticalTools.MeasureLocator;
 import CriticalTools.Objects.SearchResult;
 
 /**
- *
+ * Form for the utility window that is created next to the desired image.
+ * TODO: Zoom in/out
+ * TODO: More information about image
+ * TODO: Display page number
  * @author Connor Rice
  */
 public class ImageUtilsForm extends javax.swing.JFrame {
@@ -54,6 +57,11 @@ public class ImageUtilsForm extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jButton1.setText("Previous");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         startingLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         startingLabel.setText("Starting Measure:");
@@ -97,21 +105,20 @@ public class ImageUtilsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        // TODO add your handling code here:
+        searchResult =  pOps.nextImage();
+        renameLabels();
     }//GEN-LAST:event_nextButtonActionPerformed
 
-    private void nextImage() {
-        destroyImageForm();
-    }
-    
-    private void destroyImageForm() {
-        //imgForm.closeExternal();
-    }
-    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        searchResult = pOps.previousImage();
+        renameLabels();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+
     @Override
     public void dispose() {
         super.dispose();
-       // imgForm.closeExternal();
+        pOps.destroyImageForm();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

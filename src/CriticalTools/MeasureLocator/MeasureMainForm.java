@@ -166,7 +166,7 @@ public class MeasureMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_measureFieldActionPerformed
 
     private void openButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openButtonActionPerformed
-        pOps.openImages(measureField.getText());
+        pOps.initialImageOpen(measureField.getText());
         resetMeasureFieldText();
     }//GEN-LAST:event_openButtonActionPerformed
 

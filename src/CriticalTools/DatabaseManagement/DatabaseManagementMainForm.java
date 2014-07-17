@@ -1,4 +1,4 @@
-package CriticalTools.DatabaseViewer;
+package CriticalTools.DatabaseManagement;
 
 import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
@@ -8,12 +8,12 @@ import java.awt.Component;
  * utilized by Critical Tools.
  * @author Connor Rice
  */
-public class DatabaseViewerMainForm extends javax.swing.JFrame {
+public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     /**
      * Creates new form DatabaseViewerMainForm
      */
-    public DatabaseViewerMainForm(Component c) {
+    public DatabaseManagementMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
     }
@@ -36,7 +36,7 @@ public class DatabaseViewerMainForm extends javax.swing.JFrame {
         editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Critical Tools - Database Viewer");
+        setTitle("Critical Tools - Database Management");
 
         jList1.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };

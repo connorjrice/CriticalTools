@@ -50,11 +50,42 @@ public class PageOps {
         int uy = imgForm.getY() / 2 + utilFrame.getHeight();
         utilFrame.setLocation(uw, uy);
     }
+    
+    protected SearchResult nextImage() {
+        destroyImageForm();
+        try {
+            result = ibs.getNextPage();
+            result.setImgLoc(getImgLoc());
+            newImageForm();
+        } catch (IOException ex) {
+            new ErrorForm("Image file not found.", c).setVisible(true);
+            Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    
+    protected SearchResult previousImage() {
+        destroyImageForm();
+        try {
+            result = ibs.getPrevPage();
+            result.setImgLoc(getImgLoc());
+            newImageForm();
+        } catch (IOException ex) {
+            new ErrorForm("Image file not found.", c).setVisible(true);
+            Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+    
+    private void newImageForm() throws IOException {
+        imgForm = new ImageForm(result, c);
+        imgForm.setVisible(true);
+    }
 
     private void parseInd() {
     }
 
-    public void openImages(String measureString) {
+    public void initialImageOpen(String measureString) {
         try {
             result = ibs.binarySearch(Integer.parseInt(measureString));
             result.setImgLoc(getImgLoc());
@@ -71,16 +102,16 @@ public class PageOps {
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    protected void destroyImageForm() {
+        imgForm.closeExternal();
+    }
+    
     
     public String getImgLoc() {
         return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + result.getPageNum() + ".jpg";
     }
 
-    private String parseMeasureNumber() {
-        String converted = "";
-        return converted;
-    }
 
     private DefaultComboBoxModel getComboBoxModel() {
         String[] model = new String[arrangements.length];

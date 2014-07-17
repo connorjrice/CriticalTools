@@ -1,4 +1,4 @@
-package CriticalTools.MainGUI;
+package CriticalTools.CommonForms;
 
 import java.awt.Component;
 
@@ -30,6 +30,7 @@ public class AboutForm extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Critical Tools - About");
 
         jLabel1.setText("Critical Tools Alpha");
 

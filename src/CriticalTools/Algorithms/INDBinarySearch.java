@@ -11,14 +11,54 @@ import CriticalTools.Objects.SearchResult;
 public class INDBinarySearch {
     private ArrayList<String> indDB;
     private PageOps pOps;
+    private SearchResult lastResult;
     
+    /**
+     * Constructor used by PageOps.
+     * @param pOps
+     * @param indDB 
+     */
     public INDBinarySearch(PageOps pOps, ArrayList<String> indDB) {
         this.indDB = indDB;
         this.pOps = pOps;
     }
     
+    /**
+     * Returns a SearchResult object from a measure to be found in the indDB.
+     * @param measure : User's desired measure.
+     * @return 
+     */
     public SearchResult binarySearch(int measure) {
-        return binarySearchHelper(indDB.size()/2, measure);
+        lastResult = binarySearchHelper(indDB.size()/2, measure);
+        return lastResult;
+    }
+    
+    /**
+     * Returns the last result created by the search.
+     * @return most recent SearchResult.
+     */
+    public SearchResult getLastResult() {
+        return lastResult;
+    }
+    
+    /**
+     * Returns a SearchResult of the next page in the work.
+     * @return 
+     */
+    public SearchResult getNextPage() {
+        int nextMeasure = lastResult.getMeasureRange()[1] + 1;
+        lastResult = binarySearchHelper(indDB.size()/2, nextMeasure);
+        return lastResult;
+    }
+    
+    /**
+     * Returns a SearchResult of the previous page in the work.
+     * @return 
+     */
+    public SearchResult getPrevPage() {
+        int nextMeasure = lastResult.getMeasureRange()[0] - 1;
+        lastResult = binarySearchHelper(indDB.size()/2, nextMeasure);
+        return lastResult;
     }
     
     /**

@@ -1,7 +1,8 @@
 package CriticalTools.MainGUI;
 
+import CriticalTools.CommonForms.AboutForm;
 import CriticalTools.CommonForms.QuitForm;
-import CriticalTools.DatabaseViewer.DatabaseViewerMainForm;
+import CriticalTools.DatabaseManagement.DatabaseManagementMainForm;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.MeasureComparison.MeasureComparisonMainForm;
 import CriticalTools.MeasureLocator.PageOps;
@@ -49,7 +50,7 @@ public class MainGUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Critical Tools Alpha");
 
-        appComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Measure Finder", "Image Processing", "Database Viewer", "Measure Comparison" }));
+        appComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Measure Finder", "Measure Comparison", "Image Processing", "Database Management" }));
         appComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 appComboBoxActionPerformed(evt);
@@ -136,11 +137,11 @@ public class MainGUI extends javax.swing.JFrame {
         if (selIndex == 0) {
             pOps = new PageOps(this);
         } else if (selIndex == 1) {
-            new ImageProcessingMainForm(this).setVisible(true);
-        } else if (selIndex == 2) {
-            new DatabaseViewerMainForm(this).setVisible(true);
-        } else if (selIndex == 3) {
             new MeasureComparisonMainForm(this).setVisible(true);
+        } else if (selIndex == 2) {
+            new ImageProcessingMainForm(this).setVisible(true);
+        } else if (selIndex == 3) {
+            new DatabaseManagementMainForm(this).setVisible(true);
         }
     }//GEN-LAST:event_okayButtonActionPerformed
 

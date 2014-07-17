@@ -34,7 +34,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="Critical Tools - Database Viewer"/>
+    <Property name="title" type="java.lang.String" value="Critical Tools - Database Management"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
