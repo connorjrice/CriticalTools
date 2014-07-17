@@ -1,4 +1,4 @@
-package CriticalTools.MeasureLocator;
+package CriticalTools.MeasureFinder;
 
 import CriticalTools.CommonForms.ErrorForm;
 import java.io.IOException;
@@ -19,9 +19,6 @@ import java.awt.Component;
 public class PageOps {
 
     private Arrangement[] arrangements;
-    private int[] measureDB;
-    private PageOps pOps;
-    private int pageNumber;
     private INDBinarySearch ibs;
     private SearchResult result;
     private ImageUtilsForm utilFrame;
@@ -32,7 +29,7 @@ public class PageOps {
         this.c = c;
         arrangements = new ARRParse().getARR();
         new MeasureMainForm(this, c).setVisible(true);
-        ibs = new INDBinarySearch(this, new INDParse().getDB());
+        ibs = new INDBinarySearch(new INDParse().getDB());
     }
 
     /**

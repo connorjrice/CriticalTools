@@ -1,6 +1,5 @@
 package CriticalTools.Algorithms;
 
-import CriticalTools.MeasureLocator.PageOps;
 import java.util.ArrayList;
 import CriticalTools.Objects.SearchResult;
 
@@ -10,17 +9,10 @@ import CriticalTools.Objects.SearchResult;
  */
 public class INDBinarySearch {
     private ArrayList<String> indDB;
-    private PageOps pOps;
     private SearchResult lastResult;
     
-    /**
-     * Constructor used by PageOps.
-     * @param pOps
-     * @param indDB 
-     */
-    public INDBinarySearch(PageOps pOps, ArrayList<String> indDB) {
+    public INDBinarySearch(ArrayList<String> indDB) {
         this.indDB = indDB;
-        this.pOps = pOps;
     }
     
     /**

@@ -14,7 +14,7 @@ import CriticalTools.MainGUI.MainGUI;
  * TODO: Create .ind file for Fair Copy
  * TODO: Create .ind file for Ink Score
  * TODO: Implement image searching based upon instrument
- * 
+ * TODO: Serializable databases
  * @author Connor Rice
  */
 public class CriticalMain {

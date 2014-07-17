@@ -1,4 +1,4 @@
-package CriticalTools.MeasureLocator;
+package CriticalTools.MeasureFinder;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -24,6 +24,11 @@ public class ImageForm extends javax.swing.JFrame {
         initComponents();
         initialScale();
         setLocationRelativeTo(c);
+        setTitle(getFormattedTitle());
+    }
+    
+    private String getFormattedTitle() {
+        return "Page: " + searchResult.getPageNum();
     }
 
     private void initialScale() throws IOException {

@@ -1,4 +1,4 @@
-package CriticalTools.MeasureLocator;
+package CriticalTools.MeasureFinder;
 
 import CriticalTools.CommonForms.OpenForm;
 import CriticalTools.CommonForms.QuitForm;
