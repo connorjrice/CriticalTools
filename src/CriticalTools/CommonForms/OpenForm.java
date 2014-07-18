@@ -5,6 +5,7 @@
 package CriticalTools.CommonForms;
 
 import java.awt.Component;
+import java.io.File;
 import javax.swing.JFrame;
 
 /**
@@ -22,6 +23,10 @@ public class OpenForm extends javax.swing.JFrame {
         this.parentFrame = (JFrame) c;
         setLocationRelativeTo(c);
     }
+    
+    public File getFile() {
+        return jFileChooser1.getSelectedFile();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,6 +40,13 @@ public class OpenForm extends javax.swing.JFrame {
         jFileChooser1 = new javax.swing.JFileChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jFileChooser1.setToolTipText("");
+        jFileChooser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooser1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -55,6 +67,11 @@ public class OpenForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jFileChooser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooser1ActionPerformed
+        // TODO add your handling code here:
+       // if (evt.getSource()
+    }//GEN-LAST:event_jFileChooser1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser1;

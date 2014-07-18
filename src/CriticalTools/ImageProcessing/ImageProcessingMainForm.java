@@ -2,12 +2,15 @@ package CriticalTools.ImageProcessing;
 
 import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
+import java.io.File;
+import javax.swing.JFileChooser;
 
 /**
  *
  * @author Connor Rice
  */
 public class ImageProcessingMainForm extends javax.swing.JFrame {
+    private JFileChooser fc;
 
     /**
      * Creates new form ImageProcessingMainForm
@@ -15,8 +18,33 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public ImageProcessingMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
-        new IPOpenForm(this).setVisible(true);
     }
+    
+    private void openDirectory() {
+        fc = new JFileChooser();
+        fc.setCurrentDirectory(new java.io.File("."));
+        fc.setDialogTitle("Choose a directory with image files...");
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        fc.setAcceptAllFileFilterUsed(false);
+        fc.setVisible(true);
+        if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            imageList.setListData(processImages(fc.getSelectedFile()));
+        }
+    }
+    
+    private String[] processImages(File inFile) {
+        String[] imageStrings = new String[0];
+        if (inFile.isDirectory()) {
+            File[] curDirectory = inFile.listFiles();
+            imageStrings = new String[curDirectory.length];
+            for (int i = 0; i < curDirectory.length; i++) {
+                imageStrings[i] = curDirectory[i].getName();
+            }
+        }
+        return imageStrings;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,15 +55,33 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        imageList = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        openDirectoryItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Critical Tools - Image Processing");
 
+        jScrollPane1.setViewportView(imageList);
+
         fileMenu.setText("File");
+        fileMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileMenuActionPerformed(evt);
+            }
+        });
+
+        openDirectoryItem.setText("Open directory...");
+        openDirectoryItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openDirectoryItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(openDirectoryItem);
 
         quitButton.setText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -56,11 +102,17 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 770, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 269, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -70,10 +122,22 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitButtonActionPerformed
 
+    private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fileMenuActionPerformed
+
+    private void openDirectoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryItemActionPerformed
+        // TODO add your handling code here:
+        openDirectory();
+    }//GEN-LAST:event_openDirectoryItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
+    private javax.swing.JList imageList;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem openDirectoryItem;
     private javax.swing.JMenuItem quitButton;
     // End of variables declaration//GEN-END:variables
 }

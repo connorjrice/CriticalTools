@@ -1,4 +1,4 @@
-package CriticalTools.MeasureFinder;
+package CriticalTools.CommonForms;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;

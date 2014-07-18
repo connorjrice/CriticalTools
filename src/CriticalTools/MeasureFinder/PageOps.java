@@ -1,5 +1,6 @@
 package CriticalTools.MeasureFinder;
 
+import CriticalTools.CommonForms.ImageForm;
 import CriticalTools.CommonForms.ErrorForm;
 import java.io.IOException;
 import java.util.logging.Level;
