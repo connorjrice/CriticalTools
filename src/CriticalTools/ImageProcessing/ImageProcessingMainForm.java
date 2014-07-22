@@ -7,12 +7,14 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.util.List;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 
 /**
  *
  * @author Connor Rice
  */
 public class ImageProcessingMainForm extends javax.swing.JFrame {
+
     private JFileChooser fc;
 
     /**
@@ -22,7 +24,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(c);
     }
-    
+
     /**
      * Displays a JFileChooser that lets the user choose the directory with the
      * images to be in-processed.
@@ -38,11 +40,12 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             imageList.setListData(parseImgNames(fc.getSelectedFile()));
         }
     }
-    
+
     /**
      * Processes the image files that the user chooses from openDirectory()
+     *
      * @param inFile
-     * @return 
+     * @return
      */
     private String[] parseImgNames(File inFile) {
         String[] imageStrings = new String[0];
@@ -55,12 +58,10 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         }
         return imageStrings;
     }
-    
+
     public void addPage() {
-        
     }
-    
-    
+
     public String getImgType(String[] fileNames) {
         String imgType = "";
         for (String s : fileNames) {
@@ -69,7 +70,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         }
         return imgType;
     }
-    
+
     public int getPageNumber(String[] fileNames) {
         int[] pageArray = new int[fileNames.length];
         for (int i = 0; i < pageArray.length; i++) {
@@ -81,25 +82,33 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         } else {
             return -1;
         }
-        
+
     }
-    
+
     public boolean checkPageEqual(int[] pageArray) {
         boolean result = true;
         for (int i = 1; i < pageArray.length; i++) {
-            if (pageArray[i-1] != pageArray[i]) {
+            if (pageArray[i - 1] != pageArray[i]) {
                 result = false;
             }
         }
         return result;
     }
-    
-    public ImageData createImageData(int startMeasure, int endMeasure, 
+
+    public void createProcessingDialog() {
+        List selectedValues = imageList.getSelectedValuesList();
+        String[] selectedString = new String[selectedValues.size()];
+        for (int i = 0; i < selectedValues.size(); i++) {
+            selectedString[i] = (String) selectedValues.get(i);
+        }
+        JFrame IPD = new ImageProcessingDialog(getImgType(selectedString), getPageNumber(selectedString));
+        IPD.setVisible(true);
+    }
+
+    public ImageData createImageData(int startMeasure, int endMeasure,
             int pageNumber, String imgType) {
         return new ImageData(startMeasure, endMeasure, pageNumber, imgType);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,15 +202,9 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     private void imageListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageListMouseClicked
         if (evt.getButton() == (MouseEvent.BUTTON3)) {
-            List selectedValues = imageList.getSelectedValuesList();
-            String[] selectedString = new String[selectedValues.size()];
-            for (int i = 0; i < selectedValues.size(); i++) {
-                selectedString[i] = (String) selectedValues.get(i);
-            }
-            System.out.println(getImgType(selectedString) + "\nPage: " + getPageNumber(selectedString));
+            createProcessingDialog();
         }
     }//GEN-LAST:event_imageListMouseClicked
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
