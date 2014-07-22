@@ -7,11 +7,14 @@ package CriticalTools.Objects;
 public class ImageData {
     private final int startMeasure;
     private final int endMeasure;
+    private final int pageNumber;
     private final String imgType;
 
-    public ImageData(int startMeasure, int endMeasure, String imgType) {
+
+    public ImageData(int startMeasure, int endMeasure, int pageNumber, String imgType) {
         this.startMeasure = startMeasure;
         this.endMeasure = endMeasure;
+        this.pageNumber = pageNumber;
         this.imgType = imgType;
     }
     
@@ -21,6 +24,10 @@ public class ImageData {
     
     public int getEndMeasure() {
         return endMeasure;
+    }
+    
+    public int getPageNumber() {
+        return pageNumber;
     }
     
     public String getImgType() {

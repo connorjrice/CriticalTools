@@ -1,8 +1,11 @@
 package CriticalTools.ImageProcessing;
 
 import CriticalTools.CommonForms.QuitForm;
+import CriticalTools.Objects.ImageData;
 import java.awt.Component;
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.List;
 import javax.swing.JFileChooser;
 
 /**
@@ -32,7 +35,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         fc.setAcceptAllFileFilterUsed(false);
         fc.setVisible(true);
         if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            imageList.setListData(processImages(fc.getSelectedFile()));
+            imageList.setListData(parseImgNames(fc.getSelectedFile()));
         }
     }
     
@@ -41,7 +44,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
      * @param inFile
      * @return 
      */
-    private String[] processImages(File inFile) {
+    private String[] parseImgNames(File inFile) {
         String[] imageStrings = new String[0];
         if (inFile.isDirectory()) {
             File[] curDirectory = inFile.listFiles();
@@ -51,6 +54,24 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             }
         }
         return imageStrings;
+    }
+    
+    public void addPage() {
+        
+    }
+    
+    public String getImgType(String[] fileNames) {
+        String imgType = "";
+        for (String s : fileNames) {
+            String[] sa = s.split("_");
+            imgType += sa[1].charAt(0);
+        }
+        return imgType;
+    }
+    
+    public ImageData createImageData(int startMeasure, int endMeasure, 
+            int pageNumber, String imgType) {
+        return new ImageData(startMeasure, endMeasure, pageNumber, imgType);
     }
     
     
@@ -75,6 +96,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Critical Tools - Image Processing");
 
+        imageList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                imageListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(imageList);
 
         fileMenu.setText("File");
@@ -139,6 +165,17 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         openDirectory();
     }//GEN-LAST:event_openDirectoryItemActionPerformed
+
+    private void imageListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageListMouseClicked
+        if (evt.getButton() == (MouseEvent.BUTTON3)) {
+            List selectedValues = imageList.getSelectedValuesList();
+            String[] selectedString = new String[selectedValues.size()];
+            for (int i = 0; i < selectedValues.size(); i++) {
+                selectedString[i] = (String) selectedValues.get(i);
+            }
+            System.out.println(getImgType(selectedString));
+        }
+    }//GEN-LAST:event_imageListMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
