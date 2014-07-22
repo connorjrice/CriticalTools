@@ -60,6 +60,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         
     }
     
+    
     public String getImgType(String[] fileNames) {
         String imgType = "";
         for (String s : fileNames) {
@@ -67,6 +68,30 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             imgType += sa[1].charAt(0);
         }
         return imgType;
+    }
+    
+    public int getPageNumber(String[] fileNames) {
+        int[] pageArray = new int[fileNames.length];
+        for (int i = 0; i < pageArray.length; i++) {
+            pageArray[i] = Integer.parseInt(fileNames[i].split("_")[0]);
+        }
+        boolean isSame = checkPageEqual(pageArray);
+        if (isSame) {
+            return pageArray[0];
+        } else {
+            return -1;
+        }
+        
+    }
+    
+    public boolean checkPageEqual(int[] pageArray) {
+        boolean result = true;
+        for (int i = 1; i < pageArray.length; i++) {
+            if (pageArray[i-1] != pageArray[i]) {
+                result = false;
+            }
+        }
+        return result;
     }
     
     public ImageData createImageData(int startMeasure, int endMeasure, 
@@ -173,7 +198,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             for (int i = 0; i < selectedValues.size(); i++) {
                 selectedString[i] = (String) selectedValues.get(i);
             }
-            System.out.println(getImgType(selectedString));
+            System.out.println(getImgType(selectedString) + "\nPage: " + getPageNumber(selectedString));
         }
     }//GEN-LAST:event_imageListMouseClicked
 
