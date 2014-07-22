@@ -42,7 +42,6 @@ public class MainGUI extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         quitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
         helpMenu = new javax.swing.JMenu();
         helpMenuDocItem = new javax.swing.JMenuItem();
         helpMenuAboutItem = new javax.swing.JMenuItem();
@@ -77,9 +76,6 @@ public class MainGUI extends javax.swing.JFrame {
         fileMenu.add(quitMenuItem);
 
         menuBar.add(fileMenu);
-
-        editMenu.setText("Edit");
-        menuBar.add(editMenu);
 
         helpMenu.setText("Help");
 
@@ -156,7 +152,6 @@ public class MainGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox appComboBox;
     private javax.swing.JLabel appLabel;
-    private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem helpMenuAboutItem;

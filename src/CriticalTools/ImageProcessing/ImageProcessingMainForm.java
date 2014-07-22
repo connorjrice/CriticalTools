@@ -5,6 +5,7 @@ import CriticalTools.Objects.ImageData;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -16,6 +17,7 @@ import javax.swing.JFrame;
 public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     private JFileChooser fc;
+    private ArrayList<ImageData> imgDataList;
 
     /**
      * Creates new form ImageProcessingMainForm
@@ -23,6 +25,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public ImageProcessingMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
+        imgDataList = new ArrayList<>();
     }
 
     /**
@@ -59,7 +62,9 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         return imageStrings;
     }
 
-    public void addPage() {
+    public void addPage(int[] pageInts, String imgType) {
+        ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType);
+        imgDataList.add(id);
     }
 
     public String getImgType(String[] fileNames) {

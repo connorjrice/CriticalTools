@@ -17,6 +17,10 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         imgTypeField.setText(imgType);
         pageNumField.setText(Integer.toString(pageNum));
     }
+    
+    public int[] parseInts() {
+        return new int[] {Integer.parseInt(startingMeasureField.getText()), Integer.parseInt(endingMeasureField.getText()), Integer.parseInt(pageNumField.getText())};
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,7 +143,8 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
 
     private void addDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDataButtonActionPerformed
         // TODO add your handling code here:
-        parentFrame.addPage();
+        int[] intA = parseInts();
+        parentFrame.addPage(intA, imgTypeField.getText());
     }//GEN-LAST:event_addDataButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
