@@ -20,6 +20,11 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="openDirectoryItemActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="saveDataItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Save..."/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="quitButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quit"/>

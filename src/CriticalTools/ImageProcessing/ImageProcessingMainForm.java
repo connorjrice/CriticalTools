@@ -129,6 +129,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openDirectoryItem = new javax.swing.JMenuItem();
+        saveDataItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
         parseMenu = new javax.swing.JMenu();
         autoProcess = new javax.swing.JMenuItem();
@@ -157,6 +158,9 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             }
         });
         fileMenu.add(openDirectoryItem);
+
+        saveDataItem.setText("Save...");
+        fileMenu.add(saveDataItem);
 
         quitButton.setText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -224,5 +228,6 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem openDirectoryItem;
     private javax.swing.JMenu parseMenu;
     private javax.swing.JMenuItem quitButton;
+    private javax.swing.JMenuItem saveDataItem;
     // End of variables declaration//GEN-END:variables
 }
