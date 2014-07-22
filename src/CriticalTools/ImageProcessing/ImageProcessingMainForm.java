@@ -101,7 +101,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         for (int i = 0; i < selectedValues.size(); i++) {
             selectedString[i] = (String) selectedValues.get(i);
         }
-        JFrame IPD = new ImageProcessingDialog(getImgType(selectedString), getPageNumber(selectedString));
+        JFrame IPD = new ImageProcessingDialog(this, getImgType(selectedString), getPageNumber(selectedString));
         IPD.setVisible(true);
     }
 
@@ -125,7 +125,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         openDirectoryItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
+        parseMenu = new javax.swing.JMenu();
+        autoProcess = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Critical Tools - Image Processing");
@@ -162,8 +163,12 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
         jMenuBar1.add(fileMenu);
 
-        editMenu.setText("Edit");
-        jMenuBar1.add(editMenu);
+        parseMenu.setText("Parse");
+
+        autoProcess.setText("Automatic Processing");
+        parseMenu.add(autoProcess);
+
+        jMenuBar1.add(parseMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -206,12 +211,13 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_imageListMouseClicked
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem autoProcess;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JList imageList;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem openDirectoryItem;
+    private javax.swing.JMenu parseMenu;
     private javax.swing.JMenuItem quitButton;
     // End of variables declaration//GEN-END:variables
 }
