@@ -62,11 +62,23 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         return imageStrings;
     }
 
+    /**
+     * Creates a new ImageData object which is added to the ArrayList
+     * @param pageInts
+     * @param imgType 
+     */
     public void addPage(int[] pageInts, String imgType) {
         ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType);
         imgDataList.add(id);
     }
 
+    /**
+     * Takes in an array of fileNames as Strings, and returns a string with the 
+     * abbreviated type of image.
+     * Pages with "Bottom" and "Top" image files are abbreviated as "bt"
+     * @param fileNames
+     * @return 
+     */
     public String getImgType(String[] fileNames) {
         String imgType = "";
         for (String s : fileNames) {
@@ -76,6 +88,12 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         return imgType;
     }
 
+    /**
+     * Returns the page number from an array of String filenames.
+     * Returns -1 if the page numbers do not match.
+     * @param fileNames
+     * @return 
+     */
     public int getPageNumber(String[] fileNames) {
         int[] pageArray = new int[fileNames.length];
         for (int i = 0; i < pageArray.length; i++) {
@@ -90,6 +108,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Returns true if the page numbers are equal, false if they are not.
+     * @param pageArray
+     * @return 
+     */
     public boolean checkPageEqual(int[] pageArray) {
         boolean result = true;
         for (int i = 1; i < pageArray.length; i++) {
@@ -100,6 +123,9 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         return result;
     }
 
+    /**
+     * Creates a popup dialog for processing images.
+     */
     public void createProcessingDialog() {
         List selectedValues = imageList.getSelectedValuesList();
         String[] selectedString = new String[selectedValues.size()];
@@ -110,6 +136,14 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         IPD.setVisible(true);
     }
 
+    /**
+     * Returns a new ImageData object.
+     * @param startMeasure
+     * @param endMeasure
+     * @param pageNumber
+     * @param imgType
+     * @return 
+     */
     public ImageData createImageData(int startMeasure, int endMeasure,
             int pageNumber, String imgType) {
         return new ImageData(startMeasure, endMeasure, pageNumber, imgType);
