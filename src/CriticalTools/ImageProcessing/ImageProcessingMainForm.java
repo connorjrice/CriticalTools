@@ -20,6 +20,10 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         setLocationRelativeTo(c);
     }
     
+    /**
+     * Displays a JFileChooser that lets the user choose the directory with the
+     * images to be in-processed.
+     */
     private void openDirectory() {
         fc = new JFileChooser();
         fc.setCurrentDirectory(new java.io.File("."));
@@ -32,6 +36,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Processes the image files that the user chooses from openDirectory()
+     * @param inFile
+     * @return 
+     */
     private String[] processImages(File inFile) {
         String[] imageStrings = new String[0];
         if (inFile.isDirectory()) {

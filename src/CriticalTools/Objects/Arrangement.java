@@ -9,12 +9,25 @@ public class Arrangement {
     
     private String name;
     private String dir;
+    private ImageData[] imgData;
     private String indFile;
    
-    public Arrangement(String name, String dir, String indFile) {
+    public Arrangement(String name, String dir, ImageData[] imgData) {
         this.name = name;
         this.dir = dir;
-        this.indFile = indFile;
+        this.imgData = imgData;
+    }
+    
+    /**
+     * Deprecated constructor for .ind files.
+     * @param name
+     * @param dir
+     * @param indfile 
+     */
+    public Arrangement(String name, String dir, String indfile) {
+        this.name = name;
+        this.dir = dir;
+        this.indFile = indfile;
     }
     
     public String getName() {
@@ -23,6 +36,10 @@ public class Arrangement {
     
     public String getDir() {
         return dir;
+    }
+    
+    public ImageData[] getImgData() {
+        return imgData;
     }
     
     public String getIndFile() {

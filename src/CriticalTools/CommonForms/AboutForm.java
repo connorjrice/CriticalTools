@@ -3,7 +3,7 @@ package CriticalTools.CommonForms;
 import java.awt.Component;
 
 /**
- *
+ * JFrame that contains the information about the author.
  * @author Connor Rice
  */
 public class AboutForm extends javax.swing.JFrame {

@@ -11,7 +11,7 @@ public class QuitForm extends javax.swing.JFrame {
     private JFrame parentFrame;
 
     /**
-     * Creates new form QuitDialogForm
+     * Creates new form QuitForm
      */
     public QuitForm(Component c) {
         initComponents();

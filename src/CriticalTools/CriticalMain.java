@@ -10,9 +10,7 @@ import CriticalTools.MainGUI.MainGUI;
  * TODO: Measure comparison
  * TODO: Image processing
  * TODO: Incorporate edited images
- * TODO: Create new .ind file for Whiteman
- * TODO: Create .ind file for Fair Copy
- * TODO: Create .ind file for Ink Score
+ * TODO: Change .ind files to ImageData objects
  * TODO: Implement image searching based upon instrument
  * TODO: Serializable databases
  * @author Connor Rice
