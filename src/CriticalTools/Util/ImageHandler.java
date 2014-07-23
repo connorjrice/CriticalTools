@@ -56,7 +56,7 @@ public class ImageHandler {
         try {
             curData = binarySearch.getNextPage();
             newImageForm();
-        } catch (IOException ex) {
+        } catch (IOException | IndexOutOfBoundsException ex) {
             new ErrorForm("Image file not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -68,7 +68,7 @@ public class ImageHandler {
         try {
             curData = binarySearch.getPrevPage();
             newImageForm();
-        } catch (IOException ex) {
+        } catch (IOException | IndexOutOfBoundsException ex) {
             new ErrorForm("Image file not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }

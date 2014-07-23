@@ -15,20 +15,20 @@ import javax.swing.JFrame;
  * @author Connor Rice
  */
 public class ImageProcessor {
-    
+
     private JFileChooser fc;
     private ArrayList<ImageData> imgDataList;
     private DatabaseIO dataIO;
     private String[] imageStrings;
     private String[] arrangementNames;
     private ImageProcessingMainForm parentFrame;
-    
+
     public ImageProcessor(ImageProcessingMainForm c) {
         this.dataIO = new DatabaseIO();
         this.imgDataList = new ArrayList<>();
         this.parentFrame = c;
     }
-    
+
     /**
      * Displays a JFileChooser that lets the user choose the directory with the
      * images to be in-processed.
@@ -74,7 +74,7 @@ public class ImageProcessor {
         this.imageStrings = db.getImageStrings();
         this.arrangementNames = db.getArrangementNames();
     }
-    
+
     public String[] getListData() {
         return imageStrings;
     }
@@ -160,7 +160,7 @@ public class ImageProcessor {
         JFrame IPD = new ImageProcessingDialog(parentFrame, getImgType(selectedString), getPageNumber(selectedString));
         IPD.setVisible(true);
     }
-    
+
     public ArrayList<ImageData> getImageDataList() {
         return imgDataList;
     }
