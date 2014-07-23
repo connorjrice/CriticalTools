@@ -14,14 +14,14 @@ import javax.swing.ImageIcon;
  *
  * @author Connor Rice
  */
-public class ImageOps {
+public class ImageManipulator {
 
     private ImageData imageData;
     private BufferedImage originalImage;
     private BufferedImage currentImage;
     private int photoNumber;
 
-    public ImageOps(ImageData id, int photoNumber) {
+    public ImageManipulator(ImageData id, int photoNumber) {
         this.imageData = id;
         this.photoNumber = photoNumber;
     }
@@ -114,4 +114,6 @@ public class ImageOps {
         }
         return new float[]{scalingFactor, width, height};
     }
+    
+    
 }

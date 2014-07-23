@@ -1,6 +1,6 @@
 package CriticalTools.MeasureFinder;
 
-import CriticalTools.Util.PageOps;
+import CriticalTools.Util.ImageHandler;
 import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
@@ -12,10 +12,10 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class MeasureMainForm extends javax.swing.JFrame {
 
-    private PageOps pOps;
+    private ImageHandler pOps;
     private boolean firstType;
 
-    public MeasureMainForm(PageOps pOps, Component c) {
+    public MeasureMainForm(ImageHandler pOps, Component c) {
         this.pOps = pOps;
         initComponents();
         setLocationRelativeTo(c); // Centers form to parent

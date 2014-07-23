@@ -16,7 +16,7 @@ import java.awt.Component;
  * Methods for operations to be used by jFrames.
  * @author Connor Rice
  */
-public class PageOps {
+public class ImageHandler {
 
     private BinarySearch binarySearch;
     private ImageUtilsForm utilFrame;
@@ -26,7 +26,7 @@ public class PageOps {
     private DatabaseIO dataIO;
     private Database database;
 
-    public PageOps(Component c) {
+    public ImageHandler(Component c) {
         this.c = c;
         new MeasureMainForm(this, c).setVisible(true);
         this.dataIO = new DatabaseIO();

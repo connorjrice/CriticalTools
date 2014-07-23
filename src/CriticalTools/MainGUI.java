@@ -5,7 +5,7 @@ import CriticalTools.CommonForms.QuitForm;
 import CriticalTools.DatabaseManagement.DatabaseManagementMainForm;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.MeasureComparison.MeasureComparisonMainForm;
-import CriticalTools.Util.PageOps;
+import CriticalTools.Util.ImageHandler;
 
 /**
  * The main GUI for selecting which application within the suite should be
@@ -15,7 +15,7 @@ import CriticalTools.Util.PageOps;
  */
 public class MainGUI extends javax.swing.JFrame {
 
-    private PageOps pOps;
+    private ImageHandler pOps;
 
     /**
      * Creates new form MainGUI
@@ -133,7 +133,7 @@ public class MainGUI extends javax.swing.JFrame {
     private void okayButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okayButtonActionPerformed
         int selIndex = appComboBox.getSelectedIndex();
         if (selIndex == 0) {
-            pOps = new PageOps(this);
+            pOps = new ImageHandler(this);
         } else if (selIndex == 1) {
             new MeasureComparisonMainForm(this).setVisible(true);
         } else if (selIndex == 2) {

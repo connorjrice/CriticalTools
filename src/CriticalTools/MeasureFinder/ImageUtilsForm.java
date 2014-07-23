@@ -1,7 +1,7 @@
 package CriticalTools.MeasureFinder;
 
 import CriticalTools.Objects.ImageData;
-import CriticalTools.Util.PageOps;
+import CriticalTools.Util.ImageHandler;
 
 /**
  * Form for the utility window that is created next to the desired image. TODO:
@@ -12,12 +12,12 @@ import CriticalTools.Util.PageOps;
 public class ImageUtilsForm extends javax.swing.JFrame {
 
     private ImageData curData;
-    private PageOps pOps;
+    private ImageHandler pOps;
 
     /**
      * Creates new form ImageUtilsForm
      */
-    public ImageUtilsForm(PageOps pOps, ImageData curData) {
+    public ImageUtilsForm(ImageHandler pOps, ImageData curData) {
         this.pOps = pOps;
         this.curData = curData;
         initComponents();

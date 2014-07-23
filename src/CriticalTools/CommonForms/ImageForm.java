@@ -2,7 +2,7 @@ package CriticalTools.CommonForms;
 
 import CriticalTools.Objects.ImageData;
 import java.io.IOException;
-import CriticalTools.Util.ImageOps;
+import CriticalTools.Util.ImageManipulator;
 import java.awt.Component;
 
 /**
@@ -12,10 +12,10 @@ import java.awt.Component;
  */
 public class ImageForm extends javax.swing.JFrame {
 
-    private ImageOps iIO;
+    private ImageManipulator iIO;
 
     public ImageForm(ImageData id, int photoNumber, Component c) throws IOException {
-        this.iIO = new ImageOps(id, photoNumber);
+        this.iIO = new ImageManipulator(id, photoNumber);
         initComponents();
         iIO.readImage();
         initImage();
