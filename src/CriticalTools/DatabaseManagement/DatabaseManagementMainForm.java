@@ -5,6 +5,7 @@ import CriticalTools.Util.DatabaseIO;
 import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
 import java.awt.Component;
+import java.util.ArrayList;
 
 /**
  * Database Viewer: Allows the user to browse through the various databases
@@ -16,7 +17,7 @@ import java.awt.Component;
 public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     private DatabaseIO dataIO;
-    private ImageData[][] imgDataList;
+    private ArrayList<ImageData> imgDataList;
     private String[] imageStrings;
     private boolean isArrangementView = true;
 

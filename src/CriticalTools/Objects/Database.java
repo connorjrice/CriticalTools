@@ -1,6 +1,7 @@
 package CriticalTools.Objects;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Database object that contains all of the information/image data that the user
@@ -10,17 +11,17 @@ import java.io.Serializable;
  */
 public class Database implements Serializable {
 
-    private ImageData[][] imageDataList;
+    private ArrayList<ImageData> imageDataList;
     private String[] imageStrings;
     private String[] arrangementNames;
 
-    public Database(ImageData[][] id, String[] is, String[] an) {
+    public Database(ArrayList<ImageData> id, String[] is, String[] an) {
         this.imageDataList = id;
         this.imageStrings = is;
         this.arrangementNames = an;
     }
 
-    public ImageData[][] getImageData() {
+    public ArrayList<ImageData> getImageData() {
         return imageDataList;
     }
 

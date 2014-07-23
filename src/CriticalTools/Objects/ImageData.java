@@ -12,6 +12,7 @@ public class ImageData implements Serializable {
     private int pageNumber;
     private String imgType;
     private String arrangementDir;
+    private int curSize;
 
 
     public ImageData(int startMeasure, int endMeasure, int pageNumber, 
@@ -46,4 +47,5 @@ public class ImageData implements Serializable {
     public int getNumImages() {
         return imgType.length();
     }
+    
 }

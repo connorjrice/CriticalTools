@@ -1,6 +1,7 @@
 package CriticalTools.Util;
 
 import CriticalTools.Objects.ImageData;
+import java.util.ArrayList;
 
 /**
  * Binary search for ImageData objects from the Database.
@@ -9,14 +10,14 @@ import CriticalTools.Objects.ImageData;
  */
 public class BinarySearch {
 
-    private ImageData[][] imageData;
+    private ArrayList<ImageData> imageData;
     private ImageData lastImage;
     private int arrIndex;
 
     /*public INDBinarySearch(ArrayList<String> indDB) {
      this.indDB = indDB;
      }*/
-    public BinarySearch(ImageData[][] imgData, int arrIndex) {
+    public BinarySearch(ArrayList<ImageData> imgData, int arrIndex) {
         this.imageData = imgData;
         this.arrIndex = arrIndex;
     }
@@ -28,7 +29,8 @@ public class BinarySearch {
      * @return
      */
     public ImageData binarySearch(int measure) {
-        lastImage = binarySearchHelper(imageData.length / 2, measure);
+        System.out.println(imageData.size());
+        lastImage = binarySearchHelper(imageData.size() / 2, measure);
         return lastImage;
     }
 
@@ -48,7 +50,7 @@ public class BinarySearch {
      */
     public ImageData getNextPage() {
         int nextMeasure = lastImage.getEndMeasure() + 1;
-        lastImage = binarySearchHelper(imageData.length / 2, nextMeasure);
+        lastImage = binarySearchHelper(imageData.size() / 2, nextMeasure);
         return lastImage;
     }
 
@@ -59,7 +61,7 @@ public class BinarySearch {
      */
     public ImageData getPrevPage() {
         int nextMeasure = lastImage.getStartMeasure() - 1;
-        lastImage = binarySearchHelper(imageData.length / 2, nextMeasure);
+        lastImage = binarySearchHelper(imageData.size() / 2, nextMeasure);
         return lastImage;
     }
 
@@ -72,20 +74,29 @@ public class BinarySearch {
      * @return
      */
     private ImageData binarySearchHelper(int index, int measure) {
+        System.out.println(index);
         int[] measureRange = getMeasureRange(index);
         if (measureRange[0] <= measure && measure <= measureRange[1]) {
-            return imageData[arrIndex][index];
+            return imageData.get(index);
         } else {
             if (measure > measureRange[1]) {
-                return binarySearchHelper(index + (index / 2), measure);
+                if (index > 0) {
+                    return binarySearchHelper(index + (index / 2), measure);
+                } else {
+                    return binarySearchHelper(1, measure);
+                }
             } else {
-                return binarySearchHelper(index - (index / 2), measure);
+                if (index < 1) {
+                    return binarySearchHelper(index - (index / 2), measure);
+                } else {
+                    return binarySearchHelper(0, measure);
+                }
             }
         }
     }
 
     public int[] getMeasureRange(int index) {
-        ImageData id = imageData[arrIndex][index];
+        ImageData id = imageData.get(index);
         return new int[]{id.getStartMeasure(), id.getEndMeasure()};
     }
 }
