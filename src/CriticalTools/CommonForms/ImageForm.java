@@ -7,6 +7,7 @@ import java.awt.Component;
 
 /**
  * Form for displaying images.
+ *
  * @author Connor Rice
  */
 public class ImageForm extends javax.swing.JFrame {
@@ -20,21 +21,19 @@ public class ImageForm extends javax.swing.JFrame {
         //initImage();
         setLocationRelativeTo(c);
         setTitle(iIO.getFormattedTitle());
-        
-    }
-    
-    /*private void initImage() {
-        jLabel1.setIcon(iIO.scaleImage());
-        int[] bounds = iIO.getImageBounds();
-        this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
-    }*/
-    
 
+    }
+
+    /*private void initImage() {
+     jLabel1.setIcon(iIO.scaleImage());
+     int[] bounds = iIO.getImageBounds();
+     this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
+     }*/
     @Override
     public void dispose() {
         super.dispose();
     }
-    
+
     public void closeExternal() {
         super.dispose();
     }

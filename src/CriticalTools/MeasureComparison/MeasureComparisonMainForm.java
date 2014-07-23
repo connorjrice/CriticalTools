@@ -4,7 +4,8 @@ import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
 
 /**
- *
+ * Main form for Measure Comparison. Allows the user to compare measures between
+ * different versions of the work.
  * @author Connor Rice
  */
 public class MeasureComparisonMainForm extends javax.swing.JFrame {
@@ -122,7 +123,6 @@ public class MeasureComparisonMainForm extends javax.swing.JFrame {
 
     private void measureTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_measureTextFieldActionPerformed
     }//GEN-LAST:event_measureTextFieldActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;

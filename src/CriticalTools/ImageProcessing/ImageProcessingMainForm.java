@@ -12,7 +12,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
- * TODO: Move operations into Util package
+ *
+ * Builds a list of files from a given directory. TODO: Move operations into
+ * Util package Main form for Image Processing.
+ *
  * @author Connor Rice
  */
 public class ImageProcessingMainForm extends javax.swing.JFrame {
@@ -68,12 +71,12 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         }
         return imgStingTemp;
     }
-    
+
     protected void saveDB() {
         Database db = new Database(imgDataList, imageStrings, arrangementNames);
         dataIO.writeDB(db);
     }
-    
+
     protected final void loadDB() {
         Database db = dataIO.readDB();
         this.imgDataList = db.getImageData();
@@ -84,24 +87,26 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     /**
      * Creates a new ImageData object which is added to the ArrayList
+     *
      * @param pageInts
-     * @param imgType 
+     * @param imgType
      */
     public void addPage(int[] pageInts, String imgType, String arrangementDir) {
         ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
         imgDataList[getArrangementIndex()][pageInts[2]] = id;
     }
-    
+
     private int getArrangementIndex() {
         return -1;
     }
 
     /**
-     * Takes in an array of fileNames as Strings, and returns a string with the 
-     * abbreviated type of image.
-     * Pages with "Bottom" and "Top" image files are abbreviated as "bt"
+     * Takes in an array of fileNames as Strings, and returns a string with the
+     * abbreviated type of image. Pages with "Bottom" and "Top" image files are
+     * abbreviated as "bt"
+     *
      * @param fileNames
-     * @return 
+     * @return
      */
     public String getImgType(String[] fileNames) {
         String imgType = "";
@@ -113,10 +118,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }
 
     /**
-     * Returns the page number from an array of String filenames.
-     * Returns -1 if the page numbers do not match.
+     * Returns the page number from an array of String filenames. Returns -1 if
+     * the page numbers do not match.
+     *
      * @param fileNames
-     * @return 
+     * @return
      */
     public int getPageNumber(String[] fileNames) {
         int[] pageArray = new int[fileNames.length];
@@ -134,8 +140,9 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     /**
      * Returns true if the page numbers are equal, false if they are not.
+     *
      * @param pageArray
-     * @return 
+     * @return
      */
     public boolean checkPageEqual(int[] pageArray) {
         boolean result = true;
@@ -162,11 +169,12 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     /**
      * Returns a new ImageData object.
+     *
      * @param startMeasure
      * @param endMeasure
      * @param pageNumber
      * @param imgType
-     * @return 
+     * @return
      */
     public ImageData createImageData(int startMeasure, int endMeasure,
             int pageNumber, String imgType, String arrangementDir) {
@@ -275,14 +283,14 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     /**
      * Action for Quit Button
-     * @param evt 
+     *
+     * @param evt
      */
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
-
     }//GEN-LAST:event_fileMenuActionPerformed
 
     private void openDirectoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryItemActionPerformed
@@ -302,7 +310,6 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private void saveDataItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataItemActionPerformed
         saveDB();
     }//GEN-LAST:event_saveDataItemActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem autoProcess;
     private javax.swing.JMenu fileMenu;

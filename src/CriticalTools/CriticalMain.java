@@ -1,10 +1,11 @@
 package CriticalTools;
 
 /**
- * Critical Tools: A suite of applications that are designed to aid in the 
+ * Critical Tools: A suite of applications that are designed to aid in the
  * process of authoring a Musical Critical Edition.
- * 
+ *
  * TODO: Implement image searching based upon instrument
+ *
  * @author Connor Rice
  */
 public class CriticalMain {

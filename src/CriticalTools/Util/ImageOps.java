@@ -9,21 +9,25 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
+ * Utility for performing image manipulations on more than one image. TODO:
+ * Implement multiple images.
  *
  * @author Connor Rice
  */
 public class ImageOps {
+
     private ImageData imageData;
     private BufferedImage[] originalImage;
     private BufferedImage[] currentImage;
-    
+
     public ImageOps(ImageData id) {
         this.imageData = id;
     }
-    
+
     /**
      * Retruns the page number from the relevant ImageData object.
-     * @return 
+     *
+     * @return
      */
     public String getFormattedTitle() {
         return "Page: " + imageData.getPageNumber();
@@ -32,23 +36,23 @@ public class ImageOps {
     public void readImages() throws IOException {
         String imgType = imageData.getImgType();
         for (int i = 0; i < imgType.length(); i++) {
-            originalImage[i] = ImageIO.read(new File(getImageLocation(imgType.substring(i,i))));
+            originalImage[i] = ImageIO.read(new File(getImageLocation(imgType.substring(i, i))));
         }
     }
-    
+
     public String getImageLocation(String s) {
         switch (s) {
             case "b":
-                return getConvertedIndex(s)+"_bottom.jpg";
+                return getConvertedIndex(s) + "_bottom.jpg";
             case "t":
-                return getConvertedIndex(s)+"_top.jpg";
+                return getConvertedIndex(s) + "_top.jpg";
             case "m":
-                return getConvertedIndex(s)+"_mid.jpg";
+                return getConvertedIndex(s) + "_mid.jpg";
             default:
                 return "";
         }
     }
-    
+
     public String getConvertedIndex(String s) {
         int index = Integer.parseInt(s);
         if (index < 10) {
@@ -57,9 +61,9 @@ public class ImageOps {
             return Integer.toString(index);
         }
     }
-    
+
     public int[] getImageBounds(int i) {
-        return new int[] {0, 0, currentImage[i].getWidth(), currentImage[i].getHeight()};
+        return new int[]{0, 0, currentImage[i].getWidth(), currentImage[i].getHeight()};
     }
 
     public ImageIcon scaleImage(int i) {
@@ -103,5 +107,4 @@ public class ImageOps {
         }
         return new float[]{scalingFactor, width, height};
     }
-    
 }

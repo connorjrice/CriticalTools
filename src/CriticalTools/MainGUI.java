@@ -10,9 +10,11 @@ import CriticalTools.Util.PageOps;
 /**
  * The main GUI for selecting which application within the suite should be
  * accessed.
+ *
  * @author Connor Rice
  */
 public class MainGUI extends javax.swing.JFrame {
+
     private PageOps pOps;
 
     /**
@@ -22,9 +24,9 @@ public class MainGUI extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     protected void quit() {
-       dispose();
+        dispose();
     }
 
     /**
@@ -148,7 +150,6 @@ public class MainGUI extends javax.swing.JFrame {
     private void quitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitMenuItemActionPerformed
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitMenuItemActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox appComboBox;
     private javax.swing.JLabel appLabel;

@@ -1,10 +1,11 @@
 package CriticalTools.ImageProcessing;
 
 /**
- *
+ * Dialog box for in-processing images into the database.
  * @author Connor Rice
  */
 public class ImageProcessingDialog extends javax.swing.JFrame {
+
     private ImageProcessingMainForm parentFrame;
 
     /**
@@ -18,9 +19,9 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         imgTypeField.setText(imgType);
         pageNumField.setText(Integer.toString(pageNum));
     }
-    
+
     public int[] parseInts() {
-        return new int[] {Integer.parseInt(startingMeasureField.getText()), Integer.parseInt(endingMeasureField.getText()), Integer.parseInt(pageNumField.getText())};
+        return new int[]{Integer.parseInt(startingMeasureField.getText()), Integer.parseInt(endingMeasureField.getText()), Integer.parseInt(pageNumField.getText())};
     }
 
     /**
@@ -191,7 +192,6 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     private void startingMeasureFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startingMeasureFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_startingMeasureFieldActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDataButton;
     private javax.swing.JLabel arrangementIndexLabel;

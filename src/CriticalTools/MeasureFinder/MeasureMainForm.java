@@ -6,7 +6,8 @@ import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
 
 /**
- *
+ * Main form for Measure Finder. Allows the user to locate a given measure from
+ * the different versions of the work.
  * @author Connor Rice
  */
 public class MeasureMainForm extends javax.swing.JFrame {

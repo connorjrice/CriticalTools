@@ -8,9 +8,9 @@ import java.awt.Component;
 
 /**
  * Database Viewer: Allows the user to browse through the various databases
- * utilized by Critical Tools.
- * TODO: Difference between Image Processing and Database Viewer: IP has the
- * names of the files, DM has pages.
+ * utilized by Critical Tools. TODO: Difference between Image Processing and
+ * Database Viewer: IP has the names of the files, DM has pages.
+ *
  * @author Connor Rice
  */
 public class DatabaseManagementMainForm extends javax.swing.JFrame {

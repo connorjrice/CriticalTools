@@ -4,17 +4,16 @@ import CriticalTools.Objects.ImageData;
 import CriticalTools.Util.PageOps;
 
 /**
- * Form for the utility window that is created next to the desired image.
- * TODO: Zoom in/out
- * TODO: More information about image
- * TODO: Display page number
+ * Form for the utility window that is created next to the desired image. TODO:
+ * Zoom in/out TODO: More information about image TODO: Display page number
+ *
  * @author Connor Rice
  */
 public class ImageUtilsForm extends javax.swing.JFrame {
 
     private ImageData curData;
     private PageOps pOps;
-    
+
     /**
      * Creates new form ImageUtilsForm
      */
@@ -24,7 +23,7 @@ public class ImageUtilsForm extends javax.swing.JFrame {
         initComponents();
         renameLabels();
     }
-    
+
     private void renameLabels() {
         startingLabel.setText("Starting Measure: " + Integer.toString(curData.getStartMeasure()));
         endingLabel.setText("Ending Measure: " + Integer.toString(curData.getEndMeasure()));
@@ -131,7 +130,7 @@ public class ImageUtilsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        curData =  pOps.nextImage();
+        curData = pOps.nextImage();
         renameLabels();
     }//GEN-LAST:event_nextButtonActionPerformed
 
@@ -140,13 +139,11 @@ public class ImageUtilsForm extends javax.swing.JFrame {
         renameLabels();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-
     @Override
     public void dispose() {
         super.dispose();
         pOps.destroyImageForm();
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel endingLabel;
     private javax.swing.JButton jButton1;

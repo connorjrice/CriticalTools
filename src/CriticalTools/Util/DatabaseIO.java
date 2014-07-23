@@ -10,15 +10,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Utility for reading/writing the Database to a file.
  *
  * @author Connor Rice
  */
 public class DatabaseIO {
-    
+
     public DatabaseIO() {
-        
     }
-    
+
     public void writeDB(Database db) {
         try {
             try (FileOutputStream fOS = new FileOutputStream("./database.db");
@@ -29,7 +29,7 @@ public class DatabaseIO {
             Logger.getLogger(DatabaseIO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public Database readDB() {
         Database db = null;
         try {

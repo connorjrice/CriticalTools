@@ -5,9 +5,11 @@ import javax.swing.JFrame;
 
 /**
  * Generic quit form.
+ *
  * @author Connor Rice
  */
 public class QuitForm extends javax.swing.JFrame {
+
     private JFrame parentFrame;
 
     /**
@@ -91,7 +93,6 @@ public class QuitForm extends javax.swing.JFrame {
         parentFrame.dispose();
         System.exit(1);
     }//GEN-LAST:event_yesButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton noButton;

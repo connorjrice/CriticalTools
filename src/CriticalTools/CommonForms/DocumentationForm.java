@@ -1,12 +1,8 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CriticalTools.CommonForms;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class DocumentationForm extends javax.swing.JFrame {
 

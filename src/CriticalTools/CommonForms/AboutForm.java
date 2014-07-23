@@ -4,6 +4,7 @@ import java.awt.Component;
 
 /**
  * JFrame that contains the information about the author.
+ *
  * @author Connor Rice
  */
 public class AboutForm extends javax.swing.JFrame {
@@ -69,7 +70,6 @@ public class AboutForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
