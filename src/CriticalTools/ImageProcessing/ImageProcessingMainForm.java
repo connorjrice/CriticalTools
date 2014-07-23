@@ -7,7 +7,6 @@ import CriticalTools.Objects.ImageData;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -19,9 +18,10 @@ import javax.swing.JFrame;
 public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     private JFileChooser fc;
-    private ArrayList<ImageData> imgDataList;
+    private ImageData[][] imgDataList;
     private DatabaseIO dataIO;
     private String[] imageStrings;
+    private String[] arrangementNames;
 
     /**
      * Creates new form ImageProcessingMainForm
@@ -30,7 +30,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(c);
         this.dataIO = new DatabaseIO();
-        this.imgDataList = new ArrayList<>();
+        this.imgDataList = new ImageData[2][60];
         //loadDB();
     }
 
@@ -70,7 +70,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }
     
     protected void saveDB() {
-        Database db = new Database(imgDataList, imageStrings);
+        Database db = new Database(imgDataList, imageStrings, arrangementNames);
         dataIO.writeDB(db);
     }
     
@@ -78,6 +78,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         Database db = dataIO.readDB();
         this.imgDataList = db.getImageData();
         this.imageStrings = db.getImageStrings();
+        this.arrangementNames = db.getArrangementNames();
         imageList.setListData(imageStrings);
     }
 
@@ -88,7 +89,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
      */
     public void addPage(int[] pageInts, String imgType, String arrangementDir) {
         ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
-        imgDataList.add(id);
+        imgDataList[getArrangementIndex()][pageInts[2]] = id;
+    }
+    
+    private int getArrangementIndex() {
+        return -1;
     }
 
     /**

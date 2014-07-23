@@ -1,61 +1,61 @@
 package CriticalTools.Util;
 
 import CriticalTools.Objects.ImageData;
-import java.util.ArrayList;
-import CriticalTools.Objects.SearchResult;
 
 /**
  * Binary search for parsed .ind files.
  * @author Connor Rice
  */
 public class BinarySearch {
-    private SearchResult lastResult;
-    private ArrayList<ImageData> imageData;
+    private ImageData[][] imageData;
+    private ImageData lastImage;
+    private int arrIndex;
     
     /*public INDBinarySearch(ArrayList<String> indDB) {
         this.indDB = indDB;
     }*/
     
-    public BinarySearch(ArrayList<ImageData> imgData) {
+    public BinarySearch(ImageData[][] imgData, int arrIndex) {
         this.imageData = imgData;
+        this.arrIndex = arrIndex;
     }
     
     /**
-     * Returns a SearchResult object from a measure to be found in the indDB.
+     * Returns a ImageData object from a measure to be found in the indDB.
      * @param measure : User's desired measure.
      * @return 
      */
-    public SearchResult binarySearch(int measure) {
-        lastResult = binarySearchHelper(imageData.size()/2, measure);
-        return lastResult;
+    public ImageData binarySearch(int measure) {
+        lastImage = binarySearchHelper(imageData.length/2, measure);
+        return lastImage;
     }
     
     /**
      * Returns the last result created by the search.
-     * @return most recent SearchResult.
+     * @return most recent ImageData.
      */
-    public SearchResult getLastResult() {
-        return lastResult;
+    public ImageData getLastResult() {
+        return lastImage;
     }
     
     /**
-     * Returns a SearchResult of the next page in the work.
+     * Returns a ImageData of the next page in the work.
      * @return 
      */
-    public SearchResult getNextPage() {
-        int nextMeasure = lastResult.getMeasureRange()[1] + 1;
-        lastResult = binarySearchHelper(imageData.size()/2, nextMeasure);
-        return lastResult;
+    public ImageData getNextPage() {
+        int nextMeasure = lastImage.getEndMeasure() + 1;
+        lastImage = binarySearchHelper(imageData.length/2, nextMeasure);
+        return lastImage;
     }
     
     /**
-     * Returns a SearchResult of the previous page in the work.
+     * Returns a ImageData of the previous page in the work.
      * @return 
      */
-    public SearchResult getPrevPage() {
-        int nextMeasure = lastResult.getMeasureRange()[0] - 1;
-        lastResult = binarySearchHelper(imageData.size()/2, nextMeasure);
-        return lastResult;
+    public ImageData getPrevPage() {
+        int nextMeasure = lastImage.getStartMeasure() - 1;
+        lastImage = binarySearchHelper(imageData.length/2, nextMeasure);
+        return lastImage;
     }
     
     /**
@@ -65,10 +65,10 @@ public class BinarySearch {
      * @param found
      * @return 
      */
-    private SearchResult binarySearchHelper(int index, int measure) {
+    private ImageData binarySearchHelper(int index, int measure) {
         int[] measureRange = getMeasureRange(index);
         if (measureRange[0] <= measure && measure <= measureRange[1]) {
-            return new SearchResult(index, measureRange);
+            return imageData[arrIndex][index];
         } else {
             if (measure > measureRange[1]) {
                 return binarySearchHelper(index+(index/2), measure);
@@ -79,7 +79,7 @@ public class BinarySearch {
     }
     
     public int[] getMeasureRange(int index) {
-        ImageData id = imageData.get(index);
+        ImageData id = imageData[arrIndex][index];
         return new int[] {id.getStartMeasure(), id.getEndMeasure()};
     }
     

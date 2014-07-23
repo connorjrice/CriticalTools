@@ -1,7 +1,7 @@
 package CriticalTools.MeasureFinder;
 
+import CriticalTools.Objects.ImageData;
 import CriticalTools.Util.PageOps;
-import CriticalTools.Objects.SearchResult;
 
 /**
  * Form for the utility window that is created next to the desired image.
@@ -12,22 +12,22 @@ import CriticalTools.Objects.SearchResult;
  */
 public class ImageUtilsForm extends javax.swing.JFrame {
 
-    private SearchResult searchResult;
+    private ImageData curData;
     private PageOps pOps;
     
     /**
      * Creates new form ImageUtilsForm
      */
-    public ImageUtilsForm(PageOps pOps, SearchResult searchResult) {
+    public ImageUtilsForm(PageOps pOps, ImageData curData) {
         this.pOps = pOps;
-        this.searchResult = searchResult;
+        this.curData = curData;
         initComponents();
         renameLabels();
     }
     
     private void renameLabels() {
-        startingLabel.setText("Starting Measure: " + Integer.toString(searchResult.getMeasureRange()[0]));
-        endingLabel.setText("Ending Measure: " + Integer.toString(searchResult.getMeasureRange()[1]));
+        startingLabel.setText("Starting Measure: " + Integer.toString(curData.getStartMeasure()));
+        endingLabel.setText("Ending Measure: " + Integer.toString(curData.getEndMeasure()));
         //searchedMeasureLabel.setText("Searched Measure: ");
     }
 
@@ -131,12 +131,12 @@ public class ImageUtilsForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void nextButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextButtonActionPerformed
-        searchResult =  pOps.nextImage();
+        curData =  pOps.nextImage();
         renameLabels();
     }//GEN-LAST:event_nextButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        searchResult = pOps.previousImage();
+        curData = pOps.previousImage();
         renameLabels();
     }//GEN-LAST:event_jButton1ActionPerformed
 

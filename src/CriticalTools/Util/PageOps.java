@@ -8,8 +8,8 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import CriticalTools.MeasureFinder.ImageUtilsForm;
 import CriticalTools.MeasureFinder.MeasureMainForm;
-import CriticalTools.Objects.Arrangement;
-import CriticalTools.Objects.SearchResult;
+import CriticalTools.Objects.Database;
+import CriticalTools.Objects.ImageData;
 import java.awt.Component;
 
 /**
@@ -18,19 +18,20 @@ import java.awt.Component;
  */
 public class PageOps {
 
-    private Arrangement[] arrangements;
     private BinarySearch binarySearch;
-    private SearchResult result;
     private ImageUtilsForm utilFrame;
+    private ImageData curData;
     private ImageForm imgForm;
     private Component c;
     private DatabaseIO dataIO;
+    private Database database;
 
     public PageOps(Component c) {
         this.c = c;
         new MeasureMainForm(this, c).setVisible(true);
         this.dataIO = new DatabaseIO();
-        binarySearch = new BinarySearch(dataIO.readDB().getImageData());
+        this.database = dataIO.readDB();
+        binarySearch = new BinarySearch(database.getImageData(), 0);
     }
 
     /**
@@ -41,56 +42,50 @@ public class PageOps {
         return getComboBoxModel();
     }
     
-    private void createUtilsForm(SearchResult searchResult) {
-        utilFrame = new ImageUtilsForm(this, searchResult);
+    private void createUtilsForm(ImageData id) {
+        utilFrame = new ImageUtilsForm(this, id);
         utilFrame.setVisible(true);
         int uw = imgForm.getX() - utilFrame.getWidth();
         int uy = imgForm.getY() / 2 + utilFrame.getHeight();
         utilFrame.setLocation(uw, uy);
     }
     
-    public SearchResult nextImage() {
+    public ImageData nextImage() {
         destroyImageForm();
         try {
-            result = binarySearch.getNextPage();
-            result.setImgLoc(getImgLoc());
+            curData = binarySearch.getNextPage();
             newImageForm();
         } catch (IOException ex) {
             new ErrorForm("Image file not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return result;
+        return curData;
     }
     
-    public SearchResult previousImage() {
+    public ImageData previousImage() {
         destroyImageForm();
         try {
-            result = binarySearch.getPrevPage();
-            result.setImgLoc(getImgLoc());
+            curData = binarySearch.getPrevPage();
             newImageForm();
         } catch (IOException ex) {
             new ErrorForm("Image file not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return result;
+        return curData;
     }
     
     private void newImageForm() throws IOException {
-        imgForm = new ImageForm(result, c);
+        imgForm = new ImageForm(curData, c);
         imgForm.setVisible(true);
-    }
-
-    private void parseInd() {
     }
 
     public void initialImageOpen(String measureString) {
         try {
-            result = binarySearch.binarySearch(Integer.parseInt(measureString));
-            result.setImgLoc(getImgLoc());
+            curData = binarySearch.binarySearch(Integer.parseInt(measureString));
             try {
-                imgForm = new ImageForm(result, c);
+                imgForm = new ImageForm(curData, c);
                 imgForm.setVisible(true);
-                createUtilsForm(result);
+                createUtilsForm(curData);
             } catch (IOException ex) {
                 new ErrorForm("Image file not found.", c).setVisible(true);
                 Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,19 +102,15 @@ public class PageOps {
     
     
     /*public String getImgLoc() {
-        return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + result.getPageNum() + ".jpg";
+        return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + curData.getPageNum() + ".jpg";
     }*/
     
     public String getImgLoc() {
-        return "./RiB_Grofe_Whiteman/" + result;
+        return "./RiB_Grofe_Whiteman/" + curData;
     }
 
 
     private DefaultComboBoxModel getComboBoxModel() {
-        String[] model = new String[arrangements.length];
-        for (int i = 0; i < arrangements.length; i++) {
-            model[i] = arrangements[i].getName();
-        }
-        return new DefaultComboBoxModel(model);
+        return new DefaultComboBoxModel(database.getArrangementNames());
     }
 }

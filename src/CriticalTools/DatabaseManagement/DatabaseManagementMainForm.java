@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DatabaseManagementMainForm extends javax.swing.JFrame {
     private DatabaseIO dataIO;
-    private ArrayList<ImageData> imgDataList;
+    private ImageData[][] imgDataList;
     private String[] imageStrings;
 
     /**

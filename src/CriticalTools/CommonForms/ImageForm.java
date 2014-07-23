@@ -1,7 +1,7 @@
 package CriticalTools.CommonForms;
 
+import CriticalTools.Objects.ImageData;
 import java.io.IOException;
-import CriticalTools.Objects.SearchResult;
 import CriticalTools.Util.ImageOps;
 import java.awt.Component;
 
@@ -13,21 +13,21 @@ public class ImageForm extends javax.swing.JFrame {
 
     private ImageOps iIO;
 
-    public ImageForm(SearchResult searchResult, Component c) throws IOException {
-        this.iIO = new ImageOps(searchResult);
+    public ImageForm(ImageData id, Component c) throws IOException {
+        this.iIO = new ImageOps(id);
         initComponents();
-        iIO.readImage();
-        initImage();
+        iIO.readImages();
+        //initImage();
         setLocationRelativeTo(c);
         setTitle(iIO.getFormattedTitle());
         
     }
     
-    private void initImage() {
+    /*private void initImage() {
         jLabel1.setIcon(iIO.scaleImage());
         int[] bounds = iIO.getImageBounds();
         this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
-    }
+    }*/
     
 
     @Override

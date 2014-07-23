@@ -1,6 +1,6 @@
 package CriticalTools.Util;
 
-import CriticalTools.Objects.SearchResult;
+import CriticalTools.Objects.ImageData;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -10,40 +10,65 @@ import javax.swing.ImageIcon;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class ImageOps {
-    private SearchResult searchResult;
-    private BufferedImage originalImage;
-    private BufferedImage currentImage;
+    private ImageData imageData;
+    private BufferedImage[] originalImage;
+    private BufferedImage[] currentImage;
     
-    public ImageOps(SearchResult sr) {
-        this.searchResult = sr;
+    public ImageOps(ImageData id) {
+        this.imageData = id;
     }
     
     /**
-     * Retruns the page number from the relevant SearchResult object.
+     * Retruns the page number from the relevant ImageData object.
      * @return 
      */
     public String getFormattedTitle() {
-        return "Page: " + searchResult.getPageNum();
+        return "Page: " + imageData.getPageNumber();
     }
 
-    public void readImage() throws IOException {
-        originalImage = ImageIO.read(new File(searchResult.getImgLoc()));
+    public void readImages() throws IOException {
+        String imgType = imageData.getImgType();
+        for (int i = 0; i < imgType.length(); i++) {
+            originalImage[i] = ImageIO.read(new File(getImageLocation(imgType.substring(i,i))));
+        }
     }
     
-    public int[] getImageBounds() {
-        return new int[] {0, 0, currentImage.getWidth(), currentImage.getHeight()};
+    public String getImageLocation(String s) {
+        switch (s) {
+            case "b":
+                return getConvertedIndex(s)+"_bottom.jpg";
+            case "t":
+                return getConvertedIndex(s)+"_top.jpg";
+            case "m":
+                return getConvertedIndex(s)+"_mid.jpg";
+            default:
+                return "";
+        }
+    }
+    
+    public String getConvertedIndex(String s) {
+        int index = Integer.parseInt(s);
+        if (index < 10) {
+            return "0" + index;
+        } else {
+            return Integer.toString(index);
+        }
+    }
+    
+    public int[] getImageBounds(int i) {
+        return new int[] {0, 0, currentImage[i].getWidth(), currentImage[i].getHeight()};
     }
 
-    public ImageIcon scaleImage() {
-        float[] imgVars = getScaledDimensions(originalImage);
+    public ImageIcon scaleImage(int i) {
+        float[] imgVars = getScaledDimensions(originalImage[i]);
         BufferedImage out = new BufferedImage(round(imgVars[1]), round(imgVars[2]), BufferedImage.TYPE_INT_ARGB);
         Graphics g = out.createGraphics();
-        g.drawImage(originalImage, 0, 0, round(imgVars[1]), round(imgVars[2]), null);
+        g.drawImage(originalImage[i], 0, 0, round(imgVars[1]), round(imgVars[2]), null);
         g.dispose();
-        currentImage = out;
+        currentImage[i] = out;
         return new ImageIcon(out);
     }
 
