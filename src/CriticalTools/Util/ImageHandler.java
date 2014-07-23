@@ -59,6 +59,9 @@ public class ImageHandler {
         } catch (IOException | IndexOutOfBoundsException ex) {
             new ErrorForm("Image file not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MeasureNotFoundException ex) {
+            new ErrorForm("Measure not found.", c).setVisible(true);
+            Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         return curData;
     }
@@ -71,11 +74,17 @@ public class ImageHandler {
         } catch (IOException | IndexOutOfBoundsException ex) {
             new ErrorForm("Image file not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MeasureNotFoundException ex) {
+            new ErrorForm("Measure not found.", c).setVisible(true);
+            Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         return curData;
     }
     
-    private void newImageForm() throws IOException {
+    private void newImageForm() throws IOException, MeasureNotFoundException {
+        if (curData == null) {
+            throw new MeasureNotFoundException();
+        }
         for (int i = 0; i < curData.getNumImages(); i++) {
             imgForms[i] = new ImageForm(curData, i, c);
             imgForms[i].setVisible(true);
@@ -95,6 +104,9 @@ public class ImageHandler {
             }
         } catch (NumberFormatException ex) {
             new ErrorForm("Please enter a valid measure number.", c).setVisible(true);
+            Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MeasureNotFoundException ex) {
+            new ErrorForm("Measure not found.", c).setVisible(true);
             Logger.getLogger(ImageForm.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

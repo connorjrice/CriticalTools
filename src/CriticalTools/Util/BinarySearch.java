@@ -28,7 +28,11 @@ public class BinarySearch {
      */
     public ImageData binarySearch(int measure) {
         System.out.println(imageData.size());
-        lastImage = binarySearchHelper(imageData.size() / 2, measure);
+        if (measure <= imageData.get(imageData.size()-1).getEndMeasure()) {
+            lastImage = binarySearchHelper(imageData.size() / 2, measure);
+        } else {
+            lastImage = null;
+        }
         return lastImage;
     }
 
@@ -73,6 +77,7 @@ public class BinarySearch {
      */
     private ImageData binarySearchHelper(int index, int measure) {
         int[] measureRange = getMeasureRange(index);
+
         if (measureRange[0] <= measure && measure <= measureRange[1]) {
             return imageData.get(index);
         } else {

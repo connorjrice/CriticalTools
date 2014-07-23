@@ -27,7 +27,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         pageNumField.setText(Integer.toString(pageNum));
         ArrayList<ImageData> imageDataList = parentFrame
                 .getImageProcessor().getImageDataList();
-        if (imageDataList.get(pageNum-1) != null) {
+        if (pageNum-1 < imageDataList.size()) {
             startingMeasureField.setText(Integer.toString(
                     imageDataList.get(pageNum-1).getStartMeasure()));
             endingMeasureField.setText(Integer.toString(
