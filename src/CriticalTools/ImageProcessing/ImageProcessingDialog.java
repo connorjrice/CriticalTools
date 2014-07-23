@@ -145,6 +145,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         // TODO add your handling code here:
         int[] intA = parseInts();
         parentFrame.addPage(intA, imgTypeField.getText());
+        dispose();
     }//GEN-LAST:event_addDataButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

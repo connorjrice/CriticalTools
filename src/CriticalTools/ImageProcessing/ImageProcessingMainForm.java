@@ -13,7 +13,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 /**
- *
+ * TODO: Move operations into Util package
  * @author Connor Rice
  */
 public class ImageProcessingMainForm extends javax.swing.JFrame {
@@ -31,6 +31,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         setLocationRelativeTo(c);
         this.dataIO = new DatabaseIO();
         this.imgDataList = new ArrayList<>();
+        //loadDB();
     }
 
     /**
@@ -73,7 +74,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         dataIO.writeDB(db);
     }
     
-    protected void loadDB() {
+    protected final void loadDB() {
         Database db = dataIO.readDB();
         this.imgDataList = db.getImageData();
         this.imageStrings = db.getImageStrings();

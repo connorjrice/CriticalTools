@@ -1,29 +1,19 @@
 package CriticalTools.CommonForms;
 
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import CriticalTools.Objects.SearchResult;
 import CriticalTools.Util.ImageOps;
 import java.awt.Component;
 
 /**
  * Form for displaying images.
- * TODO: Move image operations to ImageOps java
  * @author Connor Rice
  */
 public class ImageForm extends javax.swing.JFrame {
 
-    private BufferedImage originalImage;
-    private BufferedImage currentImage;
-    private SearchResult searchResult;
     private ImageOps iIO;
 
     public ImageForm(SearchResult searchResult, Component c) throws IOException {
-        this.searchResult = searchResult;
         this.iIO = new ImageOps(searchResult);
         initComponents();
         iIO.readImage();
