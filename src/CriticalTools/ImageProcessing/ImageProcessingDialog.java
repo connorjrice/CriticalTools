@@ -13,6 +13,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String imgType, int pageNum) {
         initComponents();
         setLocationRelativeTo(parentFrame);
+        setResizable(false);
         this.parentFrame = parentFrame;
         imgTypeField.setText(imgType);
         pageNumField.setText(Integer.toString(pageNum));
@@ -41,6 +42,11 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         endingMeasureField = new javax.swing.JTextField();
         addDataButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+        arrangementLabel = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        arrangementIndexLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Page...");
@@ -53,13 +59,17 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
 
         endingMeasureLabel.setText("Ending Measure:");
 
-        pageNumField.setText("jTextField1");
+        imgTypeField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imgTypeFieldActionPerformed(evt);
+            }
+        });
 
-        imgTypeField.setText("jTextField2");
-
-        startingMeasureField.setText("jTextField3");
-
-        endingMeasureField.setText("jTextField4");
+        startingMeasureField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startingMeasureFieldActionPerformed(evt);
+            }
+        });
 
         addDataButton.setText("Add Page");
         addDataButton.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +85,14 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
             }
         });
 
+        arrangementLabel.setText("Arrangement:");
+
+        jLabel1.setText("Name");
+
+        jLabel2.setText("Index");
+
+        arrangementIndexLabel.setText("-1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,54 +101,74 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(endingMeasureLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(endingMeasureField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(startMeasureLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(startingMeasureField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pageNumLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(pageNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(imgTypeLabel)
-                                .addGap(48, 48, 48)
-                                .addComponent(imgTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 147, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(addDataButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cancelButton)))
+                        .addComponent(cancelButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(pageNumLabel)
+                                    .addComponent(arrangementLabel))
+                                .addGap(37, 37, 37)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(0, 66, Short.MAX_VALUE))
+                                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(pageNumField)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(imgTypeLabel)
+                                    .addComponent(startMeasureLabel)
+                                    .addComponent(endingMeasureLabel))
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(startingMeasureField)
+                                    .addComponent(imgTypeField)
+                                    .addComponent(endingMeasureField))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(jLabel2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(arrangementIndexLabel)))
+                        .addGap(67, 67, 67)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(arrangementLabel)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(arrangementIndexLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pageNumLabel)
-                    .addComponent(pageNumField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pageNumField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imgTypeLabel)
-                    .addComponent(imgTypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imgTypeField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(startMeasureLabel)
-                    .addComponent(startingMeasureField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(startingMeasureField))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(endingMeasureLabel)
-                    .addComponent(endingMeasureField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
+                    .addComponent(endingMeasureField))
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addDataButton)
-                    .addComponent(cancelButton))
-                .addGap(31, 31, 31))
+                    .addComponent(cancelButton)))
         );
 
         pack();
@@ -146,13 +184,26 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_addDataButtonActionPerformed
 
+    private void imgTypeFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgTypeFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_imgTypeFieldActionPerformed
+
+    private void startingMeasureFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startingMeasureFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_startingMeasureFieldActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addDataButton;
+    private javax.swing.JLabel arrangementIndexLabel;
+    private javax.swing.JLabel arrangementLabel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JTextField endingMeasureField;
     private javax.swing.JLabel endingMeasureLabel;
     private javax.swing.JTextField imgTypeField;
     private javax.swing.JLabel imgTypeLabel;
+    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField pageNumField;
     private javax.swing.JLabel pageNumLabel;
     private javax.swing.JLabel startMeasureLabel;

@@ -89,7 +89,7 @@ public class QuitForm extends javax.swing.JFrame {
     private void yesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yesButtonActionPerformed
         this.dispose();
         parentFrame.dispose();
-        
+        System.exit(1);
     }//GEN-LAST:event_yesButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

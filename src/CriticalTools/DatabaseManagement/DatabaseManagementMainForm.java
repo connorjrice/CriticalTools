@@ -7,14 +7,18 @@ import CriticalTools.Objects.ImageData;
 import java.awt.Component;
 
 /**
- * Database Viewer: Allows the user to browse through the various databases 
+ * Database Viewer: Allows the user to browse through the various databases
  * utilized by Critical Tools.
+ * TODO: Difference between Image Processing and Database Viewer: IP has the
+ * names of the files, DM has pages.
  * @author Connor Rice
  */
 public class DatabaseManagementMainForm extends javax.swing.JFrame {
+
     private DatabaseIO dataIO;
     private ImageData[][] imgDataList;
     private String[] imageStrings;
+    private boolean isArrangementView = true;
 
     /**
      * Creates new form DatabaseViewerMainForm
@@ -25,7 +29,7 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         this.dataIO = new DatabaseIO();
         loadDB();
     }
-    
+
     private void loadDB() {
         Database db = dataIO.readDB();
         this.imgDataList = db.getImageData();
@@ -114,7 +118,6 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitButtonActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList databaseList;
     private javax.swing.JMenu editMenu;
