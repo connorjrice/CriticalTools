@@ -1,5 +1,8 @@
 package CriticalTools.ImageProcessing;
 
+import CriticalTools.Objects.ImageData;
+import java.util.ArrayList;
+
 /**
  * Dialog box for in-processing images into the database.
  * @author Connor Rice
@@ -16,11 +19,23 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         setLocationRelativeTo(parentFrame);
         setResizable(false);
         this.parentFrame = parentFrame;
+        setTextFields(imgType, pageNum);
+    }
+    
+    private void setTextFields(String imgType, int pageNum) {
         imgTypeField.setText(imgType);
         pageNumField.setText(Integer.toString(pageNum));
-    }
+        ArrayList<ImageData> imageDataList = parentFrame
+                .getImageProcessor().getImageDataList();
+        if (imageDataList.get(pageNum-1) != null) {
+            startingMeasureField.setText(Integer.toString(
+                    imageDataList.get(pageNum-1).getStartMeasure()));
+            endingMeasureField.setText(Integer.toString(
+                    imageDataList.get(pageNum-1).getEndMeasure()));
+        }
+    } 
 
-    public int[] parseInts() {
+    public int[] parseImageVars() {
         return new int[]{Integer.parseInt(startingMeasureField.getText()), Integer.parseInt(endingMeasureField.getText()), Integer.parseInt(pageNumField.getText())};
     }
 
@@ -180,7 +195,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void addDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDataButtonActionPerformed
-        int[] intA = parseInts();
+        int[] intA = parseImageVars();
         parentFrame.getImageProcessor().addPage(intA, imgTypeField.getText(), null);
         dispose();
     }//GEN-LAST:event_addDataButtonActionPerformed

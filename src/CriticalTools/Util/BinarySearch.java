@@ -12,14 +12,12 @@ public class BinarySearch {
 
     private ArrayList<ImageData> imageData;
     private ImageData lastImage;
-    private int arrIndex;
 
     /*public INDBinarySearch(ArrayList<String> indDB) {
      this.indDB = indDB;
      }*/
-    public BinarySearch(ArrayList<ImageData> imgData, int arrIndex) {
+    public BinarySearch(ArrayList<ImageData> imgData) {
         this.imageData = imgData;
-        this.arrIndex = arrIndex;
     }
 
     /**
@@ -74,7 +72,6 @@ public class BinarySearch {
      * @return
      */
     private ImageData binarySearchHelper(int index, int measure) {
-        System.out.println(index);
         int[] measureRange = getMeasureRange(index);
         if (measureRange[0] <= measure && measure <= measureRange[1]) {
             return imageData.get(index);

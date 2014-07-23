@@ -32,7 +32,7 @@ public class ImageHandler {
         this.dataIO = new DatabaseIO();
         this.database = dataIO.readDB();
         this.imgForms = new ImageForm[3];
-        binarySearch = new BinarySearch(database.getImageData(), 0);
+        binarySearch = new BinarySearch(database.getImageData());
     }
 
     /**

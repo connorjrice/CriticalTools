@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package CriticalTools.Util;
 
 import CriticalTools.ImageProcessing.ImageProcessingDialog;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
-import java.awt.Component;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +12,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class ImageProcessor {
     
@@ -164,6 +159,10 @@ public class ImageProcessor {
         }
         JFrame IPD = new ImageProcessingDialog(parentFrame, getImgType(selectedString), getPageNumber(selectedString));
         IPD.setVisible(true);
+    }
+    
+    public ArrayList<ImageData> getImageDataList() {
+        return imgDataList;
     }
 
     /**

@@ -8,15 +8,14 @@ import javax.swing.JList;
 
 /**
  *
- * Builds a list of files from a given directory. TODO: Move operations into
- * Util package Main form for Image Processing.
+ * Builds a list of files from a given directory. Main form for Image
+ * Processing.
  *
  * @author Connor Rice
  */
 public class ImageProcessingMainForm extends javax.swing.JFrame {
+
     private ImageProcessor imageProcessor;
-
-
 
     /**
      * Creates new form ImageProcessingMainForm
@@ -31,7 +30,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public ImageProcessor getImageProcessor() {
         return imageProcessor;
     }
-    
+
     public JList getImageList() {
         return imageList;
     }
