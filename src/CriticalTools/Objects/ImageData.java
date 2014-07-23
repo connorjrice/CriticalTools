@@ -11,13 +11,16 @@ public class ImageData implements Serializable {
     private int endMeasure;
     private int pageNumber;
     private String imgType;
+    private String arrangementDir;
 
 
-    public ImageData(int startMeasure, int endMeasure, int pageNumber, String imgType) {
+    public ImageData(int startMeasure, int endMeasure, int pageNumber, 
+            String imgType, String arrangementDir) {
         this.startMeasure = startMeasure;
         this.endMeasure = endMeasure;
         this.pageNumber = pageNumber;
         this.imgType = imgType;
+        this.arrangementDir = arrangementDir;
     }
     
     public int getStartMeasure() {
@@ -34,5 +37,9 @@ public class ImageData implements Serializable {
     
     public String getImgType() {
         return imgType;
+    }
+    
+    public String getArrangementDir() {
+        return arrangementDir;
     }
 }

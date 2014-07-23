@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import CriticalTools.Algorithms.INDBinarySearch;
+import CriticalTools.Algorithms.BinarySearch;
 import CriticalTools.IO.ARRParse;
-import CriticalTools.IO.INDParse;
+import CriticalTools.IO.DatabaseIO;
 import CriticalTools.MeasureFinder.ImageUtilsForm;
 import CriticalTools.MeasureFinder.MeasureMainForm;
 import CriticalTools.Objects.Arrangement;
@@ -22,17 +22,19 @@ import java.awt.Component;
 public class PageOps {
 
     private Arrangement[] arrangements;
-    private INDBinarySearch ibs;
+    private BinarySearch binarySearch;
     private SearchResult result;
     private ImageUtilsForm utilFrame;
     private ImageForm imgForm;
     private Component c;
+    private DatabaseIO dataIO;
 
     public PageOps(Component c) {
         this.c = c;
         arrangements = new ARRParse().getARR();
         new MeasureMainForm(this, c).setVisible(true);
-        ibs = new INDBinarySearch(new INDParse().getDB());
+        this.dataIO = new DatabaseIO();
+        binarySearch = new BinarySearch(dataIO.readDB().getImageData());
     }
 
     /**
@@ -54,7 +56,7 @@ public class PageOps {
     public SearchResult nextImage() {
         destroyImageForm();
         try {
-            result = ibs.getNextPage();
+            result = binarySearch.getNextPage();
             result.setImgLoc(getImgLoc());
             newImageForm();
         } catch (IOException ex) {
@@ -67,7 +69,7 @@ public class PageOps {
     public SearchResult previousImage() {
         destroyImageForm();
         try {
-            result = ibs.getPrevPage();
+            result = binarySearch.getPrevPage();
             result.setImgLoc(getImgLoc());
             newImageForm();
         } catch (IOException ex) {
@@ -87,7 +89,7 @@ public class PageOps {
 
     public void initialImageOpen(String measureString) {
         try {
-            result = ibs.binarySearch(Integer.parseInt(measureString));
+            result = binarySearch.binarySearch(Integer.parseInt(measureString));
             result.setImgLoc(getImgLoc());
             try {
                 imgForm = new ImageForm(result, c);
@@ -108,8 +110,12 @@ public class PageOps {
     }
     
     
-    public String getImgLoc() {
+    /*public String getImgLoc() {
         return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + result.getPageNum() + ".jpg";
+    }*/
+    
+    public String getImgLoc() {
+        return "./RiB_Grofe_Whiteman/" + result;
     }
 
 

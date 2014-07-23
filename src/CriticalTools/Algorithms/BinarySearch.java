@@ -1,5 +1,6 @@
 package CriticalTools.Algorithms;
 
+import CriticalTools.Objects.ImageData;
 import java.util.ArrayList;
 import CriticalTools.Objects.SearchResult;
 
@@ -7,12 +8,16 @@ import CriticalTools.Objects.SearchResult;
  * Binary search for parsed .ind files.
  * @author Connor Rice
  */
-public class INDBinarySearch {
-    private ArrayList<String> indDB;
+public class BinarySearch {
     private SearchResult lastResult;
+    private ArrayList<ImageData> imageData;
     
-    public INDBinarySearch(ArrayList<String> indDB) {
+    /*public INDBinarySearch(ArrayList<String> indDB) {
         this.indDB = indDB;
+    }*/
+    
+    public BinarySearch(ArrayList<ImageData> imgData) {
+        this.imageData = imgData;
     }
     
     /**
@@ -21,7 +26,7 @@ public class INDBinarySearch {
      * @return 
      */
     public SearchResult binarySearch(int measure) {
-        lastResult = binarySearchHelper(indDB.size()/2, measure);
+        lastResult = binarySearchHelper(imageData.size()/2, measure);
         return lastResult;
     }
     
@@ -39,7 +44,7 @@ public class INDBinarySearch {
      */
     public SearchResult getNextPage() {
         int nextMeasure = lastResult.getMeasureRange()[1] + 1;
-        lastResult = binarySearchHelper(indDB.size()/2, nextMeasure);
+        lastResult = binarySearchHelper(imageData.size()/2, nextMeasure);
         return lastResult;
     }
     
@@ -49,7 +54,7 @@ public class INDBinarySearch {
      */
     public SearchResult getPrevPage() {
         int nextMeasure = lastResult.getMeasureRange()[0] - 1;
-        lastResult = binarySearchHelper(indDB.size()/2, nextMeasure);
+        lastResult = binarySearchHelper(imageData.size()/2, nextMeasure);
         return lastResult;
     }
     
@@ -61,11 +66,11 @@ public class INDBinarySearch {
      * @return 
      */
     private SearchResult binarySearchHelper(int index, int measure) {
-        int[] parsedIND = parseINDString(index);
-        if (parsedIND[0] <= measure && measure <= parsedIND[1]) {
-            return new SearchResult(index, parsedIND);
+        int[] measureRange = getMeasureRange(index);
+        if (measureRange[0] <= measure && measure <= measureRange[1]) {
+            return new SearchResult(index, measureRange);
         } else {
-            if (measure > parsedIND[1]) {
+            if (measure > measureRange[1]) {
                 return binarySearchHelper(index+(index/2), measure);
             } else {
                 return binarySearchHelper(index-(index/2), measure);
@@ -73,24 +78,12 @@ public class INDBinarySearch {
         }
     }
     
-    /**
-     * Returns a primitive array of integers that represent the starting and
-     * ending measures of an image.
-     * @param index
-     * @return 
-     */
-    private int[] parseINDString(int index) {
-        int[] parsedIND = new int[2];
-        if (!indDB.get(index).equals("0")) {
-            String[] sarr = indDB.get(index).split(",");
-            for (int i = 0; i < sarr.length; i++) {
-                parsedIND[i] = Integer.parseInt(sarr[i]);
-            }
-            return parsedIND;
-        } else {
-            return parsedIND;
-        }
+    public int[] getMeasureRange(int index) {
+        ImageData id = imageData.get(index);
+        return new int[] {id.getStartMeasure(), id.getEndMeasure()};
     }
+    
+
     
     
 }

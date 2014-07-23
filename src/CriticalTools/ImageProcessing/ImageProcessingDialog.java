@@ -144,7 +144,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     private void addDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDataButtonActionPerformed
         // TODO add your handling code here:
         int[] intA = parseInts();
-        parentFrame.addPage(intA, imgTypeField.getText());
+        parentFrame.addPage(intA, imgTypeField.getText(), null);
         dispose();
     }//GEN-LAST:event_addDataButtonActionPerformed
 

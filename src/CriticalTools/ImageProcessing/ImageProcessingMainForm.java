@@ -86,8 +86,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
      * @param pageInts
      * @param imgType 
      */
-    public void addPage(int[] pageInts, String imgType) {
-        ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType);
+    public void addPage(int[] pageInts, String imgType, String arrangementDir) {
+        ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
         imgDataList.add(id);
     }
 
@@ -164,8 +164,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
      * @return 
      */
     public ImageData createImageData(int startMeasure, int endMeasure,
-            int pageNumber, String imgType) {
-        return new ImageData(startMeasure, endMeasure, pageNumber, imgType);
+            int pageNumber, String imgType, String arrangementDir) {
+        return new ImageData(startMeasure, endMeasure, pageNumber, imgType, arrangementDir);
     }
 
     /**
