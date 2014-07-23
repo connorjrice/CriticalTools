@@ -1,5 +1,7 @@
 package CriticalTools.Util;
 
+import CriticalTools.CommonForms.ErrorForm;
+import CriticalTools.CommonForms.ImageForm;
 import CriticalTools.ImageProcessing.ImageProcessingDialog;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.Objects.Database;
@@ -7,6 +9,8 @@ import CriticalTools.Objects.ImageData;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -157,8 +161,13 @@ public class ImageProcessor {
         for (int i = 0; i < selectedValues.size(); i++) {
             selectedString[i] = (String) selectedValues.get(i);
         }
-        JFrame IPD = new ImageProcessingDialog(parentFrame, getImgType(selectedString), getPageNumber(selectedString));
-        IPD.setVisible(true);
+        if (getPageNumber(selectedString) != -1) {
+            JFrame IPD = new ImageProcessingDialog(parentFrame, getImgType(selectedString), getPageNumber(selectedString));
+            IPD.setVisible(true);
+        } else {
+            new ErrorForm("Page numbers not equal.", parentFrame).setVisible(true);
+        }
+
     }
 
     public ArrayList<ImageData> getImageDataList() {

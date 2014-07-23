@@ -1,5 +1,6 @@
 package CriticalTools.Util;
 
+import CriticalTools.Exception.MeasureNotFoundException;
 import CriticalTools.CommonForms.ImageForm;
 import CriticalTools.CommonForms.ErrorForm;
 import java.io.IOException;
@@ -123,6 +124,10 @@ public class ImageHandler {
         return System.getProperty("user.dir") + System.getProperty("file.separator") + arrangements[0].getDir() + System.getProperty("file.separator") + curData.getPageNum() + ".jpg";
     }*/
     
+    /**
+     * TODO: Actual handling of getImgLoc()
+     * @return 
+     */
     public String getImgLoc() {
         return "./RiB_Grofe_Whiteman/" + curData;
     }
