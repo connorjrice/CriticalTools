@@ -5,7 +5,7 @@ import CriticalTools.CommonForms.QuitForm;
 import CriticalTools.DatabaseManagement.DatabaseManagementMainForm;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.MeasureComparison.MeasureComparisonMainForm;
-import CriticalTools.MeasureFinder.PageOps;
+import CriticalTools.Util.PageOps;
 
 /**
  * The main GUI for selecting which application within the suite should be

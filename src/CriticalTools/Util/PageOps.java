@@ -1,4 +1,4 @@
-package CriticalTools.MeasureFinder;
+package CriticalTools.Util;
 
 import CriticalTools.CommonForms.ImageForm;
 import CriticalTools.CommonForms.ErrorForm;
@@ -9,6 +9,8 @@ import javax.swing.DefaultComboBoxModel;
 import CriticalTools.Algorithms.INDBinarySearch;
 import CriticalTools.IO.ARRParse;
 import CriticalTools.IO.INDParse;
+import CriticalTools.MeasureFinder.ImageUtilsForm;
+import CriticalTools.MeasureFinder.MeasureMainForm;
 import CriticalTools.Objects.Arrangement;
 import CriticalTools.Objects.SearchResult;
 import java.awt.Component;
@@ -49,7 +51,7 @@ public class PageOps {
         utilFrame.setLocation(uw, uy);
     }
     
-    protected SearchResult nextImage() {
+    public SearchResult nextImage() {
         destroyImageForm();
         try {
             result = ibs.getNextPage();
@@ -62,7 +64,7 @@ public class PageOps {
         return result;
     }
     
-    protected SearchResult previousImage() {
+    public SearchResult previousImage() {
         destroyImageForm();
         try {
             result = ibs.getPrevPage();
@@ -101,7 +103,7 @@ public class PageOps {
         }
     }
     
-    protected void destroyImageForm() {
+    public void destroyImageForm() {
         imgForm.closeExternal();
     }
     

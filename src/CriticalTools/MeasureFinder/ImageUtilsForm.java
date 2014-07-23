@@ -1,5 +1,6 @@
 package CriticalTools.MeasureFinder;
 
+import CriticalTools.Util.PageOps;
 import CriticalTools.Objects.SearchResult;
 
 /**

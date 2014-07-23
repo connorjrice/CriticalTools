@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * TODO: Fully implement Database objects
  * @author Connor Rice
  */
 public class Database implements Serializable {

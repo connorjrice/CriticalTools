@@ -1,7 +1,11 @@
 package CriticalTools.DatabaseManagement;
 
 import CriticalTools.CommonForms.QuitForm;
+import CriticalTools.IO.DatabaseIO;
+import CriticalTools.Objects.Database;
+import CriticalTools.Objects.ImageData;
 import java.awt.Component;
+import java.util.ArrayList;
 
 /**
  * Database Viewer: Allows the user to browse through the various databases 
@@ -9,6 +13,9 @@ import java.awt.Component;
  * @author Connor Rice
  */
 public class DatabaseManagementMainForm extends javax.swing.JFrame {
+    private DatabaseIO dataIO;
+    private ArrayList<ImageData> imgDataList;
+    private String[] imageStrings;
 
     /**
      * Creates new form DatabaseViewerMainForm
@@ -16,6 +23,15 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     public DatabaseManagementMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
+        this.dataIO = new DatabaseIO();
+        loadDB();
+    }
+    
+    private void loadDB() {
+        Database db = dataIO.readDB();
+        this.imgDataList = db.getImageData();
+        this.imageStrings = db.getImageStrings();
+        jList1.setListData(imageStrings);
     }
 
     /**

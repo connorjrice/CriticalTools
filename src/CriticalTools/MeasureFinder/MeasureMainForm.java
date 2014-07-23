@@ -1,5 +1,6 @@
 package CriticalTools.MeasureFinder;
 
+import CriticalTools.Util.PageOps;
 import CriticalTools.CommonForms.OpenForm;
 import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
