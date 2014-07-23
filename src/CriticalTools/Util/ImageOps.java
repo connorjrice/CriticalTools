@@ -22,6 +22,8 @@ public class ImageOps {
 
     public ImageOps(ImageData id) {
         this.imageData = id;
+        this.originalImage = new BufferedImage[3];
+        this.currentImage = new BufferedImage[3];
     }
 
     /**
@@ -36,25 +38,32 @@ public class ImageOps {
     public void readImages() throws IOException {
         String imgType = imageData.getImgType();
         for (int i = 0; i < imgType.length(); i++) {
-            originalImage[i] = ImageIO.read(new File(getImageLocation(imgType.substring(i, i))));
+            String imageLocation = getImageLocation(imageData.getPageNumber(), 
+                    Character.toString(imgType.charAt(i)));
+            System.out.println(imageLocation);
+            originalImage[i] = ImageIO.read(new File(imageLocation));
         }
     }
 
-    public String getImageLocation(String s) {
+    public String getImageLocation(int i, String s) {
         switch (s) {
             case "b":
-                return getConvertedIndex(s) + "_bottom.jpg";
+                return getArrangementDir() + getConvertedIndex(i) + "_bottom.jpg";
             case "t":
-                return getConvertedIndex(s) + "_top.jpg";
+                return getArrangementDir() + getConvertedIndex(i) + "_top.jpg";
             case "m":
-                return getConvertedIndex(s) + "_mid.jpg";
+                return getArrangementDir() + getConvertedIndex(i) + "_mid.jpg";
             default:
                 return "";
         }
     }
+    
+    public String getArrangementDir() {
+        //return "./" + imageData.getArrangementDir() + "/";
+        return "./" + "RiB_Grofe_Whiteman" + "/";
+    }
 
-    public String getConvertedIndex(String s) {
-        int index = Integer.parseInt(s);
+    public String getConvertedIndex(int index) {
         if (index < 10) {
             return "0" + index;
         } else {

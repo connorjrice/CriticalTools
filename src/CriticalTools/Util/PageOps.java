@@ -111,6 +111,7 @@ public class PageOps {
 
 
     private DefaultComboBoxModel getComboBoxModel() {
-        return new DefaultComboBoxModel(database.getArrangementNames());
+        //return new DefaultComboBoxModel(database.getArrangementNames());
+        return new DefaultComboBoxModel();
     }
 }

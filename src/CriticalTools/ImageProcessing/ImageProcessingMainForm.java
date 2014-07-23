@@ -97,7 +97,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }
 
     private int getArrangementIndex() {
-        return -1;
+        return 0;
     }
 
     /**
