@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import CriticalTools.Objects.SearchResult;
+import CriticalTools.Util.ImageOps;
 import java.awt.Component;
 
 /**
@@ -19,71 +20,26 @@ public class ImageForm extends javax.swing.JFrame {
     private BufferedImage originalImage;
     private BufferedImage currentImage;
     private SearchResult searchResult;
+    private ImageOps iIO;
 
     public ImageForm(SearchResult searchResult, Component c) throws IOException {
         this.searchResult = searchResult;
+        this.iIO = new ImageOps(searchResult);
         initComponents();
-        initialScale();
+        iIO.readImage();
+        initImage();
         setLocationRelativeTo(c);
-        setTitle(getFormattedTitle());
+        setTitle(iIO.getFormattedTitle());
+        
     }
     
-    /**
-     * Retruns the page number from the relevant SearchResult object.
-     * @return 
-     */
-    private String getFormattedTitle() {
-        return "Page: " + searchResult.getPageNum();
-    }
-
-    private void initialScale() throws IOException {
-        originalImage = ImageIO.read(new File(searchResult.getImgLoc()));
-        jLabel1.setIcon(scaleImage(originalImage));
-        this.setBounds(0, 0, currentImage.getWidth(), currentImage.getHeight());
-    }
-
-    private ImageIcon scaleImage(BufferedImage in) {
-        float[] imgVars = getScaledDimensions(in);
-        BufferedImage out = new BufferedImage(round(imgVars[1]), round(imgVars[2]), BufferedImage.TYPE_INT_ARGB);
-        Graphics g = out.createGraphics();
-        g.drawImage(in, 0, 0, round(imgVars[1]), round(imgVars[2]), null);
-        g.dispose();
-        currentImage = out;
-        return new ImageIcon(out);
-    }
-
-    private int round(float n) {
-        return Math.round(n);
-    }
-
-    private boolean getDimensionThreshold(int width, int height) {
-        if (width > height) {
-            if (width <= 1440 && height <= 900) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            if (width <= 900 && height <= 1440) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
-
-    private float[] getScaledDimensions(BufferedImage in) {
-        float scalingFactor = 1;
-        int height = in.getHeight();
-        int width = in.getWidth();
-        while (!getDimensionThreshold(height, width)) {
-            scalingFactor *= .95;
-            height *= scalingFactor;
-            width *= scalingFactor;
-        }
-        return new float[]{scalingFactor, width, height};
+    private void initImage() {
+        jLabel1.setIcon(iIO.scaleImage());
+        int[] bounds = iIO.getImageBounds();
+        this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
     }
     
+
     @Override
     public void dispose() {
         super.dispose();
