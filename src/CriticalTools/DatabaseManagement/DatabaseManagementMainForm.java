@@ -31,8 +31,9 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         jList1 = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        openItem = new javax.swing.JMenuItem();
+        saveItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -47,6 +48,12 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
         fileMenu.setText("File");
 
+        openItem.setText("Open...");
+        fileMenu.add(openItem);
+
+        saveItem.setText("Save");
+        fileMenu.add(saveItem);
+
         quitButton.setText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -54,9 +61,6 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
             }
         });
         fileMenu.add(quitButton);
-
-        jMenuItem2.setText("jMenuItem2");
-        fileMenu.add(jMenuItem2);
 
         jMenuBar1.add(fileMenu);
 
@@ -94,8 +98,9 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JList jList1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenuItem openItem;
     private javax.swing.JMenuItem quitButton;
+    private javax.swing.JMenuItem saveItem;
     // End of variables declaration//GEN-END:variables
 }

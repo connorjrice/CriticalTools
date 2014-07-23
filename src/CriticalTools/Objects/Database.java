@@ -10,6 +10,13 @@ import java.util.ArrayList;
 public class Database implements Serializable {
     private Arrangement[] arrangements;
     private ArrayList<String> indDB;
+    private ArrayList<ImageData> id;
+    private String[] is;
+    
+    public Database(ArrayList<ImageData> id, String[] is) {
+        this.id = id;
+        this.is = is;
+    }
     
     public Database(Arrangement[] arrangements, ArrayList<String> indDB) {
         this.arrangements = arrangements;
@@ -22,6 +29,14 @@ public class Database implements Serializable {
     
     public ArrayList<String> getIndDB() {
         return indDB;
+    }
+    
+    public ArrayList<ImageData> getImageData() {
+        return id;
+    }
+    
+    public String[] getImageStrings() {
+        return is;
     }
     
     

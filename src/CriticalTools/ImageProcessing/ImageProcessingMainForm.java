@@ -1,6 +1,8 @@
 package CriticalTools.ImageProcessing;
 
 import CriticalTools.CommonForms.QuitForm;
+import CriticalTools.IO.DatabaseIO;
+import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
@@ -18,6 +20,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     private JFileChooser fc;
     private ArrayList<ImageData> imgDataList;
+    private DatabaseIO dataIO;
+    private String[] imageStrings;
 
     /**
      * Creates new form ImageProcessingMainForm
@@ -25,7 +29,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public ImageProcessingMainForm(Component c) {
         initComponents();
         setLocationRelativeTo(c);
-        imgDataList = new ArrayList<>();
+        this.dataIO = new DatabaseIO();
+        this.imgDataList = new ArrayList<>();
     }
 
     /**
@@ -40,7 +45,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         fc.setAcceptAllFileFilterUsed(false);
         fc.setVisible(true);
         if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            imageList.setListData(parseImgNames(fc.getSelectedFile()));
+            this.imageStrings = parseImgNames(fc.getSelectedFile());
+            imageList.setListData(imageStrings);
         }
     }
 
@@ -51,15 +57,27 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
      * @return
      */
     private String[] parseImgNames(File inFile) {
-        String[] imageStrings = new String[0];
+        String[] imgStingTemp = new String[0];
         if (inFile.isDirectory()) {
             File[] curDirectory = inFile.listFiles();
-            imageStrings = new String[curDirectory.length];
+            imgStingTemp = new String[curDirectory.length];
             for (int i = 0; i < curDirectory.length; i++) {
-                imageStrings[i] = curDirectory[i].getName();
+                imgStingTemp[i] = curDirectory[i].getName();
             }
         }
-        return imageStrings;
+        return imgStingTemp;
+    }
+    
+    protected void saveDB() {
+        Database db = new Database(imgDataList, imageStrings);
+        dataIO.writeDB(db);
+    }
+    
+    protected void loadDB() {
+        Database db = dataIO.readDB();
+        this.imgDataList = db.getImageData();
+        this.imageStrings = db.getImageStrings();
+        imageList.setListData(imageStrings);
     }
 
     /**
@@ -163,6 +181,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openDirectoryItem = new javax.swing.JMenuItem();
+        openExistingDBItem = new javax.swing.JMenuItem();
         saveDataItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
         parseMenu = new javax.swing.JMenu();
@@ -193,7 +212,20 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         });
         fileMenu.add(openDirectoryItem);
 
+        openExistingDBItem.setText("Open existing database");
+        openExistingDBItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openExistingDBItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(openExistingDBItem);
+
         saveDataItem.setText("Save...");
+        saveDataItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveDataItemActionPerformed(evt);
+            }
+        });
         fileMenu.add(saveDataItem);
 
         quitButton.setText("Quit");
@@ -235,12 +267,16 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action for Quit Button
+     * @param evt 
+     */
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_fileMenuActionPerformed
 
     private void openDirectoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryItemActionPerformed
@@ -253,6 +289,17 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             createProcessingDialog();
         }
     }//GEN-LAST:event_imageListMouseClicked
+
+    private void openExistingDBItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openExistingDBItemActionPerformed
+        // TODO add your handling code here:
+        loadDB();
+    }//GEN-LAST:event_openExistingDBItemActionPerformed
+
+    private void saveDataItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataItemActionPerformed
+        // TODO add your handling code here:
+        saveDB();
+    }//GEN-LAST:event_saveDataItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem autoProcess;
     private javax.swing.JMenu fileMenu;
@@ -260,6 +307,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JMenuItem openDirectoryItem;
+    private javax.swing.JMenuItem openExistingDBItem;
     private javax.swing.JMenu parseMenu;
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem saveDataItem;

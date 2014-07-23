@@ -21,7 +21,7 @@ public class DatabaseIO {
     
     public void writeDB(Database db) {
         try {
-            try (FileOutputStream fOS = new FileOutputStream("");
+            try (FileOutputStream fOS = new FileOutputStream("./database.db");
                     ObjectOutputStream out = new ObjectOutputStream(fOS)) {
                 out.writeObject(db);
             }
@@ -33,7 +33,7 @@ public class DatabaseIO {
     public Database readDB() {
         Database db = null;
         try {
-            try (FileInputStream fIS = new FileInputStream("");
+            try (FileInputStream fIS = new FileInputStream("./database.db");
                     ObjectInputStream in = new ObjectInputStream(fIS)) {
                 db = (Database) in.readObject();
             } catch (ClassNotFoundException ex) {
