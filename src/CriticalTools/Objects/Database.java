@@ -7,35 +7,21 @@ import java.util.ArrayList;
  * @author Connor Rice
  */
 public class Database implements Serializable {
-    private Arrangement[] arrangements;
-    private ArrayList<String> indDB;
-    private ArrayList<ImageData> id;
-    private String[] is;
+    private ArrayList<ImageData> imageDataList;
+    private String[] imageStrings;
     
     public Database(ArrayList<ImageData> id, String[] is) {
-        this.id = id;
-        this.is = is;
+        this.imageDataList = id;
+        this.imageStrings = is;
     }
     
-    public Database(Arrangement[] arrangements, ArrayList<String> indDB) {
-        this.arrangements = arrangements;
-        this.indDB = indDB;
-    }
-    
-    public Arrangement[] getArrangements() {
-        return arrangements;
-    }
-    
-    public ArrayList<String> getIndDB() {
-        return indDB;
-    }
     
     public ArrayList<ImageData> getImageData() {
-        return id;
+        return imageDataList;
     }
     
     public String[] getImageStrings() {
-        return is;
+        return imageStrings;
     }
     
     

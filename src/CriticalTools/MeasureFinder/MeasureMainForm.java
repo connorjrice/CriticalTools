@@ -1,7 +1,6 @@
 package CriticalTools.MeasureFinder;
 
 import CriticalTools.Util.PageOps;
-import CriticalTools.CommonForms.OpenForm;
 import CriticalTools.CommonForms.QuitForm;
 import java.awt.Component;
 import javax.swing.DefaultComboBoxModel;
@@ -50,10 +49,6 @@ public class MeasureMainForm extends javax.swing.JFrame {
         partComboBox = new javax.swing.JComboBox();
         jMenuBar1 = new javax.swing.JMenuBar();
         indMenu = new javax.swing.JMenu();
-        indmenu = new javax.swing.JMenuItem();
-        arrMenu = new javax.swing.JMenuItem();
-        exportIND = new javax.swing.JMenuItem();
-        exportARR = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -92,33 +87,6 @@ public class MeasureMainForm extends javax.swing.JFrame {
         partComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Full Score" }));
 
         indMenu.setText("File");
-
-        indmenu.setText("Open .ind...");
-        indmenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                indmenuActionPerformed(evt);
-            }
-        });
-        indMenu.add(indmenu);
-
-        arrMenu.setText("Open .arr...");
-        arrMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                arrMenuActionPerformed(evt);
-            }
-        });
-        indMenu.add(arrMenu);
-
-        exportIND.setText("Export .ind file...");
-        indMenu.add(exportIND);
-
-        exportARR.setText("Export .arr file...");
-        exportARR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exportARRActionPerformed(evt);
-            }
-        });
-        indMenu.add(exportARR);
 
         quitButton.setText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -186,29 +154,13 @@ public class MeasureMainForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_measureFieldKeyTyped
 
-    private void indmenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_indmenuActionPerformed
-        new OpenForm(this).setVisible(true);
-    }//GEN-LAST:event_indmenuActionPerformed
-
-    private void arrMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrMenuActionPerformed
-        new OpenForm(this).setVisible(true);
-    }//GEN-LAST:event_arrMenuActionPerformed
-
-    private void exportARRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportARRActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_exportARRActionPerformed
-
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem arrMenu;
     private javax.swing.JComboBox arrangeCombo;
-    private javax.swing.JMenuItem exportARR;
-    private javax.swing.JMenuItem exportIND;
     private javax.swing.JMenu indMenu;
-    private javax.swing.JMenuItem indmenu;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField measureField;
     private javax.swing.JButton openButton;
