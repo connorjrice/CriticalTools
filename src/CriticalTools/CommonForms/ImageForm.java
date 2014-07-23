@@ -14,21 +14,20 @@ public class ImageForm extends javax.swing.JFrame {
 
     private ImageOps iIO;
 
-    public ImageForm(ImageData id, Component c) throws IOException {
-        this.iIO = new ImageOps(id);
+    public ImageForm(ImageData id, int photoNumber, Component c) throws IOException {
+        this.iIO = new ImageOps(id, photoNumber);
         initComponents();
-        iIO.readImages();
-        //initImage();
+        iIO.readImage();
+        initImage();
         setLocationRelativeTo(c);
         setTitle(iIO.getFormattedTitle());
-
     }
 
-    /*private void initImage() {
-     jLabel1.setIcon(iIO.scaleImage());
-     int[] bounds = iIO.getImageBounds();
-     this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
-     }*/
+    private void initImage() {
+        jLabel1.setIcon(iIO.scaleImage());
+        int[] bounds = iIO.getImageBounds();
+        this.setBounds(bounds[0], bounds[1], bounds[2], bounds[3]);
+     }
     @Override
     public void dispose() {
         super.dispose();

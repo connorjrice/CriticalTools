@@ -42,4 +42,8 @@ public class ImageData implements Serializable {
     public String getArrangementDir() {
         return arrangementDir;
     }
+    
+    public int getNumImages() {
+        return imgType.length();
+    }
 }

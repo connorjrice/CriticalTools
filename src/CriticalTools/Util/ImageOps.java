@@ -17,13 +17,13 @@ import javax.swing.ImageIcon;
 public class ImageOps {
 
     private ImageData imageData;
-    private BufferedImage[] originalImage;
-    private BufferedImage[] currentImage;
+    private BufferedImage originalImage;
+    private BufferedImage currentImage;
+    private int photoNumber;
 
-    public ImageOps(ImageData id) {
+    public ImageOps(ImageData id, int photoNumber) {
         this.imageData = id;
-        this.originalImage = new BufferedImage[3];
-        this.currentImage = new BufferedImage[3];
+        this.photoNumber = photoNumber;
     }
 
     /**
@@ -35,14 +35,12 @@ public class ImageOps {
         return "Page: " + imageData.getPageNumber();
     }
 
-    public void readImages() throws IOException {
+    public void readImage() throws IOException {
         String imgType = imageData.getImgType();
-        for (int i = 0; i < imgType.length(); i++) {
-            String imageLocation = getImageLocation(imageData.getPageNumber(), 
-                    Character.toString(imgType.charAt(i)));
-            System.out.println(imageLocation);
-            originalImage[i] = ImageIO.read(new File(imageLocation));
-        }
+        String imageLocation = getImageLocation(imageData.getPageNumber(), 
+                Character.toString(imgType.charAt(photoNumber)));
+        System.out.println(imageLocation);
+        originalImage = ImageIO.read(new File(imageLocation));
     }
 
     public String getImageLocation(int i, String s) {
@@ -71,17 +69,17 @@ public class ImageOps {
         }
     }
 
-    public int[] getImageBounds(int i) {
-        return new int[]{0, 0, currentImage[i].getWidth(), currentImage[i].getHeight()};
+    public int[] getImageBounds() {
+        return new int[]{0, 0, currentImage.getWidth(), currentImage.getHeight()};
     }
 
-    public ImageIcon scaleImage(int i) {
-        float[] imgVars = getScaledDimensions(originalImage[i]);
+    public ImageIcon scaleImage() {
+        float[] imgVars = getScaledDimensions(originalImage);
         BufferedImage out = new BufferedImage(round(imgVars[1]), round(imgVars[2]), BufferedImage.TYPE_INT_ARGB);
         Graphics g = out.createGraphics();
-        g.drawImage(originalImage[i], 0, 0, round(imgVars[1]), round(imgVars[2]), null);
+        g.drawImage(originalImage, 0, 0, round(imgVars[1]), round(imgVars[2]), null);
         g.dispose();
-        currentImage[i] = out;
+        currentImage = out;
         return new ImageIcon(out);
     }
 

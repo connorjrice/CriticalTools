@@ -21,7 +21,7 @@ public class PageOps {
     private BinarySearch binarySearch;
     private ImageUtilsForm utilFrame;
     private ImageData curData;
-    private ImageForm imgForm;
+    private ImageForm[] imgForms;
     private Component c;
     private DatabaseIO dataIO;
     private Database database;
@@ -31,6 +31,7 @@ public class PageOps {
         new MeasureMainForm(this, c).setVisible(true);
         this.dataIO = new DatabaseIO();
         this.database = dataIO.readDB();
+        this.imgForms = new ImageForm[3];
         binarySearch = new BinarySearch(database.getImageData(), 0);
     }
 
@@ -45,8 +46,8 @@ public class PageOps {
     private void createUtilsForm(ImageData id) {
         utilFrame = new ImageUtilsForm(this, id);
         utilFrame.setVisible(true);
-        int uw = imgForm.getX() - utilFrame.getWidth();
-        int uy = imgForm.getY() / 2 + utilFrame.getHeight();
+        int uw = imgForms[0].getX() - utilFrame.getWidth();
+        int uy = imgForms[0].getY() / 2 + utilFrame.getHeight();
         utilFrame.setLocation(uw, uy);
     }
     
@@ -75,16 +76,18 @@ public class PageOps {
     }
     
     private void newImageForm() throws IOException {
-        imgForm = new ImageForm(curData, c);
-        imgForm.setVisible(true);
+        for (int i = 0; i < curData.getNumImages(); i++) {
+            imgForms[i] = new ImageForm(curData, i, c);
+            imgForms[i].setVisible(true);
+        }
+
     }
 
     public void initialImageOpen(String measureString) {
         try {
             curData = binarySearch.binarySearch(Integer.parseInt(measureString));
             try {
-                imgForm = new ImageForm(curData, c);
-                imgForm.setVisible(true);
+                newImageForm();
                 createUtilsForm(curData);
             } catch (IOException ex) {
                 new ErrorForm("Image file not found.", c).setVisible(true);
@@ -97,7 +100,10 @@ public class PageOps {
     }
     
     public void destroyImageForm() {
-        imgForm.closeExternal();
+        for (int i = 0; i < curData.getNumImages(); i++) {
+            imgForms[i].closeExternal();            
+        }
+
     }
     
     
