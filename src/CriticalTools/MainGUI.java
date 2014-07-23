@@ -1,4 +1,4 @@
-package CriticalTools.MainGUI;
+package CriticalTools;
 
 import CriticalTools.CommonForms.AboutForm;
 import CriticalTools.CommonForms.QuitForm;

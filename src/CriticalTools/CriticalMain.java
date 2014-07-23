@@ -1,7 +1,5 @@
 package CriticalTools;
 
-import CriticalTools.MainGUI.MainGUI;
-
 /**
  * Critical Tools: A suite of applications that are designed to aid in the 
  * process of authoring a Musical Critical Edition.

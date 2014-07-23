@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import CriticalTools.Algorithms.BinarySearch;
-import CriticalTools.IO.ARRParse;
-import CriticalTools.IO.DatabaseIO;
 import CriticalTools.MeasureFinder.ImageUtilsForm;
 import CriticalTools.MeasureFinder.MeasureMainForm;
 import CriticalTools.Objects.Arrangement;
@@ -31,7 +28,6 @@ public class PageOps {
 
     public PageOps(Component c) {
         this.c = c;
-        arrangements = new ARRParse().getARR();
         new MeasureMainForm(this, c).setVisible(true);
         this.dataIO = new DatabaseIO();
         binarySearch = new BinarySearch(dataIO.readDB().getImageData());

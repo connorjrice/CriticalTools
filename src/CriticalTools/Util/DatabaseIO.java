@@ -1,4 +1,4 @@
-package CriticalTools.IO;
+package CriticalTools.Util;
 
 import CriticalTools.Objects.Database;
 import java.io.FileInputStream;

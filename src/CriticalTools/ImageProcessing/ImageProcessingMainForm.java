@@ -1,7 +1,7 @@
 package CriticalTools.ImageProcessing;
 
 import CriticalTools.CommonForms.QuitForm;
-import CriticalTools.IO.DatabaseIO;
+import CriticalTools.Util.DatabaseIO;
 import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
 import java.awt.Component;

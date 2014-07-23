@@ -1,4 +1,4 @@
-package CriticalTools.Algorithms;
+package CriticalTools.Util;
 
 import CriticalTools.Objects.ImageData;
 import java.util.ArrayList;
