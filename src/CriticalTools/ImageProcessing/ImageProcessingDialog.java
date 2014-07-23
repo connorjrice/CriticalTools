@@ -2,7 +2,7 @@ package CriticalTools.ImageProcessing;
 
 /**
  *
- * @author Development
+ * @author Connor Rice
  */
 public class ImageProcessingDialog extends javax.swing.JFrame {
     private ImageProcessingMainForm parentFrame;
@@ -137,12 +137,10 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
     private void addDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDataButtonActionPerformed
-        // TODO add your handling code here:
         int[] intA = parseInts();
         parentFrame.addPage(intA, imgTypeField.getText(), null);
         dispose();

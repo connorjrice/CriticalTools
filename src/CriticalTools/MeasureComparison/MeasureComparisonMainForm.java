@@ -121,7 +121,6 @@ public class MeasureComparisonMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_quitButtonActionPerformed
 
     private void measureTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_measureTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_measureTextFieldActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -140,7 +140,6 @@ public class MeasureMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_openButtonActionPerformed
 
     private void arrangeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrangeComboActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_arrangeComboActionPerformed
 
     private void measureFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_measureFieldMouseClicked

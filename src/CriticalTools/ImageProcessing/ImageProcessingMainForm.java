@@ -286,7 +286,6 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_fileMenuActionPerformed
 
     private void openDirectoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryItemActionPerformed
-        // TODO add your handling code here:
         openDirectory();
     }//GEN-LAST:event_openDirectoryItemActionPerformed
 
@@ -297,12 +296,10 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_imageListMouseClicked
 
     private void openExistingDBItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openExistingDBItemActionPerformed
-        // TODO add your handling code here:
         loadDB();
     }//GEN-LAST:event_openExistingDBItemActionPerformed
 
     private void saveDataItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataItemActionPerformed
-        // TODO add your handling code here:
         saveDB();
     }//GEN-LAST:event_saveDataItemActionPerformed
 

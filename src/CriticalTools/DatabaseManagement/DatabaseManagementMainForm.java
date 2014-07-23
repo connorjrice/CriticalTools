@@ -5,7 +5,6 @@ import CriticalTools.Util.DatabaseIO;
 import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
 import java.awt.Component;
-import java.util.ArrayList;
 
 /**
  * Database Viewer: Allows the user to browse through the various databases 
@@ -57,11 +56,6 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Critical Tools - Database Management");
 
-        databaseList.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(databaseList);
 
         upButton.setText("Up");
