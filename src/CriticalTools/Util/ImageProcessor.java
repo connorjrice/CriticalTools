@@ -69,13 +69,8 @@ public class ImageProcessor {
     }
 
     public void saveDB() {
-        try {
-            db = dataIO.readDB();
-            dataIO.writeDB(db);
-        } catch (IOException | ClassNotFoundException ex) {
-            new ErrorForm("Error", parentFrame).setVisible(true);
-        }
-
+        Database newDB = new Database(imgDataList, imageStrings, imageStrings, null);
+        dataIO.writeDB(newDB);
     }
 
     public void loadDB() {
@@ -108,8 +103,9 @@ public class ImageProcessor {
     }
 
     private int getArrangementIndex() {
-        imgDataList.add(new ArrayList<ImageData>());
-
+        if (imgDataList.isEmpty()) {
+            imgDataList.add(new ArrayList<ImageData>());
+        }
         return imgDataList.size()-1;
     }
 

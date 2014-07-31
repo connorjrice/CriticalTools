@@ -73,6 +73,7 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         exportItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
+        editDeleteDatabase = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Critical Tools - Database Management");
@@ -110,6 +111,10 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         jMenuBar1.add(fileMenu);
 
         editMenu.setText("Edit");
+
+        editDeleteDatabase.setText("Delete database...");
+        editMenu.add(editDeleteDatabase);
+
         jMenuBar1.add(editMenu);
 
         setJMenuBar(jMenuBar1);
@@ -151,6 +156,7 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList databaseList;
+    private javax.swing.JMenuItem editDeleteDatabase;
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenuItem exportItem;
     private javax.swing.JMenu fileMenu;
