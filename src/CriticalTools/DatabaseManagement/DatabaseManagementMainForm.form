@@ -19,6 +19,14 @@
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="exportItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Export..."/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exportItemActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="quitButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quit"/>

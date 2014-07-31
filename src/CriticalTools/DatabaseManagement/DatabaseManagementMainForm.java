@@ -37,6 +37,10 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         this.imageStrings = db.getImageStrings();
         databaseList.setListData(imageStrings);
     }
+    
+    private void exportDB() {
+        dataIO.exportDB(dataIO.readDB());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,6 +59,7 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         fileMenu = new javax.swing.JMenu();
         openItem = new javax.swing.JMenuItem();
         saveItem = new javax.swing.JMenuItem();
+        exportItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
         editMenu = new javax.swing.JMenu();
 
@@ -74,6 +79,14 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
         saveItem.setText("Save");
         fileMenu.add(saveItem);
+
+        exportItem.setText("Export...");
+        exportItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exportItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(exportItem);
 
         quitButton.setText("Quit");
         quitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -119,9 +132,16 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     private void quitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitButtonActionPerformed
         new QuitForm(this).setVisible(true);
     }//GEN-LAST:event_quitButtonActionPerformed
+
+    private void exportItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exportItemActionPerformed
+        // TODO add your handling code here:
+        exportDB();
+    }//GEN-LAST:event_exportItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList databaseList;
     private javax.swing.JMenu editMenu;
+    private javax.swing.JMenuItem exportItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JButton infoButton;
     private javax.swing.JMenuBar jMenuBar1;
