@@ -99,7 +99,11 @@ public class ImageProcessor {
      */
     public void addPage(int[] pageInts, String imgType, String arrangementDir) {
         ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
-        imgDataList.get(getArrangementIndex()).add(id);
+        imgDataList.get(getArrangementIndex()).set(pageInts[2], id);
+    }
+    
+    private boolean getPageExists(int index) {
+        return imgDataList.get(getArrangementIndex()).get(index) != null;
     }
 
     private int getArrangementIndex() {
