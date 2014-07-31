@@ -19,6 +19,7 @@ public class ErrorForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(c); // Centers form
         errorArea.setText(errorText);
+        setVisible(true);
     }
 
     /**

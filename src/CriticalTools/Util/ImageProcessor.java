@@ -1,16 +1,14 @@
 package CriticalTools.Util;
 
 import CriticalTools.CommonForms.ErrorForm;
-import CriticalTools.CommonForms.ImageForm;
 import CriticalTools.ImageProcessing.ImageProcessingDialog;
 import CriticalTools.ImageProcessing.ImageProcessingMainForm;
 import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -21,11 +19,12 @@ import javax.swing.JFrame;
 public class ImageProcessor {
 
     private JFileChooser fc;
-    private ArrayList<ImageData> imgDataList;
+    private ArrayList<ArrayList<ImageData>> imgDataList;
     private DatabaseIO dataIO;
     private String[] imageStrings;
     private String[] arrangementNames;
     private ImageProcessingMainForm parentFrame;
+    private Database db;
 
     public ImageProcessor(ImageProcessingMainForm c) {
         this.dataIO = new DatabaseIO();
@@ -68,21 +67,32 @@ public class ImageProcessor {
     }
 
     public void saveDB() {
-        Database db = new Database(imgDataList, imageStrings, arrangementNames);
-        dataIO.writeDB(db);
+        try {
+            db = dataIO.readDB();
+            dataIO.writeDB(db);
+        } catch (IOException | ClassNotFoundException ex) {
+            new ErrorForm("Error", parentFrame).setVisible(true);
+        }
+
     }
 
     public void loadDB() {
-        Database db = dataIO.readDB();
-        this.imgDataList = db.getImageData();
-        this.imageStrings = db.getImageStrings();
-        this.arrangementNames = db.getArrangementNames();
+        try {
+            this.db = dataIO.readDB();
+            this.imgDataList = db.getAllImageData();
+            this.imageStrings = db.getImageStrings();
+            this.arrangementNames = db.getArrangementNames();
+        } catch (IOException | ClassNotFoundException ex) {
+            new ErrorForm("Error", parentFrame);
+        }
+
     }
 
     public String[] getListData() {
         return imageStrings;
     }
-
+    
+    
     /**
      * Creates a new ImageData object which is added to the ArrayList
      *
@@ -91,7 +101,7 @@ public class ImageProcessor {
      */
     public void addPage(int[] pageInts, String imgType, String arrangementDir) {
         ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
-        imgDataList.add(id);
+        imgDataList.get(getArrangementIndex()).add(id);
     }
 
     private int getArrangementIndex() {
@@ -162,7 +172,9 @@ public class ImageProcessor {
             selectedString[i] = (String) selectedValues.get(i);
         }
         if (getPageNumber(selectedString) != -1) {
-            JFrame IPD = new ImageProcessingDialog(parentFrame, getImgType(selectedString), getPageNumber(selectedString));
+            JFrame IPD = new ImageProcessingDialog(parentFrame, 
+                    getImgType(selectedString), getPageNumber(selectedString),
+                    getArrangementIndex());
             IPD.setVisible(true);
         } else {
             new ErrorForm("Page numbers not equal.", parentFrame).setVisible(true);
@@ -170,7 +182,7 @@ public class ImageProcessor {
 
     }
 
-    public ArrayList<ImageData> getImageDataList() {
+    public ArrayList<ArrayList<ImageData>> getImageDataList() {
         return imgDataList;
     }
 

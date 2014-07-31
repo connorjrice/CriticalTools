@@ -1,10 +1,12 @@
 package CriticalTools.DatabaseManagement;
 
+import CriticalTools.CommonForms.ErrorForm;
 import CriticalTools.CommonForms.QuitForm;
 import CriticalTools.Util.DatabaseIO;
 import CriticalTools.Objects.Database;
 import CriticalTools.Objects.ImageData;
 import java.awt.Component;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     private DatabaseIO dataIO;
-    private ArrayList<ImageData> imgDataList;
+    private ArrayList<ArrayList<ImageData>> imgDataList;
     private String[] imageStrings;
     private boolean isArrangementView = true;
 
@@ -32,14 +34,22 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     }
 
     private void loadDB() {
-        Database db = dataIO.readDB();
-        this.imgDataList = db.getImageData();
-        this.imageStrings = db.getImageStrings();
-        databaseList.setListData(imageStrings);
+        try {
+            Database db = dataIO.readDB();
+            this.imgDataList = db.getAllImageData();
+            this.imageStrings = db.getImageStrings();
+            databaseList.setListData(imageStrings);
+        } catch (IOException | ClassNotFoundException ex) {
+            new ErrorForm("Unable to load existing Database!", this).setVisible(true);
+        }
     }
     
     private void exportDB() {
-        dataIO.exportDB(dataIO.readDB());
+        try {
+            dataIO.exportDB(dataIO.readDB());
+        } catch (IOException | ClassNotFoundException ex) {
+            new ErrorForm("Unable to export existing Database!", this).setVisible(true);
+        }
     }
 
     /**

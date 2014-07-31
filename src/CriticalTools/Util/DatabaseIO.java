@@ -3,6 +3,7 @@ package CriticalTools.Util;
 import CriticalTools.Objects.Database;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -58,19 +59,10 @@ public class DatabaseIO {
      *
      * @return
      */
-    public Database readDB() {
-        Database db = null;
-        try {
-            try (FileInputStream fIS = new FileInputStream("./database.db");
-                    ObjectInputStream in = new ObjectInputStream(fIS)) {
-                db = (Database) in.readObject();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(DatabaseIO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(DatabaseIO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return db;
+    public Database readDB() throws IOException, ClassNotFoundException {
+        FileInputStream fIS = new FileInputStream("./database.db");
+        ObjectInputStream in = new ObjectInputStream(fIS);
+        return (Database) in.readObject();
     }
 
     /**

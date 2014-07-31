@@ -14,19 +14,19 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     /**
      * Creates new form ImageProcessingDialog
      */
-    public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String imgType, int pageNum) {
+    public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String imgType, int pageNum, int arrIndex) {
         initComponents();
         setLocationRelativeTo(parentFrame);
         setResizable(false);
         this.parentFrame = parentFrame;
-        setTextFields(imgType, pageNum);
+        setTextFields(imgType, pageNum, arrIndex);
     }
     
-    private void setTextFields(String imgType, int pageNum) {
+    private void setTextFields(String imgType, int pageNum, int arrIndex) {
         imgTypeField.setText(imgType);
         pageNumField.setText(Integer.toString(pageNum));
         ArrayList<ImageData> imageDataList = parentFrame
-                .getImageProcessor().getImageDataList();
+                .getImageProcessor().getImageDataList().get(arrIndex);
         if (pageNum-1 < imageDataList.size()) {
             startingMeasureField.setText(Integer.toString(
                     imageDataList.get(pageNum-1).getStartMeasure()));

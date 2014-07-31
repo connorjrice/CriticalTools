@@ -31,9 +31,13 @@ public class ImageHandler {
         this.c = c;
         new MeasureMainForm(this, c).setVisible(true);
         this.dataIO = new DatabaseIO();
-        this.database = dataIO.readDB();
+        try {
+            this.database = dataIO.readDB();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(ImageHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.imgForms = new ImageForm[3];
-        binarySearch = new BinarySearch(database.getImageData());
+        binarySearch = new BinarySearch(database.getAllImageData().get(0));
     }
 
     /**
