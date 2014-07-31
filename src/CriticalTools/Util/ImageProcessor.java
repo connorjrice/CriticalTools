@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
@@ -83,8 +85,9 @@ public class ImageProcessor {
             this.imageStrings = db.getImageStrings();
             this.arrangementNames = db.getArrangementNames();
         } catch (IOException | ClassNotFoundException ex) {
-            new ErrorForm("Error", parentFrame);
-        }
+            Logger.getLogger(ImageProcessor.class.getName()).log(Level.SEVERE, null, ex);
+            new ErrorForm("Error", parentFrame).setVisible(true);
+        } 
 
     }
 
@@ -105,7 +108,9 @@ public class ImageProcessor {
     }
 
     private int getArrangementIndex() {
-        return 0;
+        imgDataList.add(new ArrayList<ImageData>());
+
+        return imgDataList.size()-1;
     }
 
     /**
