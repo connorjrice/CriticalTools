@@ -24,7 +24,6 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(c);
         this.imageProcessor = new ImageProcessor(this);
-        //loadDB();
     }
 
     public ImageProcessor getImageProcessor() {

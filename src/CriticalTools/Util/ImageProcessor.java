@@ -99,8 +99,13 @@ public class ImageProcessor {
      */
     public void addPage(int[] pageInts, String imgType, String arrangementDir) {
         ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
-        imgDataList.get(getArrangementIndex()).set(pageInts[2], id);
+        if (getPageExists(pageInts[2]-1)) {
+            imgDataList.get(getArrangementIndex()).set(pageInts[2]-1, id);
+        } else {
+            imgDataList.get(getArrangementIndex()).add(id);
+        }
     }
+   
     
     private boolean getPageExists(int index) {
         return imgDataList.get(getArrangementIndex()).get(index) != null;
@@ -193,7 +198,6 @@ public class ImageProcessor {
 
     /**
      * Returns a new ImageData object.
-     *
      * @param startMeasure
      * @param endMeasure
      * @param pageNumber

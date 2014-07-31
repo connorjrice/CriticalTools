@@ -35,6 +35,13 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
         }
     } 
 
+    /**
+     * Returns a primitive array of integers containing:
+     * 1. Starting Measure
+     * 2. Ending Measure
+     * 3. Page Number
+     * @return 
+     */
     public int[] parseImageVars() {
         return new int[]{Integer.parseInt(startingMeasureField.getText()), Integer.parseInt(endingMeasureField.getText()), Integer.parseInt(pageNumField.getText())};
     }
