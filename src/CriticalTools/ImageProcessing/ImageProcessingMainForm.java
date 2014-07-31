@@ -47,8 +47,8 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         imageList = new javax.swing.JList();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
-        openDirectoryItem = new javax.swing.JMenuItem();
         openExistingDBItem = new javax.swing.JMenuItem();
+        newArrangement = new javax.swing.JMenuItem();
         saveDataItem = new javax.swing.JMenuItem();
         quitButton = new javax.swing.JMenuItem();
         parseMenu = new javax.swing.JMenu();
@@ -71,14 +71,6 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             }
         });
 
-        openDirectoryItem.setText("Open directory...");
-        openDirectoryItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                openDirectoryItemActionPerformed(evt);
-            }
-        });
-        fileMenu.add(openDirectoryItem);
-
         openExistingDBItem.setText("Open existing database");
         openExistingDBItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +78,14 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
             }
         });
         fileMenu.add(openExistingDBItem);
+
+        newArrangement.setText("New arrangement...");
+        newArrangement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newArrangementActionPerformed(evt);
+            }
+        });
+        fileMenu.add(newArrangement);
 
         saveDataItem.setText("Save...");
         saveDataItem.addActionListener(new java.awt.event.ActionListener() {
@@ -146,10 +146,10 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private void fileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileMenuActionPerformed
     }//GEN-LAST:event_fileMenuActionPerformed
 
-    private void openDirectoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryItemActionPerformed
+    private void newArrangementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newArrangementActionPerformed
         imageProcessor.openDirectory();
         imageList.setListData(imageProcessor.getListData());
-    }//GEN-LAST:event_openDirectoryItemActionPerformed
+    }//GEN-LAST:event_newArrangementActionPerformed
 
     private void imageListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageListMouseClicked
         if (evt.getButton() == (MouseEvent.BUTTON3)) {
@@ -171,7 +171,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     private javax.swing.JList imageList;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenuItem openDirectoryItem;
+    private javax.swing.JMenuItem newArrangement;
     private javax.swing.JMenuItem openExistingDBItem;
     private javax.swing.JMenu parseMenu;
     private javax.swing.JMenuItem quitButton;
