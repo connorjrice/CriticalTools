@@ -149,6 +149,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
 
     private void openDirectoryItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryItemActionPerformed
         imageProcessor.openDirectory();
+        imageList.setListData(imageProcessor.getListData());
     }//GEN-LAST:event_openDirectoryItemActionPerformed
 
     private void imageListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageListMouseClicked
