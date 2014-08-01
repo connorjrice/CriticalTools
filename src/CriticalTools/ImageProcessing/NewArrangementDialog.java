@@ -1,7 +1,7 @@
 package CriticalTools.ImageProcessing;
 
 /**
- *
+ * Dialog for adding a new arrangement, used by Image Processing.
  * @author Connor Rice
  */
 public class NewArrangementDialog extends javax.swing.JFrame {
@@ -88,6 +88,7 @@ public class NewArrangementDialog extends javax.swing.JFrame {
 
     private void openDirectoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openDirectoryButtonActionPerformed
         parentFrame.newArrangementDir(arrangementField.getText());
+        dispose();
     }//GEN-LAST:event_openDirectoryButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed

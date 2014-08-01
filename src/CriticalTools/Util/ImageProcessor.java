@@ -35,12 +35,12 @@ public class ImageProcessor {
     }
     
     /**
+     * TODO: Add handling for same arrangement name.
      * @param name 
      */
     public void newArrangement(String name) {
         arrangementNames.add(name);
         imgDataList.set(imgDataList.size(), new ArrayList<ImageData>());
-        
     }
 
     /**

@@ -2,7 +2,6 @@ package CriticalTools.Objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Database object that contains all of the information/image data that the user
