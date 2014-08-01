@@ -35,6 +35,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }
     
     public void newArrangementDir(String arrangementName) {
+        imageProcessor.newArrangement(arrangementName);
         imageProcessor.openDirectory();
         imageList.setListData(imageProcessor.getListData());
     }

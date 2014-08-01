@@ -1,6 +1,7 @@
 package CriticalTools.ImageProcessing;
 
 import CriticalTools.Objects.ImageData;
+import CriticalTools.Util.ImageProcessor;
 import java.util.ArrayList;
 
 /**
@@ -14,19 +15,19 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     /**
      * Creates new form ImageProcessingDialog
      */
-    public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String imgType, int pageNum, int arrIndex) {
+    public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String imgType, int pageNum) {
         initComponents();
         setLocationRelativeTo(parentFrame);
         setResizable(false);
         this.parentFrame = parentFrame;
-        setTextFields(imgType, pageNum, arrIndex);
+        setTextFields(imgType, pageNum);
     }
     
-    private void setTextFields(String imgType, int pageNum, int arrIndex) {
+    private void setTextFields(String imgType, int pageNum) {
+        ImageProcessor ip = parentFrame.getImageProcessor();
         imgTypeField.setText(imgType);
         pageNumField.setText(Integer.toString(pageNum));
-        ArrayList<ImageData> imageDataList = parentFrame
-                .getImageProcessor().getImageDataList().get(arrIndex);
+        ArrayList<ImageData> imageDataList = ip.getCurrentArrangement();
         if (pageNum-1 < imageDataList.size()) {
             startingMeasureField.setText(Integer.toString(
                     imageDataList.get(pageNum-1).getStartMeasure()));
@@ -34,7 +35,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
                     imageDataList.get(pageNum-1).getEndMeasure()));
         }
         //arrangementNameLabel.setText(parentFrame.getImageProcessor().);
-        arrangementIndexLabel.setText(Integer.toString(arrIndex));
+        arrangementIndexLabel.setText(Integer.toString(ip.getArrangementIndex()));
     } 
 
     /**

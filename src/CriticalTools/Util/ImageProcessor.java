@@ -27,6 +27,7 @@ public class ImageProcessor {
     private ArrayList<String> arrangementNames;
     private ImageProcessingMainForm parentFrame;
     private Database db;
+    private int arrangementIndex;
 
     public ImageProcessor(ImageProcessingMainForm c) {
         this.dataIO = new DatabaseIO();
@@ -39,8 +40,19 @@ public class ImageProcessor {
      * @param name 
      */
     public void newArrangement(String name) {
-        arrangementNames.add(name);
-        imgDataList.set(imgDataList.size(), new ArrayList<ImageData>());
+        if (arrangementNames != null) {
+            System.out.println("here");
+            arrangementNames.add(name);
+            arrangementIndex = arrangementNames.size()-1;
+            imgDataList.add(new ArrayList<ImageData>());
+        } else {
+            try {
+                loadDB();
+            } catch (IOException | ClassNotFoundException ex) {
+                newVars();
+                newArrangement(name);
+            }
+        }
     }
 
     /**
@@ -76,23 +88,27 @@ public class ImageProcessor {
         }
         return imgStingTemp;
     }
-
-    public void saveDB() {
-        Database newDB = new Database(imgDataList, imageStrings, arrangementNames);
-        dataIO.writeDB(newDB);
+    
+    private void newVars() {
+        this.imgDataList = new ArrayList<>();
+        this.imageStrings = new String[10];
+        this.arrangementNames = new ArrayList<>();
+    }
+    
+    private void createDB() {
+        db = new Database(imgDataList, imageStrings, arrangementNames);
     }
 
-    public void loadDB() {
-        try {
-            this.db = dataIO.readDB();
-            this.imgDataList = db.getAllImageData();
-            this.imageStrings = db.getImageStrings();
-            this.arrangementNames = db.getArrangementNames();
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(ImageProcessor.class.getName()).log(Level.SEVERE, null, ex);
-            new ErrorForm("Error", parentFrame).setVisible(true);
-        } 
+    public void saveDB() {
+        createDB();
+        dataIO.writeDB(db);
+    }
 
+    public void loadDB() throws IOException, ClassNotFoundException {
+        this.db = dataIO.readDB();
+        this.imgDataList = db.getAllImageData();
+        this.imageStrings = db.getImageStrings();
+        this.arrangementNames = db.getArrangementNames();
     }
 
     public String[] getListData() {
@@ -117,14 +133,19 @@ public class ImageProcessor {
    
     
     private boolean getPageExists(int index) {
-        return imgDataList.get(getArrangementIndex()).get(index) != null;
+        return imgDataList.get(arrangementIndex).get(index) != null;
     }
 
-    private int getArrangementIndex() {
-        if (imgDataList.isEmpty()) {
-            imgDataList.add(new ArrayList<ImageData>());
-        }
-        return imgDataList.size()-1;
+    public int getArrangementIndex() {
+        return arrangementIndex;
+    }
+    
+    public ArrayList<ImageData> getCurrentArrangement() {
+        //if (imgDataList.size() > 0) {
+            return imgDataList.get(arrangementIndex);
+        //} else {
+            
+        //}
     }
 
     /**
@@ -192,8 +213,7 @@ public class ImageProcessor {
         }
         if (getPageNumber(selectedString) != -1) {
             JFrame IPD = new ImageProcessingDialog(parentFrame, 
-                    getImgType(selectedString), getPageNumber(selectedString),
-                    getArrangementIndex());
+                    getImgType(selectedString), getPageNumber(selectedString));
             IPD.setVisible(true);
         } else {
             new ErrorForm("Page numbers not equal.", parentFrame).setVisible(true);
