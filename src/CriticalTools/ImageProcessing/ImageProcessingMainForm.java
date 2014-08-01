@@ -33,6 +33,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public JList getImageList() {
         return imageList;
     }
+    
+    public void newArrangementDir(String arrangementName) {
+        imageProcessor.openDirectory();
+        imageList.setListData(imageProcessor.getListData());
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -147,8 +152,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_fileMenuActionPerformed
 
     private void newArrangementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newArrangementActionPerformed
-        imageProcessor.openDirectory();
-        imageList.setListData(imageProcessor.getListData());
+        new NewArrangementDialog(this).setVisible(true);
     }//GEN-LAST:event_newArrangementActionPerformed
 
     private void imageListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imageListMouseClicked

@@ -33,6 +33,13 @@ public class ImageProcessor {
         this.imgDataList = new ArrayList<>();
         this.parentFrame = c;
     }
+    
+    public void newArrangement(String name) {
+        if (arrangementNames == null) {
+            arrangementNames = new String[3];
+        }
+        
+    }
 
     /**
      * Displays a JFileChooser that lets the user choose the directory with the
@@ -69,7 +76,7 @@ public class ImageProcessor {
     }
 
     public void saveDB() {
-        Database newDB = new Database(imgDataList, imageStrings, imageStrings, null);
+        Database newDB = new Database(imgDataList, imageStrings, imageStrings);
         dataIO.writeDB(newDB);
     }
 
