@@ -133,7 +133,11 @@ public class ImageProcessor {
    
     
     private boolean getPageExists(int index) {
-        return imgDataList.get(arrangementIndex).get(index) != null;
+        if (index < imgDataList.get(arrangementIndex).size()) {
+            return imgDataList.get(arrangementIndex).get(index) != null;
+        } else {
+            return false;
+        }
     }
 
     public int getArrangementIndex() {
