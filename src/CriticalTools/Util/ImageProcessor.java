@@ -24,7 +24,7 @@ public class ImageProcessor {
     private ArrayList<ArrayList<ImageData>> imgDataList;
     private DatabaseIO dataIO;
     private String[] imageStrings;
-    private String[] arrangementNames;
+    private ArrayList<String> arrangementNames;
     private ImageProcessingMainForm parentFrame;
     private Database db;
 
@@ -34,10 +34,12 @@ public class ImageProcessor {
         this.parentFrame = c;
     }
     
+    /**
+     * @param name 
+     */
     public void newArrangement(String name) {
-        if (arrangementNames == null) {
-            arrangementNames = new String[3];
-        }
+        arrangementNames.add(name);
+        imgDataList.set(imgDataList.size(), new ArrayList<ImageData>());
         
     }
 
@@ -76,7 +78,7 @@ public class ImageProcessor {
     }
 
     public void saveDB() {
-        Database newDB = new Database(imgDataList, imageStrings, imageStrings);
+        Database newDB = new Database(imgDataList, imageStrings, arrangementNames);
         dataIO.writeDB(newDB);
     }
 

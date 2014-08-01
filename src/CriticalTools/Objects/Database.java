@@ -14,9 +14,9 @@ public class Database implements Serializable {
 
     private ArrayList<ArrayList<ImageData>> imageDataList;
     private String[] imageStrings;
-    private String[] arrangementNames;
+    private ArrayList<String> arrangementNames;
 
-    public Database(ArrayList<ArrayList<ImageData>> id, String[] is, String[] an) {
+    public Database(ArrayList<ArrayList<ImageData>> id, String[] is, ArrayList<String> an) {
         this.imageDataList = id;
         this.imageStrings = is;
         this.arrangementNames = an;
@@ -34,7 +34,7 @@ public class Database implements Serializable {
         return imageStrings;
     }
 
-    public String[] getArrangementNames() {
+    public ArrayList<String> getArrangementNames() {
         return arrangementNames;
     }
     
