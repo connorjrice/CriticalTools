@@ -21,6 +21,7 @@ public class ImageUtilsForm extends javax.swing.JFrame {
         this.pOps = pOps;
         this.curData = curData;
         initComponents();
+        setResizable(false);
         renameLabels();
     }
 

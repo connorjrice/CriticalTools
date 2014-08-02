@@ -19,7 +19,7 @@ public class MeasureMainForm extends javax.swing.JFrame {
         this.pOps = pOps;
         initComponents();
         setLocationRelativeTo(c); // Centers form to parent
-        setComboBoxModel(pOps.parseArr());
+        //setComboBoxModel(pOps.parseArr());
     }
 
     private void setComboBoxModel(DefaultComboBoxModel dcbm) {
@@ -55,6 +55,7 @@ public class MeasureMainForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CriticalTools - Measure Locator");
 
+        arrangeCombo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Whiteman Arrangement", "Fair Copy", "Ink" }));
         arrangeCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 arrangeComboActionPerformed(evt);

@@ -119,7 +119,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
 
         arrangementIndexLabel.setText("-1");
 
-        arrangementNameLabel.setText("ERROR");
+        arrangementNameLabel.setText("Whiteman");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

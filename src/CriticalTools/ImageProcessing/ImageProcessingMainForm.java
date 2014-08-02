@@ -4,6 +4,9 @@ import CriticalTools.CommonForms.QuitForm;
 import CriticalTools.Util.ImageProcessor;
 import java.awt.Component;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JList;
 
 /**
@@ -163,7 +166,11 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_imageListMouseClicked
 
     private void openExistingDBItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openExistingDBItemActionPerformed
-        imageProcessor.loadDB();
+        try {
+            imageProcessor.loadDB();
+        } catch (IOException | ClassNotFoundException ex) {
+            Logger.getLogger(ImageProcessingMainForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         imageList.setListData(imageProcessor.getListData());
     }//GEN-LAST:event_openExistingDBItemActionPerformed
 
