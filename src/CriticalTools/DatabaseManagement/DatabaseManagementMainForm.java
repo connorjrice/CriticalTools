@@ -50,11 +50,13 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     
     private void setListArrangement() {
         isArrangementView = true;
+        navButton.setText("Down");
         databaseList.setListData(db.getArrangementNamesStr());
     }
     
     private void setListImages() {
         databaseList.setListData(db.getImageStrings(getArrIndex(), databaseList.getSelectedIndex()));        
+        navButton.setText("Up");
         isArrangementView = false;
 
     }
@@ -103,7 +105,7 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(databaseList);
 
-        navButton.setText("Up");
+        navButton.setText("Down");
         navButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 navButtonActionPerformed(evt);

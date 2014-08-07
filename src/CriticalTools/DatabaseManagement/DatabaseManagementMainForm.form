@@ -119,7 +119,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="navButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Up"/>
+        <Property name="text" type="java.lang.String" value="Down"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="navButtonActionPerformed"/>
