@@ -20,7 +20,8 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     private DatabaseIO dataIO;
     private ArrayList<ArrayList<ImageData>> imgDataList;
-    private String[] imageStrings;
+    private String[] listStrings;
+    private Database db;
     private boolean isArrangementView = true;
 
     /**
@@ -35,10 +36,10 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     private void loadDB() {
         try {
-            Database db = dataIO.readDB();
+            this.db = dataIO.readDB();
             this.imgDataList = db.getAllImageData();
-            this.imageStrings = db.getImageStrings();
-            databaseList.setListData(imageStrings);
+            this.listStrings = db.getImageStrings();
+            databaseList.setListData(listStrings);
         } catch (IOException | ClassNotFoundException ex) {
             new ErrorForm("Unable to load existing Database!", this).setVisible(true);
         }
@@ -81,6 +82,11 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(databaseList);
 
         upButton.setText("Up");
+        upButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                upButtonActionPerformed(evt);
+            }
+        });
 
         infoButton.setText("Info");
 
@@ -153,6 +159,11 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         exportDB();
     }//GEN-LAST:event_exportItemActionPerformed
+
+    private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
+        // TODO add your handling code here:\
+        databaseList.setListData(db.getArrangementNamesStr());
+    }//GEN-LAST:event_upButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList databaseList;

@@ -37,5 +37,14 @@ public class Database implements Serializable {
         return arrangementNames;
     }
     
+    public String[] getArrangementNamesStr() {
+        String[] arrStr = new String[arrangementNames.size()];
+        for (int i = 0; i < arrangementNames.size(); i++) {
+            arrStr[i] = arrangementNames.get(i);
+        }
+        return arrStr;
+    }
+    
+    
     
 }
