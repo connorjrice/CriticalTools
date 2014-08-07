@@ -4,10 +4,8 @@ import CriticalTools.CommonForms.ErrorForm;
 import CriticalTools.CommonForms.QuitForm;
 import CriticalTools.Util.DatabaseIO;
 import CriticalTools.Objects.Database;
-import CriticalTools.Objects.ImageData;
 import java.awt.Component;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Database Viewer: Allows the user to browse through the various databases
@@ -19,8 +17,6 @@ import java.util.ArrayList;
 public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
     private DatabaseIO dataIO;
-    private ArrayList<ArrayList<ImageData>> imgDataList;
-    private String[] listStrings;
     private Database db;
     private boolean isArrangementView = true;
 
@@ -32,14 +28,12 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         setLocationRelativeTo(c);
         this.dataIO = new DatabaseIO();
         loadDB();
+        setListArrangement();
     }
 
     private void loadDB() {
         try {
             this.db = dataIO.readDB();
-            this.imgDataList = db.getAllImageData();
-            this.listStrings = db.getImageStrings();
-            databaseList.setListData(listStrings);
         } catch (IOException | ClassNotFoundException ex) {
             new ErrorForm("Unable to load existing Database!", this).setVisible(true);
         }
@@ -51,6 +45,24 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
             dataIO.exportDB(dataIO.readDB());
         } catch (IOException | ClassNotFoundException ex) {
             new ErrorForm("Unable to export existing Database!", this).setVisible(true);
+        }
+    }
+    
+    private void setListArrangement() {
+        isArrangementView = true;
+        databaseList.setListData(db.getArrangementNamesStr());
+    }
+    
+    private void setListImages() {
+        isArrangementView = false;
+        databaseList.setListData(db.getImageStrings());        
+    }
+    
+    private void toggleListData() {
+        if (isArrangementView) {
+            setListImages();
+        } else {
+            setListArrangement();
         }
     }
 
@@ -65,7 +77,7 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         databaseList = new javax.swing.JList();
-        upButton = new javax.swing.JButton();
+        navButton = new javax.swing.JButton();
         infoButton = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -81,10 +93,10 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(databaseList);
 
-        upButton.setText("Up");
-        upButton.addActionListener(new java.awt.event.ActionListener() {
+        navButton.setText("Up");
+        navButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                upButtonActionPerformed(evt);
+                navButtonActionPerformed(evt);
             }
         });
 
@@ -135,13 +147,13 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(infoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(upButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(navButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(upButton)
+                .addComponent(navButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(infoButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -160,10 +172,9 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         exportDB();
     }//GEN-LAST:event_exportItemActionPerformed
 
-    private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
-        // TODO add your handling code here:\
-        databaseList.setListData(db.getArrangementNamesStr());
-    }//GEN-LAST:event_upButtonActionPerformed
+    private void navButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_navButtonActionPerformed
+        toggleListData();
+    }//GEN-LAST:event_navButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList databaseList;
@@ -174,9 +185,9 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     private javax.swing.JButton infoButton;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton navButton;
     private javax.swing.JMenuItem openItem;
     private javax.swing.JMenuItem quitButton;
     private javax.swing.JMenuItem saveItem;
-    private javax.swing.JButton upButton;
     // End of variables declaration//GEN-END:variables
 }
