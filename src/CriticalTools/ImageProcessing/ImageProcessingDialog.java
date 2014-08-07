@@ -11,21 +11,24 @@ import java.util.ArrayList;
 public class ImageProcessingDialog extends javax.swing.JFrame {
 
     private ImageProcessingMainForm parentFrame;
+    private String[] selectedString;
 
     /**
      * Creates new form ImageProcessingDialog
      */
-    public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String imgType, int pageNum) {
+    public ImageProcessingDialog(ImageProcessingMainForm parentFrame, String[] selectedString) {
         initComponents();
         setLocationRelativeTo(parentFrame);
         setResizable(false);
         this.parentFrame = parentFrame;
-        setTextFields(imgType, pageNum);
+        this.selectedString = selectedString;
+        setTextFields();
     }
     
-    private void setTextFields(String imgType, int pageNum) {
+    private void setTextFields() {
         ImageProcessor ip = parentFrame.getImageProcessor();
-        imgTypeField.setText(imgType);
+        int pageNum = getPageNumber(selectedString);
+        imgTypeField.setText(getImgType(selectedString));
         pageNumField.setText(Integer.toString(pageNum));
         ArrayList<ImageData> imageDataList = ip.getCurrentArrangement();
         if (pageNum-1 < imageDataList.size()) {
@@ -48,6 +51,61 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
     public int[] parseImageVars() {
         return new int[]{Integer.parseInt(startingMeasureField.getText()), Integer.parseInt(endingMeasureField.getText()), Integer.parseInt(pageNumField.getText())};
     }
+    
+        /**
+     * Returns the page number from an array of String filenames. Returns -1 if
+     * the page numbers do not match.
+     *
+     * @param fileNames
+     * @return
+     */
+    public int getPageNumber(String[] fileNames) {
+        int[] pageArray = new int[fileNames.length];
+        for (int i = 0; i < pageArray.length; i++) {
+            pageArray[i] = Integer.parseInt(fileNames[i].split("_")[0]);
+        }
+        boolean isSame = checkPageEqual(pageArray);
+        if (isSame) {
+            return pageArray[0];
+        } else {
+            return -1;
+        }
+
+    }
+    
+        /**
+     * Takes in an array of fileNames as Strings, and returns a string with the
+     * abbreviated type of image. Pages with "Bottom" and "Top" image files are
+     * abbreviated as "bt"
+     *
+     * @param fileNames
+     * @return
+     */
+    public String getImgType(String[] fileNames) {
+        String imgType = "";
+        for (String s : fileNames) {
+            String[] sa = s.split("_");
+            imgType += sa[1].charAt(0);
+        }
+        return imgType;
+    }
+    
+        /**
+     * Returns true if the page numbers are equal, false if they are not.
+     *
+     * @param pageArray
+     * @return
+     */
+    public boolean checkPageEqual(int[] pageArray) {
+        boolean result = true;
+        for (int i = 1; i < pageArray.length; i++) {
+            if (pageArray[i - 1] != pageArray[i]) {
+                result = false;
+            }
+        }
+        return result;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -208,7 +266,7 @@ public class ImageProcessingDialog extends javax.swing.JFrame {
 
     private void addDataButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDataButtonActionPerformed
         int[] intA = parseImageVars();
-        parentFrame.getImageProcessor().addPage(intA, imgTypeField.getText(), null);
+        parentFrame.getImageProcessor().addPage(intA, selectedString);
         dispose();
     }//GEN-LAST:event_addDataButtonActionPerformed
 

@@ -12,12 +12,10 @@ import java.util.ArrayList;
 public class Database implements Serializable {
 
     private ArrayList<ArrayList<ImageData>> imageDataList;
-    private String[] imageStrings;
     private ArrayList<String> arrangementNames;
 
-    public Database(ArrayList<ArrayList<ImageData>> id, String[] is, ArrayList<String> an) {
+    public Database(ArrayList<ArrayList<ImageData>> id, ArrayList<String> an) {
         this.imageDataList = id;
-        this.imageStrings = is;
         this.arrangementNames = an;
     }
 
@@ -29,8 +27,8 @@ public class Database implements Serializable {
         return imageDataList.get(index);
     }
 
-    public String[] getImageStrings() {
-        return imageStrings;
+    public String[] getImageStrings(int arrIndex, int imgIndex) {
+        return imageDataList.get(arrIndex).get(imgIndex).getImgNames();
     }
 
     public ArrayList<String> getArrangementNames() {

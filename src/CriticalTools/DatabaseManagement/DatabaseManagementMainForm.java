@@ -54,8 +54,9 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
     }
     
     private void setListImages() {
+        databaseList.setListData(db.getImageStrings(getArrIndex(), databaseList.getSelectedIndex()));        
         isArrangementView = false;
-        databaseList.setListData(db.getImageStrings());        
+
     }
     
     private void toggleListData() {
@@ -64,6 +65,15 @@ public class DatabaseManagementMainForm extends javax.swing.JFrame {
         } else {
             setListArrangement();
         }
+    }
+    
+    private int getArrIndex() {
+        if (isArrangementView) {
+            return databaseList.getSelectedIndex();
+        } else {
+            return -1;
+        }
+
     }
 
     /**

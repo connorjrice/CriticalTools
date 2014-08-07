@@ -96,7 +96,7 @@ public class ImageProcessor {
     }
     
     private void createDB() {
-        db = new Database(imgDataList, imageStrings, arrangementNames);
+        db = new Database(imgDataList, arrangementNames);
     }
 
     public void saveDB() {
@@ -107,7 +107,6 @@ public class ImageProcessor {
     public void loadDB() throws IOException, ClassNotFoundException {
         this.db = dataIO.readDB();
         this.imgDataList = db.getAllImageData();
-        this.imageStrings = db.getImageStrings();
         this.arrangementNames = db.getArrangementNames();
     }
 
@@ -122,8 +121,8 @@ public class ImageProcessor {
      * @param pageInts
      * @param imgType
      */
-    public void addPage(int[] pageInts, String imgType, String arrangementDir) {
-        ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], imgType, arrangementDir);
+    public void addPage(int[] pageInts, String[] selectedString) {
+        ImageData id = createImageData(pageInts[0], pageInts[1], pageInts[2], selectedString, null);
         if (getPageExists(pageInts[2]-1)) {
             imgDataList.get(getArrangementIndex()).set(pageInts[2]-1, id);
         } else {
@@ -216,8 +215,7 @@ public class ImageProcessor {
             selectedString[i] = (String) selectedValues.get(i);
         }
         if (getPageNumber(selectedString) != -1) {
-            JFrame IPD = new ImageProcessingDialog(parentFrame, 
-                    getImgType(selectedString), getPageNumber(selectedString));
+            JFrame IPD = new ImageProcessingDialog(parentFrame, selectedString);
             IPD.setVisible(true);
         } else {
             new ErrorForm("Page numbers not equal.", parentFrame).setVisible(true);
@@ -238,7 +236,7 @@ public class ImageProcessor {
      * @return
      */
     public ImageData createImageData(int startMeasure, int endMeasure,
-            int pageNumber, String imgType, String arrangementDir) {
-        return new ImageData(startMeasure, endMeasure, pageNumber, imgType, arrangementDir);
+            int pageNumber, String[] imgNames, String arrangementDir) {
+        return new ImageData(startMeasure, endMeasure, pageNumber, imgNames, arrangementDir);
     }
 }
