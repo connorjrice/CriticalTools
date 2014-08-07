@@ -40,7 +40,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
     public void newArrangementDir(String arrangementName) {
         imageProcessor.newArrangement(arrangementName);
         imageProcessor.openDirectory();
-        imageList.setListData(imageProcessor.getListData());
+        imageList.setListData(imageProcessor.getImageStrings());
     }
 
     /**
@@ -171,7 +171,7 @@ public class ImageProcessingMainForm extends javax.swing.JFrame {
         } catch (IOException | ClassNotFoundException ex) {
             Logger.getLogger(ImageProcessingMainForm.class.getName()).log(Level.SEVERE, null, ex);
         }
-        imageList.setListData(imageProcessor.getListData());
+        imageList.setListData(imageProcessor.getArrangementNames());
     }//GEN-LAST:event_openExistingDBItemActionPerformed
 
     private void saveDataItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveDataItemActionPerformed

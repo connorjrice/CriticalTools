@@ -70,6 +70,10 @@ public class ImageProcessor {
             this.imageStrings = parseImgNames(fc.getSelectedFile());
         }
     }
+    
+    public String[] getImageStrings() {
+        return imageStrings;
+    }
 
     /**
      * Processes the image files that the user chooses from openDirectory()
@@ -109,9 +113,9 @@ public class ImageProcessor {
         this.imgDataList = db.getAllImageData();
         this.arrangementNames = db.getArrangementNames();
     }
-
-    public String[] getListData() {
-        return imageStrings;
+    
+    public String[] getArrangementNames(){
+        return db.getArrangementNamesStr();
     }
     
     
@@ -144,11 +148,7 @@ public class ImageProcessor {
     }
     
     public ArrayList<ImageData> getCurrentArrangement() {
-        //if (imgDataList.size() > 0) {
-            return imgDataList.get(arrangementIndex);
-        //} else {
-            
-        //}
+        return imgDataList.get(arrangementIndex);
     }
 
     /**
